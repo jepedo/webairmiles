@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:c="http://java.sun.com/jsp/jstl/core"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:app="http://springfuse.jaxio.com/app"
+		xmlns:appcc="http://java.sun.com/jsf/composite/components"
+		contentType="text/html" 
+		encoding="UTF-8">
+	<!--[if IE 8]>
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${userContext.locale}" lang="${userContext.locale}" class="no-js lt-ie9">
+	<![endif]-->
+	<!--[if gt IE 8]><!--> 
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${userContext.locale}" lang="${userContext.locale}" class="no-js">
+	<!--<![endif]-->
+	<h:head>
+		<f:facet name="first">
+			<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+			<meta name="viewport" content="width=device-width" />
+			<title>Credit Card Claims</title>
+		</f:facet>
+	<!-- 	<f:facet name="last">
+						 
+			<h:outputStylesheet name="css/normalize.css" />
+			<h:outputStylesheet name="css/main.css" />	
+			 -->
+		<!-- 	 <h:outputStylesheet name="css/foundation.css" />
+ -->
+<!-- 			<h:outputStylesheet name="css/rsa.css" />	 --> 		
+<!-- 			<h:outputStylesheet name="css/.css" /> -->
+		
+			 <!--  <h:outputScript name="js/main.js" />
+			  <h:outputScript name="js/mobile_menu.js" />
+			  <h:outputScript name="js/vendor/custom.modernizr.js"/>	 	 -->			  
+			  			
+<!-- 
+		</f:facet>
+ -->		
+		<style media="all" type="text/css">	
+	
+body {
+  font-family: arial, sans-serif;
+}
+
+div.logo,
+h1,
+h2 {
+  margin: 1em 0 0 0;
+}	
+	
+h1 {	
+  font-family: arial, sans-serif;	
+  font-size: 20pt;
+  color: #5b2d7f;
+  font-weight: normal;
+}		
+
+h2 {	
+  font-family: arial, sans-serif;	
+  font-size: 22px;
+  font-weight: normal;
+  margin-top: 0.2em;
+  margin-bottom: 1em;
+}
+		
+table.ui-panelgrid {
+  width: 100%;
+}		
+		
+tr.ui-widget-header td,
+td.header {
+	font-size: 19px;
+	color: white;
+	background: #5b2d7f;
+	font-weight: normal;
+	padding: 1em 0 1em 2.7em;
+	text-align: left;
+}		
+		
+.nonbolded.title {
+  font-weight: normal;
+  font-size: 14px;
+  font-family: arial, sans-serif;
+}		
+
+.bolded.info {
+  font-weight: bold;
+  font-size: 14px;
+  font-family: arial, sans-serif;
+}		
+
+.grey,
+.ui-panelgrid,
+.ui-widget-content {
+  background-color: #eae6de;
+}
+
+.ui-panelgrid td,
+.ui-widget-content {
+  border: none;  
+}
+
+.ui-panelgrid td {
+  padding: 1em 3em;
+  width: 40%;
+}
+
+.ui-panelgrid td:nth-child(2) {
+  width: 60%;
+}
+
+
+
+.purple {
+  color: #5b2d7f;
+  font-size: 18px;
+}
+
+.autopdf tr:nth-child(9),
+.autopdf  tr:nth-child(15),
+.autopdf  tr:nth-child(32) {
+  border-bottom: solid 3px #ffffff;
+}
+
+.purchasepdf tr:nth-child(9), 
+.purchasepdf tr:nth-child(16) {
+  border-bottom: solid 3px #ffffff;
+}
+
+.travelpdf tr:nth-child(9),
+.travelpdf  tr:nth-child(19){
+  border-bottom: solid 3px #ffffff;
+}
+
+		
+		</style>
+	</h:head>
+	<h:body>
+	<div class="pageWrapper">
+		<h:form id="form" enctype="multipart/form-data; charset=utf-8">
+					<ui:insert name="content"/>
+		</h:form>
+</div>
+	  
+	</h:body>
+	</html>
+</f:view>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://richfaces.org/sandbox/bootstrap">
+<h:head>
+    <title>Travel Insurance</title>
+    <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico" />
+</h:head>
+
+<h:body>
+		<link rel="stylesheet"
+			href="${request.contextPath}/resources/css/style.css" />
+	<!-- <h:outputStylesheet name="style.css" library="/travel/resources/css" /> -->
+	<!-- <h:outputStylesheet name="datepicker.css" library="extensions/bootstrap-datepicker/css" /> -->
+	<div class="main-container container"> 
+		<div id="page-header">
+    		<div id="mobile-menu"></div>
+    		<a class="logo pull-left" href="/" title="Home">
+      			<img src="http://rsagroup.ca.sit.rsabase.com/sites/rsagroup.ca/themes/bootstrap_base/logo.png" alt="Home" />
+    		</a>
+    
+    		<div class="region region-header">
+      			<div id="block-menu-block-platform-menus-3">
+        			<ul class="menu nav">
+  						<li class="first leaf menu-mlid-1961">
+  							<a href="/fr" class="language-link" lang="fr">Français</a>
+  						</li>
+						<li class="last leaf menu-mlid-1915">
+							<a href="/contact-us">Contact Us</a>
+						</li>
+					</ul>
+				</div>
+      		</div>
+      		<ul class="breadcrumb">
+				<li>
+					<a href="/">Home</a>
+					<span class="divider">></span>
+				</li>
+				<li>
+					<a href="/">Renewal</a>
+				</li>
+   			</ul>  
+   		</div>
+    	<ui:insert name="content">Content</ui:insert>
+    </div>
+</h:body>
+</html>
