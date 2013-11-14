@@ -6,12 +6,23 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:b="http://richfaces.org/sandbox/bootstrap">
 <h:head>
-    <title>ROYAL &amp; SUNALLIANCE / AIR MILES</title>
+    <title>#{lookupManager.getBundle('airmiles.pagetitle.txt')}</title>
     <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico" />
 <!-- Include GTM/Omniture for this app... -->
 </h:head>
 
 <h:body>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MBXKLS"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager">This frame is used for Google tag manager.</iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
+{'gtm.start': new Date().getTime(),event:'gtm.js'}
+
+);var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MBXKLS');</script>
+<!-- End Google Tag Manager -->
 		<link rel="stylesheet"
 			href="${request.contextPath}/resources/css/#{flowScope.domain}-style.css" />
 	<div class="main-container container"> 
