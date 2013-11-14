@@ -9,6 +9,7 @@
 	<var name="airmilesRequest" class="ca.rsagroup.airmiles.AirmilesRequest" />
 	<on-start>
 		<set name = "flowScope.lang" value="requestParameters.lang" />	
+		<evaluate expression="airmilesController.getDomain()" result="flowScope.domain" result-type="java.lang.String"/>
 		<evaluate expression="persistenceContext.clear()" />
 	</on-start>
 	<!-- <var name="claim" class="ca.rsagroup.domain.Claim" />

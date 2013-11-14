@@ -27,6 +27,11 @@ public class ConfigurationManager {
 	@Value("${tempDir}")
 	private String tempDir;
 	
+	@Value("${enableDomains}")
+	private boolean enableDomains;
+	
+	@Value("${defaultDomain}")
+	private String defaultDomain;
 		
 
 	public String getMailSenderUrl() {
@@ -76,6 +81,22 @@ public class ConfigurationManager {
 
 	public void setEnableGoogleAnalytics(String enableGoogleAnalytics) {
 		this.enableGoogleAnalytics = enableGoogleAnalytics;
+	}
+
+	public boolean isEnableDomains() {
+		return enableDomains;
+	}
+
+	public void setEnableDomains(boolean enableDomains) {
+		this.enableDomains = enableDomains;
+	}
+
+	public String getDefaultDomain() {
+		return defaultDomain;
+	}
+
+	public void setDefaultDomain(String defaultDomain) {
+		this.defaultDomain = defaultDomain;
 	}
 	
 }

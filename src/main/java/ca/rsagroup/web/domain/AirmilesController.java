@@ -9,6 +9,7 @@ import java.util.Locale;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,6 +17,7 @@ import org.springframework.binding.message.MessageContext;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.support.RequestContextUtils;
+import org.springframework.webflow.context.servlet.ServletExternalContext;
 import org.springframework.webflow.execution.RequestContext;
 
 import ca.rsagroup.commons.ConfigurationManager;
@@ -305,5 +307,24 @@ public class AirmilesController  {
     	}
     	return preferedlang;
     }  
+    
+    public String getDomain() {
+    	if(!configurationManager.isEnableDomains())
+    		return configurationManager.getDefaultDomain();
+    	
+    	HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    	
+    	String result = "";    	
+    	String reqUrl = request.getRequestURL().toString();	
+			try {
+				result = reqUrl.substring(reqUrl.indexOf("//") + 2,
+						reqUrl.indexOf("."));
+			} catch (Exception e) {
+				result = configurationManager.getDefaultDomain();
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}    	
+    	return result;   	
+    }
     
 }
