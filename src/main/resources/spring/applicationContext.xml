@@ -24,7 +24,7 @@
 	]]></description>
 
 	<!-- context -->
-	<context:component-scan base-package="ca.rsagroup,ca.rsagroup.model,ca.rsagroup.service,ca.rsagroup.pdf,ca.rsagroup.commons,ca.rsagroup.web.util">
+	<context:component-scan base-package="ca.rsagroup,ca.rsagroup.model,ca.rsagroup.service,ca.rsagroup.pdf,ca.rsagroup.commons,ca.rsagroup.web.util,ca.rsagroup.web.filter">
 		<!-- exclude web beans as they live in the web application context -->
 		<!-- Note: this regexp does not work if you try to escape the '.' -->
 		<context:exclude-filter type="regex" expression="ca.rsagroup.web.*" />

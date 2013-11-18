@@ -3,6 +3,7 @@ package ca.rsagroup.web.filter;
 import java.io.IOException;
 import java.util.Locale;
 
+import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.i18n.LocaleContextHolder;
+
+import ca.rsagroup.commons.ConfigurationManager;
 
 
 /**
@@ -38,22 +41,26 @@ public final class ExceptionFilter implements Filter {
 			String reqUrl = request.getRequestURL().toString();
 			if (!reqUrl.contains("javax.faces.resource")) {
 
-				String variant = "d";
-				try {
-					variant = reqUrl.substring(reqUrl.indexOf("//") + 2,
-							reqUrl.indexOf("."));
-				} catch (Exception e) {
-					variant = "www";
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+//				String variant = configurationManager.getDefaultDomain();	
+//		    	if(!configurationManager.isEnableDomains())
+//		    		variant= configurationManager.getDefaultDomain();	
+//		    	else {
+//					try {
+//						variant = reqUrl.substring(reqUrl.indexOf("//") + 2,
+//								reqUrl.indexOf("."));
+//					} catch (Exception e) {
+//						variant = configurationManager.getDefaultDomain();
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//		    	}
 				String lang = request.getParameter("lang");
 
 				if (lang != null) {
-					LocaleContextHolder.setLocale(new Locale(lang, "CA", variant));
+					LocaleContextHolder.setLocale(new Locale(lang, "CA", ""));
 				} else {
 					LocaleContextHolder.setLocale(new Locale(LocaleContextHolder.getLocale()
-							.getLanguage(), "CA", variant));
+							.getLanguage(), "CA", ""));
 				}
 
 				if (!isAjax(request)
