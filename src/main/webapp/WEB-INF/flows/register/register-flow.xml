@@ -10,6 +10,7 @@
 	<on-start>
 		<set name = "flowScope.lang" value="requestParameters.lang" />	
 		<evaluate expression="airmilesController.getDomain()" result="flowScope.domain" result-type="java.lang.String"/>
+		<evaluate expression="airmilesRequest.setEmailConsent(true)" />
 		<evaluate expression="persistenceContext.clear()" />
 	</on-start>
 	<!-- <var name="claim" class="ca.rsagroup.domain.Claim" />
@@ -25,10 +26,10 @@
 	<view-state id="start" view="airmiles.xhtml" model="airmilesRequest">
 
 		<transition on="next" to="end" validate="true">
-			<evaluate expression="airmilesController.processRequest(airmilesRequest)"></evaluate>
+			<evaluate expression="airmilesController.processRequest(airmilesRequest, false)"></evaluate>
 		</transition>
 		<transition on="nextAgain" to="startNew" validate="true">
-			<evaluate expression="airmilesController.processRequest(airmilesRequest)"></evaluate>		
+			<evaluate expression="airmilesController.processRequest(airmilesRequest, true)"></evaluate>		
 		</transition>
 	</view-state>
 	

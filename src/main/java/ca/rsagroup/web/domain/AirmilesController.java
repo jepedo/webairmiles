@@ -13,13 +13,19 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.binding.message.MessageContext;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.webflow.context.servlet.ServletExternalContext;
 import org.springframework.webflow.execution.RequestContext;
 
+import ca.rsagroup.airmiles.AirmilesRequest;
+import ca.rsagroup.airmiles.AirmilesResponse;
 import ca.rsagroup.commons.ConfigurationManager;
 import ca.rsagroup.service.LookupManager;
 import ca.rsagroup.web.util.DatabaseDrivenMessageSource;
@@ -173,99 +179,49 @@ public class AirmilesController  {
         return req.getRequestURI()+"?fi="+fiId+"&lang="+language;
     }
     
-    public void processRequest(Object airmilesRequest) {  
-    	String a = "ss";
-		 /*if(aClaim==null)
-			 return ;
+    public AirmilesResponse processRequest(AirmilesRequest airmilesRequest, boolean addAnother) {  
+    	AirmilesResponse saveResponse = null;
+    	
+    	if(airmilesRequest==null)
+			 return null;
 		 HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
          LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(req);
          Locale myLocale = localeResolver.resolveLocale(req);
 	        
-		 ObjectMapper mapper = new ObjectMapper();
-		 MailData request = new MailData();
-		 request.setReplyTo(configurationManager.getMailSenderReplyTo());
-		 request.setFrom(configurationManager.getMailSenderFrom());
-		 request.setContentType("text/html; charset=UTF-8");
-		 
-		 if(EMAIL_THANKYOU.equalsIgnoreCase(emailType)) {
-			 request.setTo(aClaim.getEmail());	
-			 
-			 if(aClaim.getPreferredLanguage().toLowerCase().startsWith("fr"))
-				 myLocale =  new Locale("fr","CA",myLocale.getVariant());
-			 else
-				 myLocale =  new Locale("en","CA",myLocale.getVariant());
-			 
-			 String body = configurationSource.getText("email.thankyou.body.start", myLocale);
-			 body+=getDocumentsBodyByLossType(aClaim,"email.thankyou.body",myLocale);
-			 body += configurationSource.getText("email.thankyou.body.end", myLocale);
-			 
-			 request.setBody(body);
-			 request.setSubject(configurationSource.getText("email.thankyou.subject", myLocale));
-		 }
-		 else if(EMAIL_NEW_CLAIM.equalsIgnoreCase(emailType)) {
-			 myLocale =  new Locale("en","CA",myLocale.getVariant());
-			 request.setTo(configurationManager.getMailSenderTo());	
-			 String body = configurationSource.getText("email.newClaims.body.title", myLocale);
-			 body += configurationSource.getText("email.newClaims.body.refnumber.title", myLocale)+ aClaim.getId();
-			 body += configurationSource.getText("email.newClaims.body.dateSubmitted.title", myLocale)+ formatDate(new Date(System.currentTimeMillis()));
-			 body += configurationSource.getText("email.newClaims.body.cardholderLastname.title", myLocale)+ aClaim.getLastName();
-			 body += configurationSource.getText("email.newClaims.body.activityType.title", myLocale)+ configurationSource.getText("email.claimForm."+aClaim.getClaimFormName()+".label",myLocale);
-			 body += configurationSource.getText("email.newClaims.body.body.end.text", myLocale);
-			 request.setBody(body);
-			 request.setSubject(configurationSource.getText("email.newClaim.subject",myLocale) + " - "+configurationSource.getText("email.claimForm."+aClaim.getClaimFormName()+".label",myLocale) + " - " + aClaim.getId()+" - "+aClaim.getLastName());			 
-		 }
-		 else if(EMAIL_NEW_DOCS.equalsIgnoreCase(emailType)) {
-			 myLocale =  new Locale("en","CA",myLocale.getVariant());
-			 request.setTo(configurationManager.getMailSenderTo());		
-			 String body = configurationSource.getText("email.newClaimDocs.body.title", myLocale);
-			 body += configurationSource.getText("email.newClaimDocs.body.refnumber.title", myLocale)+ aClaim.getId();
-			 body += configurationSource.getText("email.newClaimDocs.body.dateSubmitted.title", myLocale)+ formatDate(aClaim.getDateCreated());
-			 body += configurationSource.getText("email.newClaimDocs.body.cardholderLastname.title", myLocale)+ aClaim.getLastName();
-			 body += configurationSource.getText("email.newClaimDocs.body.activityType.title", myLocale)+ configurationSource.getText("email.newClaimDocs.subject", myLocale) + " - "+configurationSource.getText("email.claimForm."+aClaim.getClaimFormName()+".label",myLocale);
-			 body += configurationSource.getText("email.newClaimDocs.body.body.end.text", myLocale);		 
-			 request.setBody(body);
-			 request.setSubject(configurationSource.getText("email.newClaimDocs.subject", myLocale) + " - "+configurationSource.getText("email.claimForm."+aClaim.getClaimFormName()+".label",myLocale) + " - " + aClaim.getId()+" - "+aClaim.getLastName());			 
-		 }
-		 else if(EMAIL_NEW_NOTE.equalsIgnoreCase(emailType)) {
-			 myLocale =  new Locale("en","CA",myLocale.getVariant());
-			 request.setTo(configurationManager.getMailSenderTo());
-			 String body = configurationSource.getText("email.newClaimNote.body.title", myLocale);
-			 body += configurationSource.getText("email.newClaimNote.body.refnumber.title", myLocale)+ aClaim.getId();
-			 body += configurationSource.getText("email.newClaimNote.body.dateSubmitted.title", myLocale)+ formatDate(aClaim.getDateCreated());
-			 body += configurationSource.getText("email.newClaimNote.body.cardholderLastname.title", myLocale)+ aClaim.getLastName();
-			 body += configurationSource.getText("email.newClaimNote.body.activityType.title", myLocale)+ configurationSource.getText("email.newClaimNote.subject", myLocale) + " - "+configurationSource.getText("email.claimForm."+aClaim.getClaimFormName()+".label",myLocale);
-			 body += configurationSource.getText("email.newClaimNote.body.body.end.text", myLocale);				 
-			 request.setBody(body);
-			 request.setSubject(configurationSource.getText("email.newClaimNote.subject", myLocale) + " - "+configurationSource.getText("email.claimForm."+aClaim.getClaimFormName()+".label",myLocale) + " - " + aClaim.getId()+" - "+aClaim.getLastName());			 
-		 }		 
-		 try {
-				RestTemplate restTemplate = new RestTemplate();
+		 ObjectMapper mapper = new ObjectMapper();			
+			RestTemplate restTemplate = new RestTemplate();
+			
+			// Add the Jackson and String message converters
+			restTemplate.getMessageConverters().add(
+					new MappingJacksonHttpMessageConverter());
+			restTemplate.getMessageConverters().add(
+					new StringHttpMessageConverter());
+			try {
+			// the response to a String
+			System.out.println("JSON REQ:"
+					+ mapper.writeValueAsString(airmilesRequest));
+			// try to read response 
+	
+			
+				String response = restTemplate.postForObject(
+						configurationManager.getMailSenderUrl(),
+						mapper.writeValueAsString(airmilesRequest), String.class);
 				
-				// Add the Jackson and String message converters
-				restTemplate.getMessageConverters().add(
-						new MappingJacksonHttpMessageConverter());
-				restTemplate.getMessageConverters().add(
-						new StringHttpMessageConverter());
-
-				// the response to a String
-				System.out.println("JSON REQ:"
-						+ mapper.writeValueAsString(request));
-				// try to read response 
-
-				try {
-					String response = restTemplate.postForObject(
-							configurationManager.getMailSenderUrl(),
-							mapper.writeValueAsString(request), String.class);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();					
+				saveResponse = mapper.readValue(response,
+						AirmilesResponse.class);
+	
+				String errorMessage = "RegisterFailed";
+				if (saveResponse==null) {
+					errorMessage = "ESB";
 				}
-
+				
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}			
-		 return ;*/
+				e.printStackTrace();					
+			}
+			
+			return saveResponse;
    }
   
     public int getCurrentYear(int delta) {

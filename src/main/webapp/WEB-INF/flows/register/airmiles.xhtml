@@ -29,8 +29,8 @@
 		                		<h:outputLabel value="#{lookupManager.getBundle('airmiles.collectorNumber.label')}" escape="false" styleClass="control-label" />
 		                		<div class="controls">
 		                			<h:inputText id="collectorNumber" validatorMessage="#{lookupManager.getBundle('airmiles.collectorNumber.validation.err')}" required="true" value="#{airmilesRequest.airmilesNumber}" styleClass="input-xlarge" >
-											<f:validateRegex pattern="\d{11}"></f:validateRegex>
-				                   		 <rich:validator />
+<!-- 											<f:validateRegex pattern="\d{11}"></f:validateRegex>
+				                   		 <rich:validator /> -->
 			                		</h:inputText>		
 		                			<!-- <rich:message for="collectorNumber" ajaxRendered="true" /> -->
 		                		</div>
@@ -64,8 +64,8 @@
 			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.phone.label')}"  styleClass="control-label" />
 			                	<div class="controls">
 			                		<h:inputText id="phone" value="#{airmilesRequest.phone}" validatorMessage="#{lookupManager.getBundle('airmiles.phone.validation.err')}" styleClass="input-xlarge" >
-				                		<f:validateRegex pattern="\d{3}-\d{3}-\d{4}"></f:validateRegex>
-				                   		 <rich:validator />
+				                		<!-- <f:validateRegex pattern="\d{3}-\d{3}-\d{4}"></f:validateRegex>
+				                   		 <rich:validator /> -->
 			                		</h:inputText>			                		
 			                	</div>
 			                </div> 
@@ -74,8 +74,8 @@
 			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.policyNumber.label')}" styleClass="control-label" />
 			                	<div class="controls">
 			                		<h:inputText id="policy" required="true" value="#{airmilesRequest.policy}" validatorMessage="#{lookupManager.getBundle('airmiles.policyNumber.validation.err')}" styleClass="input-xlarge" >
-				                		<f:validateRegex pattern="[A-Z][A-Z][A-Z ]\d{7}"></f:validateRegex>
-				                   		 <rich:validator />
+<!-- 				                		<f:validateRegex pattern="[A-Z][A-Z][A-Z ]\d{7}"></f:validateRegex>
+				                   		 <rich:validator /> -->
 			                		</h:inputText>				                		
 			                	</div>
 			                </div> 
@@ -90,11 +90,18 @@
 			                </div>                
 			                                   
 			                <div class="control-group" > 
-			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.termsAndConditions.label')}" styleClass="checkbox">
-			                		<h:selectBooleanCheckbox id="agree" required="true" value="XX" />
+			                	<h:outputLabel value="" styleClass="checkbox">
+			                		<h:selectBooleanCheckbox id="acceptTerms" required="true" value="#{airmilesRequest.acceptTerms}" />
+									#{lookupManager.getBundle('airmiles.termsAndConditions.before.label')} <a target="_blank" href="#{lookupManager.getBundle('airmiles.termsAndConditions.url')}">#{lookupManager.getBundle('airmiles.termsAndConditions.label')}</a>			                		
 			                	</h:outputLabel>
 			                </div>
 			                
+			                <div class="control-group" > 
+			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.emailConsent.label')}" escape="false" styleClass="checkbox">
+			                		<h:selectBooleanCheckbox id="emailConsent" required="false"  value="#{airmilesRequest.emailConsent}" />											                		
+			                	</h:outputLabel>
+			                </div>
+			                			                
 			                <div class="control-group" > 
 			                	<div class="controls">
 			                		<b:commandButton id="Next" action="next" oncomplete="attachErrors();if(#{facesContext. maximumSeverity==null}) #{rich:component( 'popup')}.show()"  styleClass="btn-primary btn-xlarge btn-input-width capitalize"><h:outputText value="#{lookupManager.getBundle('airmiles.registerBtn.label')}" escape="false"/></b:commandButton>
