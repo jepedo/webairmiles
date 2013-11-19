@@ -204,7 +204,7 @@ public class AirmilesController  {
 	
 			
 				String response = restTemplate.postForObject(
-						configurationManager.getMailSenderUrl(),
+						configurationManager.getEsbUrl(),
 						mapper.writeValueAsString(airmilesRequest), String.class);
 				
 				saveResponse = mapper.readValue(response,
@@ -240,14 +240,8 @@ public class AirmilesController  {
     }
     
     public boolean enableGA() {
-    	try {
-			if("true".equalsIgnoreCase(configurationManager.getEnableGoogleAnalytics()))
-				return true;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	return false;
+    	
+    	return true;
     }
     
     public String formatLanguage(String preferedlang, String lang){
