@@ -87,55 +87,12 @@ public final class ExceptionFilter implements Filter {
 		} catch (Exception e) {
 			// redirect to error page
 			HttpServletRequest request = (HttpServletRequest) req;
-			request.getSession().setAttribute("lastException", e);
-			request.getSession().setAttribute("lastExceptionUniqueId",
-					e.hashCode());
-
 			log.error("EXCEPTION unique id: " + e.hashCode(), e);
 			log.error("EXCEPTION stacktrace: " + e.getMessage(), e);
 			e.printStackTrace();
 			HttpServletResponse response = (HttpServletResponse) resp;
-
 			response.sendRedirect(request.getContextPath() + redirectionUrl);
 		}
-
-		
-    	/**	
-    	String redirectionUrl = "/../";
-        try {
-            // chain...
-            HttpServletRequest request = (HttpServletRequest) req;
-            String fi = request.getParameter("fi");
-            if (!isAjax(request) && request.getRequestedSessionId() != null && request.getSession(false) == null
-            		&& fi==null) {
-                // Session is expired
-            	
-            	 ( (HttpServletResponse)resp).sendRedirect(request.getContextPath() + redirectionUrl);
-            }
-            else if (isAjax(request) && !request.isRequestedSessionIdValid()) {
-                log.warn("Session expiration during ajax request, partial redirect to login page");
-                HttpServletResponse response = (HttpServletResponse) resp;
-                response.getWriter().print(xmlPartialRedirectToPage(request, redirectionUrl));
-                response.flushBuffer();
-            } 
-            else {
-                chain.doFilter(req, resp);
-            }
-
-        } catch (Exception e) {
-            // redirect to error page
-            HttpServletRequest request = (HttpServletRequest) req;
-            request.getSession().setAttribute("lastException", e);
-            request.getSession().setAttribute("lastExceptionUniqueId", e.hashCode());
-
-            log.error("EXCEPTION unique id: " + e.hashCode(), e);
-            log.error("EXCEPTION stacktrace: " + e.getMessage(), e);
-            e.printStackTrace();
-            HttpServletResponse response = (HttpServletResponse) resp;
-
-            response.sendRedirect(request.getContextPath()  + redirectionUrl);
-        }
-        */
     }	
 
     private String xmlPartialRedirectToPage(HttpServletRequest request, String page) {

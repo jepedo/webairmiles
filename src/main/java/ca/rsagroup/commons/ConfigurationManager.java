@@ -18,8 +18,13 @@ public class ConfigurationManager {
 	
 	@Value("${defaultDomain}")
 	private String defaultDomain;
-		
 
+	@Value("${registerAction}")
+	private String registerAction;
+	
+	@Value("${registerAndAddAnotherAction}")
+	private String registerAndAddAnotherAction;
+	
 	public String getEsbUrl() {
 		return esbUrl;
 	}
@@ -43,6 +48,22 @@ public class ConfigurationManager {
 
 	public void setDefaultDomain(String defaultDomain) {
 		this.defaultDomain = defaultDomain;
+	}
+
+	public String getRegisterAction() {
+		return registerAction;
+	}
+
+	public void setRegisterAction(String registerAction) {
+		this.registerAction = registerAction;
+	}
+
+	public String getRegisterAndAddAnotherAction() {
+		return registerAndAddAnotherAction;
+	}
+
+	public void setRegisterAndAddAnotherAction(String registerAndAddAnotherAction) {
+		this.registerAndAddAnotherAction = registerAndAddAnotherAction;
 	}
 	
 }

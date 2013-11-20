@@ -22,24 +22,10 @@ import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.HttpRequestHandler;
-import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.support.RequestContextUtils;
-
-import com.itextpdf.text.Anchor;
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Font.FontFamily;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
 
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import ca.rsagroup.commons.ConfigurationManager;
-import ca.rsagroup.web.domain.QuoteController;
 import ca.rsagroup.web.util.DatabaseDrivenMessageSource;
 
 @Component("myServlet")
@@ -74,7 +60,7 @@ public class GeneratePDFServlet implements HttpRequestHandler {
 			hr = factory.createRequest(pdfUrl.toURI(), HttpMethod.GET);
 //			 InputStream io = hr.execute().getBody();
 //			 pdfContent = convertStreamToString( hr.execute().getBody());
-			  String HTML_TO_PDF =configurationManager.getTempDir()+File.separator+System.currentTimeMillis()+"-ConvertedFile.html";
+			  String HTML_TO_PDF =File.separator+System.currentTimeMillis()+"-ConvertedFile.html";//configurationManager.getTempDir()+
 			  OutputStream out = new java.io.FileOutputStream(HTML_TO_PDF);  
 			  IOUtils.copy(hr.execute().getBody(),out);
 //			  response.setContentType("application/pdf");

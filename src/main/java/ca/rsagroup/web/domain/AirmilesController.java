@@ -184,6 +184,11 @@ public class AirmilesController  {
     	
     	if(airmilesRequest==null)
 			 return null;
+    	if(addAnother)
+    		airmilesRequest.setActionSelected(configurationManager.getRegisterAndAddAnotherAction());
+    	else
+    		airmilesRequest.setActionSelected(configurationManager.getRegisterAction());
+    	
 		 HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
          LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(req);
          Locale myLocale = localeResolver.resolveLocale(req);
