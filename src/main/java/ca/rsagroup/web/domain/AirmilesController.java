@@ -27,6 +27,8 @@ import org.springframework.webflow.execution.RequestContext;
 import ca.rsagroup.airmiles.AirmilesRequest;
 import ca.rsagroup.airmiles.AirmilesResponse;
 import ca.rsagroup.commons.ConfigurationManager;
+import ca.rsagroup.model.ValidResponse;
+import ca.rsagroup.model.ValidResponses;
 import ca.rsagroup.service.LookupManager;
 import ca.rsagroup.web.util.DatabaseDrivenMessageSource;
 
@@ -179,15 +181,20 @@ public class AirmilesController  {
         return req.getRequestURI()+"?fi="+fiId+"&lang="+language;
     }
     
-    public AirmilesResponse processRequest(AirmilesRequest airmilesRequest, boolean addAnother) {  
-    	AirmilesResponse saveResponse = null;
+    public ValidResponses processRequest(AirmilesRequest airmilesRequest, boolean addAnother, ValidResponses resp) {    
+    	if(resp==null)
+    		resp = new ValidResponses();
+    	
+    	resp.getResponses().add(new ValidResponse(airmilesRequest.getPolicy(),airmilesRequest.getPolicyDate(),lookupManager.getBundle("airmiles.registeredStatus.txt")));
+    	
     	
     	if(airmilesRequest==null)
-			 return null;
+			 return resp;
     	if(addAnother)
     		airmilesRequest.setActionSelected(configurationManager.getRegisterAndAddAnotherAction());
     	else
     		airmilesRequest.setActionSelected(configurationManager.getRegisterAction());
+    	
     	
 		 HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
          LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(req);
@@ -212,12 +219,12 @@ public class AirmilesController  {
 						configurationManager.getEsbUrl(),
 						mapper.writeValueAsString(airmilesRequest), String.class);
 				
-				saveResponse = mapper.readValue(response,
+				 AirmilesResponse saveResponse = mapper.readValue(response,
 						AirmilesResponse.class);
 	
 				String errorMessage = "RegisterFailed";
-				if (saveResponse==null) {
-					errorMessage = "ESB";
+				if (saveResponse!=null) {
+					resp.getResponses().add(new ValidResponse(airmilesRequest.getPolicy(),airmilesRequest.getPolicyDate(),"Registered"));
 				}
 				
 				
@@ -226,7 +233,20 @@ public class AirmilesController  {
 				e.printStackTrace();					
 			}
 			
-			return saveResponse;
+	    	if(addAnother) {
+	    		airmilesRequest.setPolicy(null);
+	    		airmilesRequest.setPolicyDate(null);
+	    	}
+	    	else {
+	    		airmilesRequest.setAirmilesName(null);
+	    		airmilesRequest.setAirmilesNumber(null);
+	    		airmilesRequest.setPhone(null);
+	    		airmilesRequest.setEmail(null);
+	    		airmilesRequest.setPolicy(null);
+	    		airmilesRequest.setPolicyDate(null);
+	    	}
+	    		
+			return resp;
    }
   
     public int getCurrentYear(int delta) {

@@ -7,6 +7,7 @@
 	<!-- note: this flow inherits from the 'abstract' flow -->
 	 <persistence-context /> 
 	<var name="airmilesRequest" class="ca.rsagroup.airmiles.AirmilesRequest" />
+	<var name="flowScope.resp" class="ca.rsagroup.model.ValidResponses"/>
 	<on-start>
 		<set name = "flowScope.lang" value="requestParameters.lang" />	
 		<evaluate expression="airmilesController.getDomain()" result="flowScope.domain" result-type="java.lang.String"/>
@@ -25,11 +26,11 @@
  -->
 	<view-state id="start" view="airmiles.xhtml" model="airmilesRequest">
 
-		<transition on="next" to="end" validate="true">
-			<evaluate expression="airmilesController.processRequest(airmilesRequest, false)"></evaluate>
+		<transition on="next" to="start" validate="true">
+			<evaluate expression="airmilesController.processRequest(airmilesRequest, false,flowScope.resp)" result="flowScope.resp"></evaluate>
 		</transition>
-		<transition on="nextAgain" to="startNew" validate="true">
-			<evaluate expression="airmilesController.processRequest(airmilesRequest, true)"></evaluate>		
+		<transition on="nextAgain" to="start" validate="true">
+			<evaluate expression="airmilesController.processRequest(airmilesRequest, true,flowScope.resp)" result="flowScope.resp"></evaluate>		
 		</transition>
 	</view-state>
 	
