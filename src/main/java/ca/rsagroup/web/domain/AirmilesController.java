@@ -224,7 +224,7 @@ public class AirmilesController  {
 	
 				String errorMessage = "RegisterFailed";
 				if (saveResponse!=null) {
-					resp.getResponses().add(new ValidResponse(airmilesRequest.getPolicy(),airmilesRequest.getPolicyDate(),"Registered"));
+					resp.getResponses().add(new ValidResponse(airmilesRequest.getPolicy(),airmilesRequest.getPolicyDate(),lookupManager.getBundle("airmiles.registeredStatus.txt")));
 				}
 				
 				

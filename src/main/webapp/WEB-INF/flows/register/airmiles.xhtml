@@ -42,7 +42,7 @@
 	           		
 	           		<b:gridRow fluid="true" rendered="#{not empty facesContext.getMessages()}">
 	           		<b:gridColumn span="2"></b:gridColumn>
-	           			<b:gridColumn span="10">
+	           			<b:gridColumn span="7">
 	           				<rich:messages ajaxRendered="false"/>
 	           				</b:gridColumn>
 	           		</b:gridRow>
@@ -54,7 +54,7 @@
 		                		<h:outputLabel value="#{lookupManager.getBundle('airmiles.collectorNumber.label')}" escape="false" styleClass="control-label" />
 		                		<div class="controls">
 		                			<h:inputText id="collectorNumber" validatorMessage="#{lookupManager.getBundle('airmiles.collectorNumber.validation.err')}" required="true" value="#{airmilesRequest.airmilesNumber}" styleClass="input-xlarge" >
-			                		<f:validateRequired></f:validateRequired> 
+			                		<f:validateRequired ></f:validateRequired> 
 			                		<rich:validator/>
 			                		</h:inputText>		
 		                		 <!-- <rich:message for="collectorNumber" ajaxRendered="true" />  -->
