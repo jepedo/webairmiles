@@ -167,9 +167,13 @@
     
 		   <h:outputScript name="bootstrap-datepicker.js" library="extensions/bootstrap-datepicker/js" />
 			<script type="text/javascript">	
-			$('.date-picker').datepicker().on('changeDate', function(e){
-				$('[id^="airmiles:' + e.currentTarget.id + '-value"]').val(e.date);
+			$('.date-picker').datepicker({
+				format: "dd/mm/yyyy",	
+			})
+			.on('changeDate', function(e) {
+				$('[id^="airmiles:' + e.currentTarget.id + '-value"]').val((e.date.getMonth() + 1) + '/' + e.date.getDate() + '/' +  e.date.getFullYear());
 			});
+			$('.date-picker td.active').removeClass('active');
 		
 			function attachErrors() {
 				// remove all error on control groups first
