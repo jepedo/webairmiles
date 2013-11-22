@@ -25,15 +25,16 @@ public class AirmilesRequestValidator {
 
 	public void validateStart(AirmilesRequest airmiles, ValidationContext context) {		
 	        MessageContext messages = context.getMessageContext();
-	    	
-	        if(airmiles!=null && airmiles.getPolicyDate()!=null && new Date(airmiles.getPolicyDate()).after(new Date(System.currentTimeMillis()))) {
-		         messages.addMessage(new MessageBuilder().error()
-						.source(null).defaultText(lookupManager.getBundle("validation.lossDateInFuture.label")).build());
-	        }
 	        if(airmiles==null || airmiles.getAirmilesNumber()==null || !modulus11(airmiles.getAirmilesNumber())) {
 		         messages.addMessage(new MessageBuilder().error()
-						.source(null).defaultText(lookupManager.getBundle("airmiles.collectorNumber.validation.err")).build());
-	        }	        	        	
+						.source(null).defaultText(lookupManager.getBundle("airmiles.err.E4")).build());
+	        }	 
+	        
+	        if(airmiles!=null && airmiles.getPolicyDate()!=null && new Date(airmiles.getPolicyDate()).after(new Date(System.currentTimeMillis()))) {
+		         messages.addMessage(new MessageBuilder().error()
+						.source(null).defaultText(lookupManager.getBundle("airmiles.err.E3")).build());
+	        }
+       	        	
 	}
 	
 	private boolean modulus11(String airm) {
