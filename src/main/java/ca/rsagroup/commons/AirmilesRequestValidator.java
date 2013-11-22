@@ -23,8 +23,7 @@ public class AirmilesRequestValidator {
 	@Inject
 	private LookupManager lookupManager;		
 
-	public void validateStart(AirmilesRequest airmiles, ValidationContext context) {
-		 HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+	public void validateStart(AirmilesRequest airmiles, ValidationContext context) {		
 	        MessageContext messages = context.getMessageContext();
 	    	
 	        if(airmiles!=null && airmiles.getPolicyDate()!=null && new Date(airmiles.getPolicyDate()).after(new Date(System.currentTimeMillis()))) {
