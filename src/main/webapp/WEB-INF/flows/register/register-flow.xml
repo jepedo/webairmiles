@@ -14,27 +14,17 @@
 		<evaluate expression="airmilesRequest.setEmailConsent(true)" />
 		<evaluate expression="persistenceContext.clear()" />
 	</on-start>
-	<!-- <var name="claim" class="ca.rsagroup.domain.Claim" />
-	<on-start>
-		<set name="flowScope.flowLevel2" value="1"></set>
-		<set name = "flowScope.fi" value="requestParameters.fi" type="java.lang.Integer"/>
-		<set name = "flowScope.lang" value="requestParameters.lang" />		
-		<evaluate expression="lookupManager.getDomainId(flowScope.fi,flowScope.lang)" result="flowScope.domainId" result-type="java.lang.Integer"/>
-		<evaluate expression="claimController.setLanguage(flowScope.lang,flowScope.domainId)"/>
-		<set name = "flowScope.domainId" value="6" type="java.lang.Integer"/
-	</on-start>
- -->
+
 	<view-state id="start" view="airmiles.xhtml" model="airmilesRequest">
 
 		<transition on="next" to="start" validate="true">
-			<evaluate expression="airmilesController.processRequest(airmilesRequest, false,flowScope.resp)" result="flowScope.resp"></evaluate>
+			<evaluate expression="airmilesController.processRequest(airmilesRequest, false,flowScope.resp,flowRequestContext)" result="flowScope.resp"></evaluate>
 		</transition>
 		<transition on="nextAgain" to="start" validate="true">
-			<evaluate expression="airmilesController.processRequest(airmilesRequest, true,flowScope.resp)" result="flowScope.resp"></evaluate>		
+			<evaluate expression="airmilesController.processRequest(airmilesRequest, true,flowScope.resp,flowRequestContext)" result="flowScope.resp"></evaluate>		
 		</transition>
 	</view-state>
 	
-
 	<end-state id="end" view="externalRedirect:servletRelative:/" >
 		<output name="claimSubmitted" value="claim" />
 	</end-state>

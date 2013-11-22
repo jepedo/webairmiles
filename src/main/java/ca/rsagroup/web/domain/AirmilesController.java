@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -26,6 +27,7 @@ import org.springframework.webflow.execution.RequestContext;
 
 import ca.rsagroup.airmiles.AirmilesRequest;
 import ca.rsagroup.airmiles.AirmilesResponse;
+import ca.rsagroup.airmiles.ErrorMessage;
 import ca.rsagroup.commons.ConfigurationManager;
 import ca.rsagroup.model.ValidResponse;
 import ca.rsagroup.model.ValidResponses;
@@ -181,7 +183,7 @@ public class AirmilesController  {
         return req.getRequestURI()+"?fi="+fiId+"&lang="+language;
     }
     
-    public ValidResponses processRequest(AirmilesRequest airmilesRequest, boolean addAnother, ValidResponses resp) {    
+    public ValidResponses processRequest(AirmilesRequest airmilesRequest, boolean addAnother, ValidResponses resp, RequestContext context) {    
     	if(resp==null)
     		resp = new ValidResponses();
     	
@@ -221,10 +223,22 @@ public class AirmilesController  {
 				
 				 AirmilesResponse saveResponse = mapper.readValue(response,
 						AirmilesResponse.class);
-	
-				String errorMessage = "RegisterFailed";
-				if (saveResponse!=null) {
+
+				if (saveResponse!=null && saveResponse.getStatus().equalsIgnoreCase("OK")) {
 					resp.getResponses().add(new ValidResponse(airmilesRequest.getPolicy(),airmilesRequest.getPolicyDate(),lookupManager.getBundle("airmiles.registeredStatus.txt")));
+				}
+				else if( saveResponse!=null && saveResponse.getErrors()!=null){
+					MessageContext messages = context.getMessageContext();
+					for (ErrorMessage error : saveResponse.getErrors()) {
+						 messages.addMessage(new MessageBuilder().error()
+									.source(null).defaultText(error.getMessage()).build());
+					}
+				}
+				else {
+					// default error
+					MessageContext messages = context.getMessageContext();
+					messages.addMessage(new MessageBuilder().error()
+									.source(null).defaultText(lookupManager.getBundle("airmiles.esbError.txt")).build());					
 				}
 				
 				
@@ -244,6 +258,7 @@ public class AirmilesController  {
 	    		airmilesRequest.setEmail(null);
 	    		airmilesRequest.setPolicy(null);
 	    		airmilesRequest.setPolicyDate(null);
+	    		airmilesRequest.setAcceptTerms(false);
 	    	}
 	    		
 			return resp;
