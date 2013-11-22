@@ -4,7 +4,7 @@
                 xmlns:a4j="http://richfaces.org/a4j" xmlns:b="http://richfaces.org/sandbox/bootstrap">
 	<ui:define name="content">
 		<b:gridRow fluid="true">
-			<b:gridColumn span="9" styleClass="content-area">      		
+			<section class="span9 content-area">      		
 	    		<h:form id="airmiles">
            			<h1 ><h:outputText value="#{lookupManager.getBundle('airmiles.title.txt')}" escape="false" /></h1>
            			
@@ -81,7 +81,7 @@
 				                        pattern="^(([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+([;.](([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+)*$"></f:validateRegex>				                   		
 			                		<rich:validator/>
 			                		</h:inputText>
-			                	<!-- <rich:message for="email" ajaxRendered="true" /> -->		                		
+			                	<rich:message for="email" ajaxRendered="true" />		                		
 			                	</div>
 			                </div>
 			                
@@ -120,17 +120,18 @@
 			                                   
 			                <div class="control-group" > 
 			                	<h:outputLabel value="" styleClass="checkbox">
-			                		<h:selectBooleanCheckbox id="acceptTerms" required="true" value="#{airmilesRequest.acceptTerms}">
-									#{lookupManager.getBundle('airmiles.termsAndConditions.before.label')} <a target="_blank" href="#{lookupManager.getBundle('airmiles.termsAndConditions.url')}">#{lookupManager.getBundle('airmiles.termsAndConditions.label')}</a>			                		
+			                		<h:selectBooleanCheckbox id="acceptTerms" required="true" value="#{airmilesRequest.acceptTerms}">			                		
 			                		<f:validateRequired></f:validateRequired> 
 			                		<rich:validator/>
 			                		</h:selectBooleanCheckbox>
+			                		<h:outputText value="#{lookupManager.getBundle('airmiles.termsAndConditions.before.label')}" escape="false" /> <a target="_blank" href="#{lookupManager.getBundle('airmiles.termsAndConditions.url')}">#{lookupManager.getBundle('airmiles.termsAndConditions.label')}</a>
 			                	</h:outputLabel>
 			                </div>
 			                
 			                <div class="control-group" > 
-			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.emailConsent.label')}" escape="false" styleClass="checkbox">
-			                		<h:selectBooleanCheckbox id="emailConsent" required="false"  value="#{airmilesRequest.emailConsent}" />												                		
+			                	<h:outputLabel escape="false" styleClass="checkbox">
+			                		<h:selectBooleanCheckbox id="emailConsent" required="false"  value="#{airmilesRequest.emailConsent}" />
+			                		<h:outputText value="#{lookupManager.getBundle('airmiles.emailConsent.label')}" escape="false" />												                		
 			                	</h:outputLabel>
 			                </div>
 			                			                
@@ -149,7 +150,7 @@
 		                </b:gridColumn>   
 		        	</b:gridRow>           
 	         	</h:form>
-	        </b:gridColumn>
+	        </section>
 	    </b:gridRow>
 
     <rich:popupPanel id="popup" modal="true" resizeable="true" onmaskclick="#{rich:component('popup')}.hide()">
