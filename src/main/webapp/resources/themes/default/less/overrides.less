@@ -46,12 +46,27 @@ body {
     // http://drupal.org/node/1870076
     position: relative;
   }
+  input, select, textarea, button, keygen, isindex, legend, a {
+    font-size: 1em;
+  }
 }
 
 .footer {
   margin-top: 45px;
   padding: 35px 0 36px;
   border-top: 1px solid #E5E5E5;
+}
+
+// Element invisible fix
+.element-invisible {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  width: 1px;
 }
 
 // Branding.
@@ -227,4 +242,11 @@ div.password-suggestions ul {
 }
 .btn-xlarge [class^="icon-"] {
   margin-top: 2px;
+}
+.btn:hover {
+  // background-position: 0 0;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
 }

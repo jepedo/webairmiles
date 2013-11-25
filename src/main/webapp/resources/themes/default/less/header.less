@@ -1,3 +1,4 @@
+// Insert your styling here.
 #mobile-menu {
   display: none;
   visibility: hidden;
@@ -62,10 +63,39 @@
         .menu li.first:before {
           display: none;
         }
-  
+      }
+
+      #blah {
+        width: 10000px;
+      }
+
+      #block-search-form {
+        float: right;
+        clear: right;
+        width: 510px;
+        #search-block-form {
+          background-color: @rsapale;
+          .search-query {
+            border-radius: 0;
+            background: none repeat scroll 0 0 transparent;
+            border: none;
+            padding-top: 7px;
+            color: @black;
+          }
+          .btn {
+            border-radius: 0;
+            background: none repeat scroll 0 0 transparent;
+            border: none;
+          }
+          input, button {
+            color: @grayDark;
+            font-family: @headingsFontFamily;
+            text-transform: uppercase;
+          }
+        }
       }
     }
-      
+    
     @media @mobile {
       background-color: @rsapale;
       clear: both;
@@ -77,6 +107,32 @@
           border-bottom: 2px solid #cac9c1;
           a {
             margin-left: 15px;
+          }
+        }
+      }
+      
+      #block-search-form {
+        margin-bottom: 10px;
+        #search-block-form {
+          .search-query {
+            border-radius: 0;
+            background: #fff repeat scroll 0 0 transparent;
+            border: none;
+            padding-top: 7px;
+            color: @black;
+            height: 40px;
+          }
+          .btn {
+            border-radius: 0;
+            background: #fff;
+            border: none;
+            height: 40px;
+          }
+          input, button {
+            color: @white;
+            background-color: @white;
+            font-family: @headingsFontFamily;
+            text-transform: uppercase;
           }
         }
       }

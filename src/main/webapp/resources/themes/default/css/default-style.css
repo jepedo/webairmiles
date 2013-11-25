@@ -7380,10 +7380,30 @@ body h6 {
     position: relative;
   }
 }
+body input,
+body select,
+body textarea,
+body button,
+body keygen,
+body isindex,
+body legend,
+body a {
+  font-size: 1em;
+}
 .footer {
   margin-top: 45px;
   padding: 35px 0 36px;
   border-top: 1px solid #E5E5E5;
+}
+.element-invisible {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  width: 1px;
 }
 .navbar .logo {
   margin-top: 5px;
@@ -7648,6 +7668,35 @@ div.password-suggestions ul {
   #page-header .region-header #block-menu-block-platform-menus-3 .menu li.first:before {
     display: none;
   }
+  #page-header .region-header #blah {
+    width: 10000px;
+  }
+  #page-header .region-header #block-search-form {
+    float: right;
+    clear: right;
+    width: 510px;
+  }
+  #page-header .region-header #block-search-form #search-block-form {
+    background-color: #e8e6dc;
+  }
+  #page-header .region-header #block-search-form #search-block-form .search-query {
+    border-radius: 0;
+    background: none repeat scroll 0 0 transparent;
+    border: none;
+    padding-top: 7px;
+    color: #000000;
+  }
+  #page-header .region-header #block-search-form #search-block-form .btn {
+    border-radius: 0;
+    background: none repeat scroll 0 0 transparent;
+    border: none;
+  }
+  #page-header .region-header #block-search-form #search-block-form input,
+  #page-header .region-header #block-search-form #search-block-form button {
+    color: #4b4b4b;
+    font-family: 'Gill Sans W01 Book', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+  }
 }
 @media (max-width: 767px) {
   #page-header .region-header {
@@ -7662,6 +7711,30 @@ div.password-suggestions ul {
   }
   #page-header .region-header #block-menu-block-platform-menus-3 li a {
     margin-left: 15px;
+  }
+  #page-header .region-header #block-search-form {
+    margin-bottom: 10px;
+  }
+  #page-header .region-header #block-search-form #search-block-form .search-query {
+    border-radius: 0;
+    background: #fff repeat scroll 0 0 transparent;
+    border: none;
+    padding-top: 7px;
+    color: #000000;
+    height: 40px;
+  }
+  #page-header .region-header #block-search-form #search-block-form .btn {
+    border-radius: 0;
+    background: #fff;
+    border: none;
+    height: 40px;
+  }
+  #page-header .region-header #block-search-form #search-block-form input,
+  #page-header .region-header #block-search-form #search-block-form button {
+    color: #ffffff;
+    background-color: #ffffff;
+    font-family: 'Gill Sans W01 Book', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
   }
 }
 #page-header .breadcrumb {
@@ -7763,6 +7836,12 @@ input[type="color"],
   border-radius: 0 0 0 0;
   padding: 8px 6px;
   background: none;
+}
+.control-group.error .checkbox,
+.control-group.error .radio {
+  border: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 .styled-select select {
   background: transparent;
