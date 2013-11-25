@@ -23,10 +23,10 @@
 	           				<b:gridRow fluid="true">
 	           					<b:gridColumn><h:outputText value="#{lookupManager.getBundle('airmiles.register.policy.column')}" escape="false"/></b:gridColumn>
 	           					<b:gridColumn><h:outputText value="#{lookupManager.getBundle('airmiles.register.policyDate.column')}" escape="false"/></b:gridColumn>
-	           					<b:gridColumn><h:outputText value="#{lookupManager.getBundle('airmiles.register.status.column')}" escape="false"/></b:gridColumn>	           				
+	           					<b:gridColumn><h:outputText value="#{lookupManager.getBundle('airmiles.register.status.column')}" escape="false"/></b:gridColumn>			
 	           				</b:gridRow>
 	           				
-	           				<b:alert severity="error" layout="block" header="" closable="true">
+	           				
 		           				<rich:repeat value="#{flowScope.resp.responses}" var="rep" rows="20" id="repeat">
 			           				<b:gridRow fluid="true">
 			           					<b:gridColumn><h:outputText value="#{rep.policy}"/></b:gridColumn>
@@ -34,7 +34,6 @@
 			           					<b:gridColumn><h:outputText value="#{rep.status}"/></b:gridColumn>
 					           		</b:gridRow>
 		           				</rich:repeat>
-		           			</b:alert>
 	           				
 	           				</b:gridContainer>
 	           				</b:gridColumn>
@@ -45,7 +44,9 @@
 	           		<b:gridRow fluid="true" rendered="#{not empty facesContext.getMessages()}">
 	           		<b:gridColumn span="2"></b:gridColumn>
 	           			<b:gridColumn span="7">
-	           				<rich:messages ajaxRendered="true"/>
+	           				<b:alert severity="error" layout="block" header="Correct errors to move on" closable="false" icon="error">
+	           					<rich:messages ajaxRendered="true"/>
+	           				</b:alert>
 	           				</b:gridColumn>
 	           		</b:gridRow>
 
