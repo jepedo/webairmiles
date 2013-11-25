@@ -7843,6 +7843,9 @@ input[type="color"],
   -moz-box-shadow: none;
   box-shadow: none;
 }
+.control-group.error .rf-msg-err {
+  display: none;
+}
 .styled-select select {
   background: transparent;
   width: 100%;
