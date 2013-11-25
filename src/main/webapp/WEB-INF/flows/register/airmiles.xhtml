@@ -26,6 +26,7 @@
 	           					<b:gridColumn><h:outputText value="#{lookupManager.getBundle('airmiles.register.status.column')}" escape="false"/></b:gridColumn>	           				
 	           				</b:gridRow>
 	           				
+	           				<b:alert severity="error" layout="block" header="" closable="true">
 		           				<rich:repeat value="#{flowScope.resp.responses}" var="rep" rows="20" id="repeat">
 			           				<b:gridRow fluid="true">
 			           					<b:gridColumn><h:outputText value="#{rep.policy}"/></b:gridColumn>
@@ -33,6 +34,7 @@
 			           					<b:gridColumn><h:outputText value="#{rep.status}"/></b:gridColumn>
 					           		</b:gridRow>
 		           				</rich:repeat>
+		           			</b:alert>
 	           				
 	           				</b:gridContainer>
 	           				</b:gridColumn>
@@ -170,22 +172,36 @@
     
 		   <h:outputScript name="bootstrap-datepicker.js" library="extensions/bootstrap-datepicker/js" />
 			<script type="text/javascript">	
-			$('.date-picker').datepicker({
-				format: "dd/mm/yyyy",	
-			})
+			$('.date-picker').datepicker()
 			.on('changeDate', function(e) {
 				$('[id^="airmiles:' + e.currentTarget.id + '-value"]').val((e.date.getMonth() + 1) + '/' + e.date.getDate() + '/' +  e.date.getFullYear());
 			});
-			$('.date-picker td.active').removeClass('active');
+
+			$('.datepicker-hidden').each(function(index) {
+				if ($(this).val() !== '') {
+					// if there is a date already set in the input
+					// then we need to update the datepicker to display
+					// the date in the calednar widget
+					var idElements = $(this).attr('id').split(":");
+					$('#' + idElements[1].replace('-value', '')).datepicker('update', new Date($(this).val().replace(/\//g, ',')));
+				}
+				else {
+					// remove the active class if there is no date value
+					$('.date-picker td.active').removeClass('active');
+				}
+			});
 		
 			function attachErrors() {
-				// remove all error on control groups first
+				// remove all error classes on control groups first
 				$('.control-group').each(function(index){
 					$(this).removeClass('error');	
 				}); 
 				
 				$('.rf-msg ').each(function(index) {
-					if ($(this).text() !== '') {
+					if($(this).prev('input').attr('type') == 'checkbox'){
+						$(this).parents('div.control-group').addClass('error');	
+					}
+					else if ($(this).text() !== '') {
 						$(this).addClass('help-block');
 						$(this).parents('div.control-group').addClass('error');
 					}
