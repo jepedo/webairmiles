@@ -122,8 +122,8 @@
 			                                   
 			                <div class="control-group" > 
 			                	<h:outputLabel value="" styleClass="checkbox">
-			                		<h:selectBooleanCheckbox id="acceptTerms"  value="#{airmilesRequest.acceptTerms}">			                					                		
-				                		<f:validateRequired></f:validateRequired> 
+			                		<h:selectBooleanCheckbox id="acceptTerms" validatorMessage="#{lookupManager.getBundle('airmiles.err.E11')}" value="#{airmilesRequest.acceptTerms}">			                					                						                		
+				                		<f:validateRequired ></f:validateRequired> 
 				                		<rich:validator/>
 			                		</h:selectBooleanCheckbox>
 			                		 <rich:message for="acceptTerms" ajaxRendered="true" />	
