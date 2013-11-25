@@ -12,38 +12,47 @@
 	           			<b:gridColumn span="2">
 	           				<h:graphicImage value="#{resource['images/logo-air-miles.jpg']}" alt="Air Miles" />
 						</b:gridColumn>
-	           			<b:gridColumn span="7"><h:outputText value="#{lookupManager.getBundle('airmiles.intro.txt')}" escape="false" /> 
+	           			<b:gridColumn span="9"><h:outputText value="#{lookupManager.getBundle('airmiles.intro.txt')}" escape="false" /> 
 	           			</b:gridColumn>
 	           		</b:gridRow>
 	           		
 	                <b:gridRow fluid="true" rendered="#{not empty flowScope.resp.getResponses()}">
-			           		<b:gridColumn span="2"></b:gridColumn>
-			           		<b:gridColumn span="7">	
-	           				<b:gridContainer>
-	           				<b:gridRow fluid="true">
-	           					<b:gridColumn><h:outputText value="#{lookupManager.getBundle('airmiles.register.policy.column')}" escape="false"/></b:gridColumn>
-	           					<b:gridColumn><h:outputText value="#{lookupManager.getBundle('airmiles.register.policyDate.column')}" escape="false"/></b:gridColumn>
-	           					<b:gridColumn><h:outputText value="#{lookupManager.getBundle('airmiles.register.status.column')}" escape="false"/></b:gridColumn>			
-	           				</b:gridRow>
-	           				
-	           				
-		           				<rich:repeat value="#{flowScope.resp.responses}" var="rep" rows="20" id="repeat">
-			           				<b:gridRow fluid="true">
-			           					<b:gridColumn><h:outputText value="#{rep.policy}"/></b:gridColumn>
-			           					<b:gridColumn><h:outputText value="#{rep.policyDate}"/></b:gridColumn>
-			           					<b:gridColumn><h:outputText value="#{rep.status}"/></b:gridColumn>
-					           		</b:gridRow>
-		           				</rich:repeat>
-	           				
-	           				</b:gridContainer>
+	                		<b:gridColumn span="2"></b:gridColumn>
+			           		<b:gridColumn span="9">	
+	           				<table class="table registered-policies">
+	           					<thead>
+	           						<tr>
+	           							<th>
+	           								<h:outputText value="#{lookupManager.getBundle('airmiles.register.policy.column')}" escape="false" />
+	           							</th>
+	           							<th>
+	           								<h:outputText value="#{lookupManager.getBundle('airmiles.register.policyDate.column')}" escape="false" />
+	           							</th>
+	           							<th>
+	           								<h:outputText value="#{lookupManager.getBundle('airmiles.register.status.column')}" escape="false" />
+	           							</th>
+	           						</tr>
+	           					</thead>
+	           					<tbody>
+	           						<rich:repeat value="#{flowScope.resp.responses}" var="rep" rows="20" id="repeat">
+	           							<tr>
+				           					<td><h:outputText value="#{rep.policy}"/></td>
+				           					<td><h:outputText value="#{rep.policyDate}"/></td>
+				           					<td><h:outputText value="#{rep.status}"/></td>
+			           					</tr>
+					   				</rich:repeat>	
+	           					</tbody>
+	           				</table>
+	           					<b:gridColumn><h:outputText value="" escape="false"/></b:gridColumn>
+	           					<b:gridColumn><h:outputText value="" escape="false"/></b:gridColumn>			
 	           				</b:gridColumn>
 	           				
 
 	           		</b:gridRow>
 	           		
 	           		<b:gridRow fluid="true" rendered="#{not empty facesContext.getMessages()}">
-	           		<b:gridColumn span="2"></b:gridColumn>
-	           			<b:gridColumn span="7">
+	           			<b:gridColumn span="2"></b:gridColumn>
+	           			<b:gridColumn span="9">
 	           				<b:alert severity="error" layout="block" header="Correct errors to move on" closable="false" icon="error">
 	           					<rich:messages ajaxRendered="true"/>
 	           				</b:alert>
@@ -52,7 +61,7 @@
 
 	                <b:gridRow fluid="true">
 	                	<b:gridColumn span="2"></b:gridColumn>
-		                <b:gridColumn span="7">                
+	                    <b:gridColumn span="9">                
 		                	<div class="control-group" > 
 		                		<h:outputLabel value="#{lookupManager.getBundle('airmiles.collectorNumber.label')}" escape="false" styleClass="control-label" />
 		                		<div class="controls">
