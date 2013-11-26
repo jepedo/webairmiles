@@ -187,7 +187,7 @@ public class AirmilesController  {
     	if(resp==null)
     		resp = new ValidResponses();
     	
-    	resp.getResponses().add(new ValidResponse(airmilesRequest.getPolicy(),airmilesRequest.getPolicyDate(),lookupManager.getBundle("airmiles.registeredStatus.txt")));
+//    	resp.getResponses().add(new ValidResponse(airmilesRequest.getPolicy(),airmilesRequest.getPolicyDate(),lookupManager.getBundle("airmiles.registeredStatus.txt")));
     	
     	
     	if(airmilesRequest==null)
@@ -227,7 +227,7 @@ public class AirmilesController  {
 				if (saveResponse!=null && saveResponse.getStatus().equalsIgnoreCase("OK")) {
 					resp.getResponses().add(new ValidResponse(airmilesRequest.getPolicy(),airmilesRequest.getPolicyDate(),lookupManager.getBundle("airmiles.registeredStatus.txt")));
 				}
-				else if( saveResponse!=null && saveResponse.getErrors()!=null){
+				else if( saveResponse!=null && saveResponse.getErrors()!=null && saveResponse.getErrors().size()>0){
 					MessageContext messages = context.getMessageContext();
 					for (ErrorMessage error : saveResponse.getErrors()) {
 						 messages.addMessage(new MessageBuilder().error()
