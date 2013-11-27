@@ -50,12 +50,14 @@
 
 	           		</b:gridRow>
 	           		
-	           		<b:gridRow fluid="true" rendered="#{not empty facesContext.getMessages()}">
+	           		<b:gridRow id="errorbar" fluid="true" rendered="#{not empty facesContext.messages}"> <!-- != null and facesContext.maximumSeverity!=null -->
 	           			<b:gridColumn span="2"></b:gridColumn>
 	           			<b:gridColumn span="9">
-	           				<b:alert severity="error" layout="block" header="Correct errors to move on" closable="false" icon="error">
-	           					<rich:messages ajaxRendered="true"/>
-	           				</b:alert>
+	           			<b:alert severity="error" layout="block" header="#{lookupManager.getBundle('airmiles.errors.tilte')}" closable="false" icon="error">
+	           					<rich:messages ajaxRendered="true" globalOnly="false" escape="false" />
+	           				</b:alert> 
+	           				
+	           				
 	           				</b:gridColumn>
 	           		</b:gridRow>
 
