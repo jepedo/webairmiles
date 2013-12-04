@@ -55,7 +55,7 @@
 	           			<b:gridColumn span="9">
 	           				<b:alert id="errors" rendered="#{lookupManager.hasMessages()}"   layout="block" header="#{lookupManager.getBundle('airmiles.errors.tilte')} " closable="false" icon="error">
 	           				</b:alert> 
-	           				<rich:messages  title="#{lookupManager.getBundle('airmiles.errors.tilte')}" ajaxRendered="true" globalOnly="false" escape="false"/>
+	           				<rich:messages  id="form_errors" title="#{lookupManager.getBundle('airmiles.errors.tilte')}" ajaxRendered="true" globalOnly="false" escape="false"/>
 	           				
 	           				</b:gridColumn>
 	           		</b:gridRow>
