@@ -42,10 +42,6 @@ import ca.rsagroup.web.util.DatabaseDrivenMessageSource;
 
 public class AirmilesController  {
 	
-   ;
-	@Inject
-	protected DatabaseDrivenMessageSource configurationSource;
-	
 
 	protected LookupManager lookupManager;
 	

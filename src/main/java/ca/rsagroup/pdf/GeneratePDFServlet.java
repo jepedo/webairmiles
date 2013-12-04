@@ -33,7 +33,7 @@ public class GeneratePDFServlet implements HttpRequestHandler {
 	
 	@Inject
 	private ConfigurationManager configurationManager;
-	@Inject
+	
 	protected DatabaseDrivenMessageSource configurationSource;
 	
 	@Override

@@ -28,13 +28,15 @@
 	<!-- Enable processing of JSF 2 resource requests. -->
 	<!--For example: /application/app/javax.faces.resource/jsf.js?ln=javax.faces -->
 	<faces:resources />
+
 <bean id="messageSource" class="ca.rsagroup.web.util.DatabaseDrivenMessageSource">	    
     	<property name="bundleName" value="Quote" />
     	<property name="tableName" value="resource_bundles" />
     	<property name="cacheSeconds" value="36"/>
-    	<property name="dataSource" ref="dataSourceResourceBundles"/> 
+    	<property name="dataSource" ref="dataSource"/> 
 	</bean>
-<!--  <bean id="configurationSource" class="ca.rsagroup.web.util.DatabaseDrivenMessageSource">	    
+
+	<!--  <bean id="configurationSource" class="ca.rsagroup.web.util.DatabaseDrivenMessageSource">	    
     	<property name="bundleName" value="Claim" />
     	<property name="tableName" value="resource_bundles" />
     	<property name="cacheSeconds" value="36"/>

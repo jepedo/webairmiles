@@ -45,9 +45,9 @@
 		destroy-method="close" 
 		lazy-init="false" 
 		p:driverClassName="com.mysql.jdbc.Driver"
-		p:url="jdbc:mysql://localhost/j2ee_schema?autoReconnect=true"
-		p:username="demo" 
-		p:password="demo"
+		p:url="jdbc:mysql://dev-mysql/airmiles_j2ee?autoReconnect=true"
+		p:username="jboss_airmiles" 
+		p:password="ud9Vn2NHVHpEPT2r"
 		p:initialSize="1" 
 		p:maxActive="10" 
 		p:maxIdle="5" 
@@ -93,22 +93,6 @@
 		<description>Enable the bean validation provider, and configure it to use the messageSource when resolving properties</description>
 	</bean>
 
-	<!-- lookup tables and DB resource bundle -->
-
-
-	
-	<bean id="dataSourceResourceBundles" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		    <property name="url" value="jdbc:mysql://localhost:3306/j2ee_schema?autoReconnect=true"/>
-		    <property name="username" value="demo"/>
-		    <property name="password" value="demo"/>		    		    
-		</bean>
-<!--     <bean id="messageSource" class="ca.rsagroup.web.util.DatabaseDrivenMessageSource">	    
-    	<property name="bundleName" value="Quote" />
-    	<property name="tableName" value="resource_bundles" />
-    	<property name="cacheSeconds" value="36"/>
-    	<property name="dataSource" ref="dataSourceResourceBundles"/> 
-	</bean> -->
         <bean id="lookupManager" class="ca.rsagroup.service.LookupManager" scope="singleton">
          <!--  <constructor-arg ref="entityManagerFactory"/>  -->
         </bean>	

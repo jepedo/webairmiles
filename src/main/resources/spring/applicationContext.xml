@@ -96,14 +96,14 @@
 	<!-- lookup tables and DB resource bundle -->
 
 
-	
+	<!--
 	<bean id="dataSourceResourceBundles" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		    <property name="url" value="jdbc:mysql://localhost:3306/j2ee_schema?autoReconnect=true"/>
 		    <property name="username" value="demo"/>
 		    <property name="password" value="demo"/>		    		    
 		</bean>
-<!--     <bean id="messageSource" class="ca.rsagroup.web.util.DatabaseDrivenMessageSource">	    
+     <bean id="messageSource" class="ca.rsagroup.web.util.DatabaseDrivenMessageSource">	    
     	<property name="bundleName" value="Quote" />
     	<property name="tableName" value="resource_bundles" />
     	<property name="cacheSeconds" value="36"/>

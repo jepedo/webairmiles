@@ -25,7 +25,7 @@ import ca.rsagroup.web.util.DatabaseDrivenMessageSource;
 public class ClaimValidator {
 	@Inject
 	private ConfigurationManager configurationManager;	
-	@Inject
+
 	protected DatabaseDrivenMessageSource configurationSource;
 
 }

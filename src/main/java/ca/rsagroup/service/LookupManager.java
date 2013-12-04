@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Vector;
 
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -217,4 +218,10 @@ public class LookupManager {
 		return res;
 	}
 
+		public boolean hasMessages() {
+			List messages = FacesContext.getCurrentInstance().getMessageList();
+			if(messages !=null && messages.size()>0)
+					return true;			
+			return false;
+		}
 }
