@@ -53,7 +53,7 @@
 	           		<b:gridRow id="errorbar" fluid="true" > <!-- != null and facesContext.maximumSeverity!=null -->
 	           			<b:gridColumn span="2"></b:gridColumn>
 	           			<b:gridColumn span="10">
-	           				<div id="error-messages" class="alert alert-error">		
+	           				<div class="alert alert-error">		
 	           					<rich:messages id="form_errors" title="#{lookupManager.getBundle('airmiles.errors.tilte')}" ajaxRendered="true" globalOnly="false" escape="false"/>
 	           				</div>
 	           				</b:gridColumn>
@@ -217,10 +217,10 @@
 					}
 				});
 
-				$('.alert-error').show();
+				$('[id^="airmiles:errorbar"]').show();
 
 				// scroll smoothly to the error message
-				$("html, body").animate({ scrollTop: $('#error-messages').offset().top }, 500);
+				$("html, body").animate({ scrollTop: $('[id^="airmiles:errorbar"]').offset().top }, 500);
 			}
 		</script>
 	</ui:define>	 

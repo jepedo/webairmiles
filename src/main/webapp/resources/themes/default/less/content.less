@@ -9,13 +9,17 @@ body {
     }  
 }
 
-.alert-error {
+#airmiles\:errorbar {
   display: none;
 }
 
 // Global changes
-a {
+a,
+a:hover,
+a:focus,
+a:visited {
   text-decoration: underline;
+  color: @linkPurple;
 }
 
 .nav > li > a:hover,
@@ -25,19 +29,18 @@ a {
   text-decoration: underline;
 }
 
-h1, h2, h4 {
-  color: @black;
+h1, h2, h3, h4, h5 {
+  text-transform: uppercase;
+  color: @gray;
 }
 
 h1 {
+  color: @blue;
   font-size: 3.125em;
-  text-transform: uppercase;
 }
 
 h2 {
   font-size: 1.725em;
-  text-transform: uppercase;
-  color: @gray;
 }
 
 h3 {

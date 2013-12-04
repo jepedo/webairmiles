@@ -7761,11 +7761,15 @@ div.password-suggestions ul {
     margin-right: 20px;
   }
 }
-.alert-error {
+#airmiles\:errorbar {
   display: none;
 }
-a {
+a,
+a:hover,
+a:focus,
+a:visited {
   text-decoration: underline;
+  color: #5a2d7e;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
@@ -7775,17 +7779,18 @@ a {
 }
 h1,
 h2,
-h4 {
-  color: #000000;
+h3,
+h4,
+h5 {
+  text-transform: uppercase;
+  color: #666666;
 }
 h1 {
+  color: #6cb1b7;
   font-size: 3.125em;
-  text-transform: uppercase;
 }
 h2 {
   font-size: 1.725em;
-  text-transform: uppercase;
-  color: #666666;
 }
 h3 {
   font-size: 17.5px;
