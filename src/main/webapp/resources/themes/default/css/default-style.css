@@ -7761,18 +7761,11 @@ div.password-suggestions ul {
     margin-right: 20px;
   }
 }
+.alert-error {
+  display: none;
+}
 a {
   text-decoration: underline;
-}
-@media (min-width: 1200px) {
-  .row-fluid .span9 {
-    width: 68.35897435897436%;
-    *width: 68.30578286961266%;
-  }
-  .row-fluid [class*="span"] {
-    margin-left: 8.564102564102564%;
-    *margin-left: 8.5109110747408616%;
-  }
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
@@ -7859,6 +7852,9 @@ input[type="color"],
 }
 .registered-policies td {
   border: none;
+}
+.media img {
+  margin-right: 1em;
 }
 .styled-select select {
   background: transparent;

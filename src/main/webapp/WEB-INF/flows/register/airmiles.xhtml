@@ -12,13 +12,13 @@
 	           			<b:gridColumn span="2">
 	           				<h:graphicImage value="#{resource['images/logo-air-miles.jpg']}" alt="Air Miles" />
 						</b:gridColumn>
-	           			<b:gridColumn span="9"><h:outputText value="#{lookupManager.getBundle('airmiles.intro.txt')}" escape="false" /> 
+	           			<b:gridColumn span="10"><h:outputText value="#{lookupManager.getBundle('airmiles.intro.txt')}" escape="false" /> 
 	           			</b:gridColumn>
 	           		</b:gridRow>
 	           		
 	                <b:gridRow fluid="true" rendered="#{not empty flowScope.resp.getResponses()}">
 	                		<b:gridColumn span="2"></b:gridColumn>
-			           		<b:gridColumn span="9">	
+			           		<b:gridColumn span="10">	
 	           				<table class="table registered-policies">
 	           					<thead>
 	           						<tr>
@@ -52,15 +52,16 @@
 	           		
 	           		<b:gridRow id="errorbar" fluid="true" > <!-- != null and facesContext.maximumSeverity!=null -->
 	           			<b:gridColumn span="2"></b:gridColumn>
-	           			<b:gridColumn span="9" styleClass="alert alert-error" >
-	           				<rich:messages id="form_errors" title="#{lookupManager.getBundle('airmiles.errors.tilte')}" ajaxRendered="true" globalOnly="false" escape="false"/>
-	           				
+	           			<b:gridColumn span="10">
+	           				<div id="error-messages" class="alert alert-error">		
+	           					<rich:messages id="form_errors" title="#{lookupManager.getBundle('airmiles.errors.tilte')}" ajaxRendered="true" globalOnly="false" escape="false"/>
+	           				</div>
 	           				</b:gridColumn>
 	           		</b:gridRow>
 
 	                <b:gridRow fluid="true">
 	                	<b:gridColumn span="2"></b:gridColumn>
-	                    <b:gridColumn span="9">                
+	                    <b:gridColumn span="10">                
 		                	<div class="control-group" > 
 		                		<h:outputLabel value="#{lookupManager.getBundle('airmiles.collectorNumber.label')}" escape="false" styleClass="control-label" />
 		                		<div class="controls">
@@ -215,6 +216,11 @@
 						$(this).parents('div.control-group').addClass('error');
 					}
 				});
+
+				$('.alert-error').show();
+
+				// scroll smoothly to the error message
+				$("html, body").animate({ scrollTop: $('#error-messages').offset().top }, 500);
 			}
 		</script>
 	</ui:define>	 

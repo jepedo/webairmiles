@@ -9,22 +9,13 @@ body {
     }  
 }
 
+.alert-error {
+  display: none;
+}
+
 // Global changes
 a {
   text-decoration: underline;
-}
-
-// Since the original design requires articles pages to differ from bootstrap
-// this resets the width of the span9 class to the desired proportion.
-@media (min-width: 1200px) {
-  .row-fluid .span9  {
-    width: 68.35897435897436%;
-    *width: 68.30578286961266%;
-  }
-  .row-fluid [class*="span"] {
-    margin-left: 8.564102564102564%;
-    *margin-left: 8.5109110747408616%;
-  }
 }
 
 .nav > li > a:hover,
@@ -119,6 +110,12 @@ input[type="color"],
   }
   td {
     border: none;
+  }
+}
+
+.media {
+  img {
+    margin-right: 1em;
   }
 }
 
