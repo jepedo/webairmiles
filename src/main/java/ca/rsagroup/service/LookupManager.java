@@ -200,6 +200,7 @@ public class LookupManager {
 							.hasNext();) {
 						ResourceBundles resourceBundles = (ResourceBundles) iterator
 								.next();
+						getEntityManager().refresh(resourceBundles);
 						if (resourceBundles.getVariant()
 								.equalsIgnoreCase("www")) {
 							res = resourceBundles.getValue();

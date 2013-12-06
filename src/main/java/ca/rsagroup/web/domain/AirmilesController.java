@@ -222,12 +222,29 @@ public class AirmilesController  {
 
 				if (saveResponse!=null && saveResponse.getStatus().equalsIgnoreCase("OK")) {
 					resp.getResponses().add(new ValidResponse(airmilesRequest.getPolicy(),airmilesRequest.getPolicyDate(),lookupManager.getBundle("airmiles.registeredStatus.txt")));
+			    	if(addAnother) {
+			    		airmilesRequest.setPolicy(null);
+			    		airmilesRequest.setPolicyDate(null);
+			    	}
+			    	else {
+			    		airmilesRequest.setAirmilesName(null);
+			    		airmilesRequest.setAirmilesNumber(null);
+			    		airmilesRequest.setPhone(null);
+			    		airmilesRequest.setEmail(null);
+			    		airmilesRequest.setPolicy(null);
+			    		airmilesRequest.setPolicyDate(null);
+			    		airmilesRequest.setAcceptTerms(false);
+			    	}				
 				}
 				else if( saveResponse!=null && saveResponse.getErrors()!=null && saveResponse.getErrors().size()>0){
 					MessageContext messages = context.getMessageContext();
 					for (ErrorMessage error : saveResponse.getErrors()) {
+						if(error.getCode()!=null && error.getCode().equalsIgnoreCase("RSA"))
 						 messages.addMessage(new MessageBuilder().error()
 									.source(null).defaultText(error.getMessage()).build());
+						else
+							messages.addMessage(new MessageBuilder().error()
+									.source(null).defaultText(lookupManager.getBundle(error.getCode())).build());
 					}
 				}
 				else {
@@ -243,19 +260,6 @@ public class AirmilesController  {
 				e.printStackTrace();					
 			}
 			
-	    	if(addAnother) {
-	    		airmilesRequest.setPolicy(null);
-	    		airmilesRequest.setPolicyDate(null);
-	    	}
-	    	else {
-	    		airmilesRequest.setAirmilesName(null);
-	    		airmilesRequest.setAirmilesNumber(null);
-	    		airmilesRequest.setPhone(null);
-	    		airmilesRequest.setEmail(null);
-	    		airmilesRequest.setPolicy(null);
-	    		airmilesRequest.setPolicyDate(null);
-	    		airmilesRequest.setAcceptTerms(false);
-	    	}
 	    		
 			return resp;
    }

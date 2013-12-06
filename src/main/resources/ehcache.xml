@@ -45,12 +45,18 @@
 		timeToIdleSeconds="600" timeToLiveSeconds="600"
 		overflowToDisk="false" memoryStoreEvictionPolicy="LFU">
 	</defaultCache>
-	<cache name="com.rsa.common.service.CodeUi"
+	<cache name="ca.rsagroup.CodeUi"
 		maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="86400"
 		timeToLiveSeconds="86400" overflowToDisk="false"
 		memoryStoreEvictionPolicy="LFU">
 	</cache>
-	
+
+	<cache name="ca.rsagroup.ResourceBundles"
+		maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="600"
+		timeToLiveSeconds="600" overflowToDisk="false"
+		memoryStoreEvictionPolicy="LFU">
+	</cache>
+		
 
 	<cache name="org.hibernate.cache.internal.StandardQueryCache"
 		maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="86400"
@@ -63,44 +69,4 @@
 		memoryStoreEvictionPolicy="LFU">
 	</cache>
 
-		<!--
-
-		You can override cache configuration given a cache name the following way:
-
-
-
-		The following cache may be used
-
-		# hibernate related
-		org.hibernate.cache.internal.StandardQueryCache
-		org.hibernate.cache.spi.UpdateTimestampsCache
-
-		# database related
-		ca.rsagroup.domain.Authorities
-
-		ca.rsagroup.domain.CarClaim
-
-		ca.rsagroup.domain.CardType
-
-		ca.rsagroup.domain.Claim
-
-		ca.rsagroup.domain.ClaimAttachment
-
-		ca.rsagroup.domain.ClaimNote
-
-		ca.rsagroup.domain.Coverage
-
-		ca.rsagroup.domain.CoverageType
-
-		ca.rsagroup.domain.CreditCard
-
-		ca.rsagroup.domain.FinancialInstitution
-
-		ca.rsagroup.domain.PurchaseClaim
-
-		ca.rsagroup.domain.TravelClaim
-
-		ca.rsagroup.domain.Users
-
-	-->
 </ehcache>

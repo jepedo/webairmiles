@@ -12,6 +12,7 @@
 		<set name = "flowScope.lang" value="requestParameters.lang" />	
 		<evaluate expression="airmilesController.getDomain()" result="flowScope.domain" result-type="java.lang.String"/>
 		<evaluate expression="airmilesRequest.setEmailConsent(true)" />
+		<evaluate expression="airmilesRequest.setLanguage(flowScope.lang)" />
 		<evaluate expression="persistenceContext.clear()" />
 	</on-start>
 
