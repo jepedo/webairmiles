@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -33,6 +34,7 @@ import ca.rsagroup.model.ValidResponse;
 import ca.rsagroup.model.ValidResponses;
 import ca.rsagroup.service.LookupManager;
 import ca.rsagroup.web.util.DatabaseDrivenMessageSource;
+import ca.rsagroup.web.util.MessageUtil;
 
 /**
  * Thin controller layer allowing you to do business validation and other conditional
@@ -240,18 +242,14 @@ public class AirmilesController  {
 					MessageContext messages = context.getMessageContext();
 					for (ErrorMessage error : saveResponse.getErrors()) {
 						if(error.getCode()!=null && error.getCode().equalsIgnoreCase("RSA"))
-						 messages.addMessage(new MessageBuilder().error()
-									.source(null).defaultText(error.getMessage()).build());
+							MessageUtil.addGlobalMessage(context.getMessageContext(),error.getMessage());							 
 						else
-							messages.addMessage(new MessageBuilder().error()
-									.source(null).defaultText(lookupManager.getBundle(error.getCode())).build());
+							MessageUtil.addGlobalMessage(context.getMessageContext(),lookupManager.getBundle(error.getCode()));	
 					}
 				}
 				else {
 					// default error
-					MessageContext messages = context.getMessageContext();
-					messages.addMessage(new MessageBuilder().error()
-									.source(null).defaultText(lookupManager.getBundle("airmiles.esbError.txt")).build());					
+					MessageUtil.addGlobalMessage(context.getMessageContext(),lookupManager.getBundle("airmiles.esbError.txt"));										
 				}
 				
 				

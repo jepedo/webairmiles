@@ -59,7 +59,7 @@
 	           				</div>	           				
 	           				</b:gridColumn>
 	           		</b:gridRow>
-	           		<b:gridRow id="errorbar2" fluid="true" rendered="#{lookupManager.hasMessages()}"> <!-- != null and facesContext.maximumSeverity!=null -->
+	           		<b:gridRow id="errorbar2" fluid="true" rendered="#{lookupManager.hasMessages() and facesContext.maximumSeverity.ordinal ge 2}"> <!-- != null and facesContext.maximumSeverity!=null -->
 	           			<b:gridColumn span="2"></b:gridColumn>
 	           			<b:gridColumn span="10">
 	           				<div class="alert alert-error">		

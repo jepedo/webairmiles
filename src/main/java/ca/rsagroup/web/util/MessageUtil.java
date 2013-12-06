@@ -2,7 +2,6 @@ package ca.rsagroup.web.util;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static org.springframework.webflow.execution.RequestContextHolder.getRequestContext;
-
 import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
 import static javax.faces.application.FacesMessage.SEVERITY_FATAL;
 import static javax.faces.application.FacesMessage.SEVERITY_INFO;
@@ -18,6 +17,8 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
+import org.springframework.binding.message.MessageBuilder;
+import org.springframework.binding.message.MessageContext;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.security.access.AccessDeniedException;
@@ -192,4 +193,14 @@ public class MessageUtil {
         fm.setSeverity(severity);
         return fm;
     }
+    
+	public static void addGlobalMessage(MessageContext messages, String summary) {
+		
+		messages.addMessage(new MessageBuilder()
+		.error()
+		.source(null)
+		.defaultText(summary).build());
+
+		FacesContext.getCurrentInstance().addMessage("errorCount", new FacesMessage(FacesMessage.SEVERITY_FATAL,  Integer.toString(FacesContext.getCurrentInstance().getMessageList().size()), "No. of Messages = " +  FacesContext.getCurrentInstance().getMessageList().size()));
+	}
 }
