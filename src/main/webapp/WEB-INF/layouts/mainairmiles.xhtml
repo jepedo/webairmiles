@@ -8,7 +8,8 @@
 <h:head>
     <title>#{lookupManager.getBundle('airmiles.pagetitle.txt')}</title>
     <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico" />
-<!-- Include GTM/Omniture for this app... -->
+	<!-- Include GTM/Omniture for this app... -->
+	<script src="//s3.amazonaws.com/searchdiscovery-satellite-production/6369c798eb575b7d3a5e6e94ca97145c3c7ea5be/satelliteLib-2eda4feb5aa12cd92b6d96061a6f6d806335c334-staging.js"></script>
 </h:head>
 
 <h:body>
@@ -25,5 +26,7 @@
     <div id="page-footer">    		
    		<h:outputText value="#{lookupManager.getBundle('airmiles.pagefooter.txt')}" escape="false"/>
    	</div>
+   	<!-- Include GTM/Omniture for this app... -->
+   	<script type="text/javascript">_satellite.pageBottom();</script>
 </h:body>
 </html>
