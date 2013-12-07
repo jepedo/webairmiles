@@ -191,8 +191,11 @@
     	
     
 		   <h:outputScript name="bootstrap-datepicker.js" library="extensions/bootstrap-datepicker/js" />
+		   <h:outputScript name="bootstrap-datepicker.fr.js" library="extensions/bootstrap-datepicker/js/locales" />
 			<script type="text/javascript">	
-			$('.date-picker').datepicker()
+			$('.date-picker').datepicker({
+				language: $('#lang').val(),
+			})
 			.on('changeDate', function(e) {
 				$('[id^="airmiles:' + e.currentTarget.id + '-value"]').val((e.date.getMonth() + 1) + '/' + e.date.getDate() + '/' +  e.date.getFullYear());
 			});
