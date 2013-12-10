@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ca.rsagroup</groupId>
 	<artifactId>WebAirmiles</artifactId>
-	<packaging>war</packaging>
+	<packaging>war</packaging>	
 	<version>1.0</version>
 	<name>WebAirmiles</name>
 	<prerequisites>
@@ -69,7 +69,41 @@
 		<hibernate.use.second.level.cache>true</hibernate.use.second.level.cache>
 		<hibernate.use.query.cache>true</hibernate.use.query.cache>
 	</properties>
+	<pluginRepositories>
+	  <pluginRepository>
+		    <id>synergian-repo</id>
+		    <url>https://raw.github.com/synergian/wagon-git/releases</url>
+		</pluginRepository>	
+		</pluginRepositories>
 
+<repositories>
+                        
+	  <repository>
+	    <id>RSA</id>
+			<releases>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+            <checksumPolicy>warn</checksumPolicy>
+          </releases> 
+          <snapshots>en<enabled>true</enabled></snapshots>	    
+	    <name>RSA Repo</name>
+	        <url>git:releases://https://bitbucket.org/rsacanada/maven.git</url>
+	  </repository>  
+
+      <repository>
+			<id>mvnrepository</id>
+			<url>http://mvnrepository.com</url>
+			<layout>default</layout>
+		</repository> 
+		<repository>
+			<id>jboss</id>
+			<url>http://repository.jboss.org/nexus/content/groups/public-jboss</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+  </repositories>
+  
 	<profiles>
 
 	</profiles>
@@ -485,23 +519,8 @@
 			<scope>test</scope>
 		</dependency> -->
 	</dependencies>
-	<!-- ~~~~~~~~~~~~ -->
-	<!-- REPOSITORIES -->
-	<!-- ~~~~~~~~~~~~ -->
-	<repositories>
-		<repository>
-			<id>mvnrepository</id>
-			<url>http://mvnrepository.com</url>
-			<layout>default</layout>
-		</repository> 
-		<repository>
-			<id>jboss</id>
-			<url>http://repository.jboss.org/nexus/content/groups/public-jboss</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+
+
 	<!-- ~~~~~ -->
 	<!-- BUILD -->
 	<!-- ~~~~~ -->
@@ -517,6 +536,13 @@
 				<filtering>true</filtering>
 			</resource>
 		</resources>
+		  <extensions>
+		    <extension>
+		      <groupId>ar.com.synergian</groupId>
+		          <artifactId>wagon-git</artifactId>
+		          <version>0.2.0</version>
+		    </extension>
+		  </extensions>			
 		<!-- <testResources>
 			<testResource>
 				<directory>${maven-celerio-plugin.outputDir}/src/test/resources</directory>
