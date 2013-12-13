@@ -25,6 +25,7 @@ public class ConfigurationManager {
 	@Value("${registerAndAddAnotherAction}")
 	private String registerAndAddAnotherAction;
 	
+	
 	public String getEsbUrl() {
 		return esbUrl;
 	}

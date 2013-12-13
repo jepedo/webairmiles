@@ -80,12 +80,11 @@
                         
 	  <repository>
 	    <id>RSA</id>
-			<releases>
+		  <releases>
             <enabled>true</enabled>
             <updatePolicy>always</updatePolicy>
             <checksumPolicy>warn</checksumPolicy>
-          </releases> 
-          <snapshots>en<enabled>true</enabled></snapshots>	    
+          </releases> 	    
 	    <name>RSA Repo</name>
 	        <url>git:releases://https://bitbucket.org/rsacanada/maven.git</url>
 	  </repository>  

@@ -16,25 +16,39 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 
 import ca.rsagroup.airmiles.AirmilesRequest;
 import ca.rsagroup.service.LookupManager;
+import ca.rsagroup.web.util.MessageUtil;
 
 
 @Component
 public class AirmilesRequestValidator {
 	@Inject
 	private LookupManager lookupManager;		
+	@Inject
+	private ConfigurationManager configurationManager;
 
+	private static final String EMAIL_PATTERN = 
+			"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	
 	public void validateStart(AirmilesRequest airmiles, ValidationContext context) {		
 	        MessageContext messages = context.getMessageContext();
+	        messages.clearMessages();
 	        if(airmiles==null || airmiles.getAirmilesNumber()==null || !modulus11(airmiles.getAirmilesNumber())) {
 		         messages.addMessage(new MessageBuilder().error()
 						.source(null).defaultText(lookupManager.getBundle("airmiles.err.E4")).build());
+//		         MessageUtil.addGlobalMessage(context.getMessageContext(),lookupManager.getBundle("airmiles.err.E4"));
 	        }	 
 	        
 	        if(airmiles!=null && airmiles.getPolicyDate()!=null && new Date(airmiles.getPolicyDate()).after(new Date(System.currentTimeMillis()))) {
 		         messages.addMessage(new MessageBuilder().error()
 						.source(null).defaultText(lookupManager.getBundle("airmiles.err.E3")).build());
-	        }
-       	        	
+//		         MessageUtil.addGlobalMessage(context.getMessageContext(),lookupManager.getBundle("airmiles.err.E3"));
+	        } 
+	        if(airmiles==null || airmiles.getEmail()==null || !airmiles.getEmail().matches(EMAIL_PATTERN)) {
+		         messages.addMessage(new MessageBuilder().error()
+						.source(null).defaultText(lookupManager.getBundle("airmiles.email.label") +" : "+lookupManager.getBundle("airmiles.err.E5")).build());
+//		         MessageUtil.addGlobalMessage(context.getMessageContext(),lookupManager.getBundle("airmiles.email.label") +" : "+lookupManager.getBundle("airmiles.err.E5"));
+	        }	
 	}
 	
 	private boolean modulus11(String airm) {
