@@ -215,7 +215,7 @@
 					// then we need to update the datepicker to display
 					// the date in the calednar widget
 					var idElements = $(this).attr('id').split(":");
-					$('#' + idElements[1].replace('-value', '')).datepicker('update', new Date($(this).val().replace(/\//g, ',')));
+					$('#' + idElements[1].replace('-value', '')).datepicker('update', new Date($(this).val()));
 				}
 				else {
 					// remove the active class if there is no date value
