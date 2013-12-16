@@ -1,10 +1,14 @@
 package ca.rsagroup.commons;
 
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.print.attribute.standard.Severity;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.binding.message.MessageBuilder;
@@ -33,10 +37,23 @@ public class AirmilesRequestValidator {
 	public void validateStart(AirmilesRequest airmiles, ValidationContext context) {		
 	        MessageContext messages = context.getMessageContext();
 	        messages.clearMessages();
+	        
+	        try {
+				Iterator<FacesMessage> msgIterator = FacesContext.getCurrentInstance().getMessages();
+				while(msgIterator.hasNext())
+				{
+				    msgIterator.next();
+				    msgIterator.remove();
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
 	        if(airmiles==null || airmiles.getAirmilesNumber()==null || !modulus11(airmiles.getAirmilesNumber())) {
 		         messages.addMessage(new MessageBuilder().error()
 						.source(null).defaultText(lookupManager.getBundle("airmiles.err.E4")).build());
-//		         MessageUtil.addGlobalMessage(context.getMessageContext(),lookupManager.getBundle("airmiles.err.E4"));
+//		         MessageUtil.addGlobalMessage(context.getMessageContext(),lookupManager.getBundle("airmiles.err.E4"));		         
 	        }	 
 	        
 	        if(airmiles!=null && airmiles.getPolicyDate()!=null && new Date(airmiles.getPolicyDate()).after(new Date(System.currentTimeMillis()))) {
@@ -49,6 +66,7 @@ public class AirmilesRequestValidator {
 						.source(null).defaultText(lookupManager.getBundle("airmiles.email.label") +" : "+lookupManager.getBundle("airmiles.err.E5")).build());
 //		         MessageUtil.addGlobalMessage(context.getMessageContext(),lookupManager.getBundle("airmiles.email.label") +" : "+lookupManager.getBundle("airmiles.err.E5"));
 	        }	
+	       
 	}
 	
 	private boolean modulus11(String airm) {
