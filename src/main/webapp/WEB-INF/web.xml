@@ -64,6 +64,17 @@
 </filter-mapping>  -->
 	
     <filter>
+        <filter-name>domainFilter</filter-name>
+        <filter-class>ca.rsagroup.service.DomainFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>domainFilter</filter-name>
+        <servlet-name>springMVCServlet</servlet-name>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>	
+    <filter>
         <filter-name>exceptionFilter</filter-name>
         <filter-class>ca.rsagroup.web.filter.ExceptionFilter</filter-class>
     </filter>
