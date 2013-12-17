@@ -59,7 +59,8 @@ public final class DomainFilter implements Filter {
 			String mydomain= reqUrl.substring(reqUrl.indexOf("//") + 2);
 			int sc = mydomain.indexOf(":");
 			int ss = mydomain.indexOf("/");
-			mydomain = sc<ss?mydomain.substring(0,sc):mydomain.substring(0,ss);
+			mydomain = (sc<ss && sc>0)?mydomain.substring(0,sc):mydomain.substring(0,ss);
+			log.info("myURL - "+mydomain);
 			boolean validDomain = false;
 			for (int i = 0; i < domains.length; i++) {
 				if(domains[i].equalsIgnoreCase(mydomain)) {

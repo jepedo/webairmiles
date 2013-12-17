@@ -11,21 +11,21 @@
 	<!-- Include GTM/Omniture for this app... -->
 	<script src="//s3.amazonaws.com/searchdiscovery-satellite-production/6369c798eb575b7d3a5e6e94ca97145c3c7ea5be/satelliteLib-2eda4feb5aa12cd92b6d96061a6f6d806335c334-staging.js"></script>
 	<script type="text/javascript" src="${request.contextPath}/resources/js/respond.min.js" />
-	<!-- HTML5 element support for IE6-8 -->
-  	<!--[if lt IE 9]>
-    	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  	<![endif]-->
+
 </h:head>
 
 <h:body>
+
 <h:outputText value="#{lookupManager.getBundle('airmiles.gtm.txt')}" escape="false"/>
 	<link rel="stylesheet" href="${request.contextPath}/resources/themes/#{flowScope.domain}/css/style.css" />
-	<!--[if lt IE 8]>
-    	<link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/themes/#{flowScope.domain}/css/ie-7.css">
-  	<![endif]-->
-  	<!--[if IE 8]>
-    	<link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/themes/#{flowScope.domain}/css/ie-8.css">
-  	<![endif]-->
+<h:outputText 
+    value="&lt;!--[if lt IE 8]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;${request.contextPath}/resources/themes/${flowScope.domain}/css/ie-7.css&quot; /&gt;&lt;![endif]--&gt;"
+    escape="false" />
+                <h:outputText 
+    value="&lt;!--[if IE 8]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;${request.contextPath}/resources/themes/${flowScope.domain}/css/ie-8.css&quot; /&gt;&lt;![endif]--&gt;"
+    escape="false" />
+
+
 	<div class="main-container container"> 
 		<div id="page-header">    		
     		<h:outputText value="#{lookupManager.getBundle('airmiles.pageheader.txt')}" escape="false"/>
