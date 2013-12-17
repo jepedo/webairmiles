@@ -1,0 +1,52 @@
+/**
+ * Overrides for IE-7 only.
+ * After trying many 3rd party libraries and other options this seem to be the most
+ * efficient way to solve the IE7 specific bugs
+ */
+
+.homepage-badges .span4 {
+  width: 30% !important;
+}
+
+.homepage-menu-sections .span4 {
+  width: 31% !important;
+}
+
+#page-header .logo img {
+	margin-bottom: 40px;
+}
+
+.form-search .input-append {
+	margin-right: 40px;
+	position: relative;
+	right: 40px;
+}
+
+.input-append input[name="search_block_form"] {
+	padding-left: 50px;
+	width: 460px !important;
+}
+
+/* link spacing issues */
+#block-menu-block-platform-menus-3 ul li a,
+#block-menu-menu-footer-menu ul li a {
+	padding-right: 15px;
+	border-right: 1px solid #4B4B4B;
+	padding-left: 10px;
+}
+
+#block-menu-menu-footer-menu ul li a {
+	border-right: 1px solid #fff;
+	padding-left: 10px;
+}
+
+#block-menu-block-platform-menus-3 ul li.last a,
+#block-menu-menu-footer-menu ul li.last a {
+	padding-right: 0;
+	border-right: 0;
+	margin-right: 0;
+}
+
+.footer.container {
+	width: 100%;
+}

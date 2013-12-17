@@ -1,0 +1,7 @@
+/**
+ * Overrides for IE-8 only.
+ */
+
+.footer.container {
+	width: 100%;
+}
