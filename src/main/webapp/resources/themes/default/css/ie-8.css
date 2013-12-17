@@ -5,6 +5,7 @@
   margin-top: 45px;
   padding: 35px 0 36px;
   border-top: 1px solid #E5E5E5;
+  width: 100%;
 }
 
 #page-footer {
@@ -76,8 +77,4 @@
 #page-footer #boxes-box-copyright_note {
   color: #999;
   margin-top: 15px;
-}
-
-#page-footer {
-	width: 100%;
 }
