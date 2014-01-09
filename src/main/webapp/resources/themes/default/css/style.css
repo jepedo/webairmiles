@@ -7607,10 +7607,16 @@ div.password-suggestions ul {
 #mobile-menu {
   display: none;
   visibility: hidden;
+  background: url(themes/default/images/mobile-nav.png) no-repeat scroll 0 0 transparent;
+  display: inline-block;
+  float: right;
+  height: 30px;
+  margin: 30px 0 0;
+  width: 27px;
 }
 @media (max-width: 767px) {
   #mobile-menu {
-    background: url("themes/default/images/mobile-nav.png") no-repeat scroll 0 0 transparent;
+    background: url(themes/default/images/mobile-nav.png) no-repeat scroll 0 0 transparent;
     cursor: pointer;
     display: inline-block;
     float: right;
@@ -7876,7 +7882,7 @@ input[type="color"],
   width: 100%;
   height: 30px;
   overflow: hidden;
-  background: url("../images/select-arrow.png") no-repeat 220px center #ffffff;
+  background: url(themes/default/images/select-arrow.png) no-repeat 220px center #ffffff;
   border: 1px solid #d8d8d8;
 }
 .phone-call-out {
@@ -7884,7 +7890,7 @@ input[type="color"],
 }
 .phone-call-out .phone {
   margin-right: 20px;
-  background: url("../images/icon-phone.png") no-repeat;
+  background: url(themes/default/images/icon-phone.png) no-repeat;
   width: 38px;
   height: 29px;
 }
@@ -7912,6 +7918,9 @@ ul.nav-content-footer a:hover,
 ul.nav-content-footer a:focus,
 ul.nav-content-footer a:visited {
   color: #000000;
+}
+.btn {
+  background-image: none;
 }
 .content-area {
   border-top: solid 5px #e8e6dc;
@@ -7977,7 +7986,7 @@ ul.nav-content-footer a:visited {
     margin-right: 0;
   }
   .triptych .contact-icon {
-    background: url(../images/contact-icons.png) no-repeat;
+    background: url(themes/default/images/contact-icons.png) no-repeat;
     height: 45px;
   }
   .triptych .contact-icon.cicon-phone {
@@ -7995,7 +8004,7 @@ ul.nav-content-footer a:visited {
     clear: both;
   }
   .triptych .contact-icon {
-    background: url(../images/contact-icons.png) no-repeat;
+    background: url(themes/default/images/contact-icons.png) no-repeat;
     float: left;
     height: 60px;
     width: 33%;
@@ -8212,12 +8221,12 @@ ul.nav-content-footer a:visited {
   padding-left: 10px;
 }
 .footer #block-menu-menu-social-links .twitter {
-  background-image: url("themes/default/images/twitter.png");
+  background-image: url(themes/default/images/twitter.png);
   background-repeat: no-repeat;
   padding-left: 40px;
 }
 .footer #block-menu-menu-social-links .linkedin {
-  background-image: url("themes/default/images/linkedin.png");
+  background-image: url(themes/default/images/linkedin.png);
   background-repeat: no-repeat;
   padding-left: 35px;
 }
@@ -8250,8 +8259,8 @@ ul.nav-content-footer a:visited {
     */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('font-awesome/font/fontawesome-webfont.eot');
-  src: url('font-awesome/font/fontawesome-webfont.eot?#iefix') format('embedded-opentype'), url('font-awesome/font/fontawesome-webfont.woff') format('woff'), url('font-awesome/font/fontawesome-webfont.ttf') format('truetype'), url('font-awesome/font/fontawesome-webfont.svg#FontAwesome') format('svg');
+  src: url('../../../font-awesome/font/fontawesome-webfont.eot');
+  src: url('../../../font-awesome/font/fontawesome-webfont.eot?#iefix') format('embedded-opentype'), url('../../../font-awesome/font/fontawesome-webfont.woff') format('woff'), url('../../../font-awesome/font/fontawesome-webfont.ttf') format('truetype'), url('../../../font-awesome/font/fontawesome-webfont.svg#FontAwesome') format('svg');
   font-weight: normal;
   font-style: normal;
 }
