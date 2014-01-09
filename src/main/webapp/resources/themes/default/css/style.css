@@ -7610,7 +7610,7 @@ div.password-suggestions ul {
 }
 @media (max-width: 767px) {
   #mobile-menu {
-    background: url("../images/mobile-nav.png") no-repeat scroll 0 0 transparent;
+    background: url("themes/default/images/mobile-nav.png") no-repeat scroll 0 0 transparent;
     cursor: pointer;
     display: inline-block;
     float: right;
@@ -8212,12 +8212,12 @@ ul.nav-content-footer a:visited {
   padding-left: 10px;
 }
 .footer #block-menu-menu-social-links .twitter {
-  background-image: url("../images/twitter.png");
+  background-image: url("themes/default/images/twitter.png");
   background-repeat: no-repeat;
   padding-left: 40px;
 }
 .footer #block-menu-menu-social-links .linkedin {
-  background-image: url("../images/linkedin.png");
+  background-image: url("themes/default/images/linkedin.png");
   background-repeat: no-repeat;
   padding-left: 35px;
 }
@@ -8250,8 +8250,8 @@ ul.nav-content-footer a:visited {
     */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('../../../font-awesome/font/fontawesome-webfont.eot');
-  src: url('../../../font-awesome/font/fontawesome-webfont.eot?#iefix') format('embedded-opentype'), url('../../../font-awesome/font/fontawesome-webfont.woff') format('woff'), url('../../../font-awesome/font/fontawesome-webfont.ttf') format('truetype'), url('../../../font-awesome/font/fontawesome-webfont.svg#FontAwesome') format('svg');
+  src: url('font-awesome/font/fontawesome-webfont.eot');
+  src: url('font-awesome/font/fontawesome-webfont.eot?#iefix') format('embedded-opentype'), url('font-awesome/font/fontawesome-webfont.woff') format('woff'), url('font-awesome/font/fontawesome-webfont.ttf') format('truetype'), url('font-awesome/font/fontawesome-webfont.svg#FontAwesome') format('svg');
   font-weight: normal;
   font-style: normal;
 }

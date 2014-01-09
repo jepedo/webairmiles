@@ -10,20 +10,17 @@
     <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico" />
 	<!-- Include GTM/Omniture for this app... -->
 	<script src="//s3.amazonaws.com/searchdiscovery-satellite-production/6369c798eb575b7d3a5e6e94ca97145c3c7ea5be/satelliteLib-2eda4feb5aa12cd92b6d96061a6f6d806335c334-staging.js"></script>
-	<script type="text/javascript" src="${request.contextPath}/resources/js/respond.min.js" />
-
+	<h:outputText value="&lt;!--[if lt IE 9]&gt;&lt;script src=&quot;//html5shiv.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;&lt;![endif]--&gt;" escape="false" />
 </h:head>
 
 <h:body>
 
-<h:outputText value="#{lookupManager.getBundle('airmiles.gtm.txt')}" escape="false"/>
-	<link rel="stylesheet" href="${request.contextPath}/resources/themes/#{flowScope.domain}/css/style.css" />
-<h:outputText 
-    value="&lt;!--[if lt IE 8]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;${request.contextPath}/resources/themes/${flowScope.domain}/css/ie-7.css&quot; /&gt;&lt;![endif]--&gt;"
-    escape="false" />
-                <h:outputText 
-    value="&lt;!--[if IE 8]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;${request.contextPath}/resources/themes/${flowScope.domain}/css/ie-8.css&quot; /&gt;&lt;![endif]--&gt;"
-    escape="false" />
+	<h:outputText value="#{lookupManager.getBundle('airmiles.gtm.txt')}" escape="false"/>
+	<h:outputStylesheet library="themes/#{flowScope.domain}/css" name="style.css" />
+	<h:outputText value="&lt;!--[if lt IE 8]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;${request.contextPath}/resources/themes/${flowScope.domain}/css/ie-7.css&quot; /&gt;&lt;![endif]--&gt;" escape="false" />
+    <h:outputText value="&lt;!--[if IE 8]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;${request.contextPath}/resources/themes/${flowScope.domain}/css/ie-8.css&quot; /&gt;&lt;![endif]--&gt;" escape="false" />
+    <h:outputScript library="js" name="respond.min.js" />
+    <h:outputScript library="themes/#{flowScope.domain}/js" name="default-script.js" />
 
 
 	<div class="main-container container"> 
