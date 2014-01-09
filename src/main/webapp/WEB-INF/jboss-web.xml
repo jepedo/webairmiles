@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jboss-web>
-    <context-root>airmiles</context-root>
+    <context-root>j_airmiles</context-root>
 <!--     <valve>
         <class-name>org.apache.catalina.valves.RequestDumperValve</class-name>
 </valve>  -->
