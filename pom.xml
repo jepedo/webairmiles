@@ -78,16 +78,6 @@
 
 <repositories>
                         
-	  <repository>
-	    <id>RSA</id>
-		  <releases>
-            <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
-            <checksumPolicy>warn</checksumPolicy>
-          </releases> 	    
-	    <name>RSA Repo</name>
-	        <url>git:releases://https://bitbucket.org/rsacanada/maven.git</url>
-	  </repository>  
 
       <repository>
 			<id>mvnrepository</id>
@@ -101,6 +91,16 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+	  <repository>
+	    <id>RSA</id>
+		  <releases>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+            <checksumPolicy>warn</checksumPolicy>
+          </releases> 	    
+	    <name>RSA Repo</name>
+	        <url>git:releases://https://bitbucket.org/rsacanada/maven.git</url>
+	  </repository>  		
   </repositories>
   
 	<profiles>
