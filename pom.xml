@@ -91,11 +91,11 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-	  <repository>
+  <repository>
 	    <id>RSA</id>
 		  <releases>
             <enabled>true</enabled>
-            <updatePolicy>always</updatePolicy>
+            <updatePolicy>never</updatePolicy>
             <checksumPolicy>warn</checksumPolicy>
           </releases> 	    
 	    <name>RSA Repo</name>
