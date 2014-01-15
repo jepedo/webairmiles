@@ -45,7 +45,7 @@
 		destroy-method="close" 
 		lazy-init="false" 
 		p:driverClassName="com.mysql.jdbc.Driver"
-		p:url="jdbc:mysql://localhost/j2ee_schema?autoReconnect=true"
+		p:url="jdbc:mysql://localhost/airmiles_j2ee?autoReconnect=true"
 		p:username="demo" 
 		p:password="demo"
 		p:initialSize="1" 
