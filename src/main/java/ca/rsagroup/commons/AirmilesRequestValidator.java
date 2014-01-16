@@ -56,7 +56,7 @@ public class AirmilesRequestValidator {
 //		         MessageUtil.addGlobalMessage(context.getMessageContext(),lookupManager.getBundle("airmiles.err.E4"));		         
 	        }	 
 	        
-	        if(airmiles!=null && airmiles.getPolicyDate()!=null && new Date(airmiles.getPolicyDate()).after(new Date(System.currentTimeMillis()))) {
+	        if(airmiles!=null && airmiles.getPolicyDate()==null ) {
 		         messages.addMessage(new MessageBuilder().error()
 						.source(null).defaultText(lookupManager.getBundle("airmiles.err.E3")).build());
 //		         MessageUtil.addGlobalMessage(context.getMessageContext(),lookupManager.getBundle("airmiles.err.E3"));
