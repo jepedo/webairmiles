@@ -113,7 +113,9 @@
 				                		<f:validateRequired ></f:validateRequired> 
 			                		<rich:validator/>
 			                		</h:inputText>
-			                	<rich:message for="email" ajaxRendered="true" />		                		
+			                	<rich:message for="email" ajaxRendered="true" />
+			                	<h:outputLabel value="#{lookupManager.getBundle('C4.1')}"
+															escape="false"/>              		
 			                	</div>
 			                </div>
 			                
@@ -162,12 +164,12 @@
 			                	</h:outputLabel>
 			                </div>
 			                
-			                <div class="control-group" > 
-			                	<h:outputLabel escape="false" styleClass="checkbox">
-			                		<h:selectBooleanCheckbox id="emailConsent"  value="#{airmilesRequest.emailConsent}" />
-			                		<h:outputText value="#{lookupManager.getBundle('airmiles.emailConsent.label')}" escape="false" />												                		
-			                	</h:outputLabel>
-			                </div>
+<!-- 			                <div class="control-group" >  -->
+<!-- 			                	<h:outputLabel escape="false" styleClass="checkbox"> -->
+<!-- 			                		<h:selectBooleanCheckbox id="emailConsent"  value="#{airmilesRequest.emailConsent}" /> -->
+<!-- 			                		<h:outputText value="#{lookupManager.getBundle('airmiles.emailConsent.label')}" escape="false" />												                		 -->
+<!-- 			                	</h:outputLabel> -->
+<!-- 			                </div> -->
 			                			                
 			                <div class="control-group" > 
 			                	<div class="controls">

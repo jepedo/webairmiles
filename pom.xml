@@ -113,7 +113,7 @@
         <dependency>
             <groupId>ca.rsagroup</groupId>
             <artifactId>commonscodeui</artifactId>
-            <version>1.0.2</version>                  
+            <version>1.0.4</version>                  
         </dependency>   
         <dependency>
             <groupId>ca.rsagroup.airmiles</groupId>
@@ -537,13 +537,13 @@
 				<filtering>true</filtering>
 			</resource>
 		</resources>
-		  <extensions>
+		 <!--  <extensions>
 		    <extension>
 		      <groupId>ar.com.synergian</groupId>
 		          <artifactId>wagon-git</artifactId>
 		          <version>0.2.0</version>
 		    </extension>
-		  </extensions>			
+		  </extensions>		 -->	
 		<!-- <testResources>
 			<testResource>
 				<directory>${maven-celerio-plugin.outputDir}/src/test/resources</directory>
