@@ -77,7 +77,12 @@
 		</pluginRepositories>
 
 <repositories>
-                        
+        		<repository>
+			<id>ucqdev01</id>
+			<name>ucqdev01-releases</name>
+			<url>http://10.3.0.59:8888/artifactory/applications</url>
+		</repository>
+                
 
       <repository>
 			<id>mvnrepository</id>
@@ -91,7 +96,7 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-  <repository>
+  <!--repository>
 	    <id>RSA</id>
 		  <releases>
             <enabled>true</enabled>
@@ -100,7 +105,7 @@
           </releases> 	    
 	    <name>RSA Repo</name>
 	        <url>git:releases://https://bitbucket.org/rsacanada/maven.git</url>
-	  </repository>  		
+	  </repository-->  		
   </repositories>
   
 	<profiles>
