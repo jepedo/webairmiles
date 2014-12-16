@@ -12,9 +12,12 @@
 	</prerequisites>
 	<properties>
 		
-		<jboss-server>localhost</jboss-server>
-		<jboss-user>admin</jboss-user>
-		<jboss-password>@dm1n@dm1n</jboss-password>  
+<!-- 		<jboss-server>localhost</jboss-server> -->
+<!-- 		<jboss-user>admin</jboss-user> -->
+<!-- 		<jboss-password>@dm1n@dm1n</jboss-password>   -->
+		<jboss-server>@@JBOSSSERVER@@</jboss-server>
+		<jboss-user>@@JBOSSUSER@@</jboss-user>
+		<jboss-password>@@JBOSSPASSWORD@@</jboss-password>
 		<!-- jdbc driver dependency -->
 		<jdbc.groupId>mysql</jdbc.groupId>
 		<jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
