@@ -568,15 +568,15 @@
                 <artifactId>jboss-as-maven-plugin</artifactId>
                 <version>7.4.Final</version> 
                 <configuration>
-<!--                     <domain>
-                        <server-groups>
-                            <server-group>main-server-group</server-group>
-                        </server-groups>
-                    </domain> -->
-					<hostname>localhost</hostname>
+					<domain>
+						<server-groups>
+							<server-group>@@JBOSSSERVERGROUP@@</server-group>
+						</server-groups>
+					</domain>
+					<hostname>${jboss-server}</hostname>
 					<port>9999</port>					
-<!-- 					<username>admin</username>
-					<password>admin</password>  -->                   
+					<username>${jboss-user}</username>
+					<password>${jboss-password}</password>                    
                 </configuration>
             </plugin>		
 			<plugin>
