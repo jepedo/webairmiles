@@ -1972,8 +1972,8 @@ INSERT INTO `resource_bundles` (`id`, `bundle`, `language_code`, `value`, `count
 (223, 'Airmiles', 'fr', 'Une erreur inattendue au niveau http s''est produite.', 'CA', 'www', 'ESB:INTERNAL_SERVER_ERROR'),
 (225, 'Airmiles', 'en', '<strong>Congratulations! You are now registered for AIR MILES ® reward miles with RSA.</strong>', 'CA', 'www', 'airmiles.register.success.label'),
 (227, 'Airmiles', 'fr', '<strong>Félicitations! Vous êtes maintenant inscrit aux milles de récompense AIR MILES<sup>md</sup> avec la RSA.</strong>', 'CA', 'www', 'airmiles.register.success.label'),
-(229, 'Airmiles', 'en', 'jboss.qa.rsabase.com,rsagroup.ca.prod.rsabase.com,www.rsagroup.ca,jboss.uat.rsabase.com', 'CA', 'www', 'valid.domains'),
-(231, 'Airmiles', 'fr', 'jboss.qa.rsabase.com,rsagroup.ca.prod.rsabase.com,www.rsagroup.ca', 'CA', 'www', 'valid.domains'),
+(229, 'Airmiles', 'en', 'localhost,jboss.qa.rsabase.com,rsagroup.ca.prod.rsabase.com,www.rsagroup.ca,jboss.uat.rsabase.com', 'CA', 'www', 'valid.domains'),
+(231, 'Airmiles', 'fr', 'localhost,jboss.qa.rsabase.com,rsagroup.ca.prod.rsabase.com,www.rsagroup.ca', 'CA', 'www', 'valid.domains'),
 (232, 'Airmiles', 'en', 'Don’t worry, we will only use your email address to send you information or documents related to this transaction. We promise!', 'CA', 'www', 'C4.1'),
 (233, 'Airmiles', 'fr', 'Ne vous inquiétez pas, nous utiliserons votre adresse électronique uniquement pour vous envoyer de l’information ou des documents relatifs à cette transaction. Nous vous le promettons!', 'CA', 'www', 'C4.1');
 
