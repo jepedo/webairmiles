@@ -69,16 +69,22 @@ function stripCharacters(string) {
 jQuery(document).ready(function(){
   utag_data = new Object();
   var status='';
+  var lang_iso = $('#lang').val();
+  if(lang_iso == ''){
+	  lang_iso='en';
+  }
   status = stripCharacters($('#errorPage').val());
-  if(status == ''){
+  if(status == '' || typeof status === "undefined"){
 	  status = stripCharacters($('#successPage').val());
+  }
+  if (typeof status === "undefined") {
+  	  status='';
   }
   utag_data['page_type'] = 'Registration';
   utag_data['page_name'] = environments['site'] + ':Air Miles Registration' + status ;
   utag_data['page_language'] = lang_iso == 'en' ? 'english' : 'french';
   utag_data['page_language_iso'] = lang_iso;
-
-
+  
   $('.capture-ui').each(function(){
     var element = $(this);
     var key = element.prop('id');
