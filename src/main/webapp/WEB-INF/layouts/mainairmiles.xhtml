@@ -20,6 +20,8 @@
 	<h:outputStylesheet library="themes/#{flowScope.domain}/css" name="style.css" />
 	<h:outputText value="&lt;!--[if lt IE 8]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;${request.contextPath}/resources/themes/${flowScope.domain}/css/ie-7.css&quot; /&gt;&lt;![endif]--&gt;" escape="false" />
     <h:outputText value="&lt;!--[if IE 8]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;${request.contextPath}/resources/themes/${flowScope.domain}/css/ie-8.css&quot; /&gt;&lt;![endif]--&gt;" escape="false" />
+    <h:outputScript library="js" name="environment.js" />
+	<h:outputScript library="js" name="data-layer.js" />
     <h:outputScript library="js" name="respond.min.js" />
     <h:outputScript library="themes/#{flowScope.domain}/js" name="default-script.js" />
 

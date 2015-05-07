@@ -23,6 +23,7 @@
 	           			<b:gridColumn span="2"></b:gridColumn>
 	           			<b:gridColumn span="10">
 	           				<div class="control-group">		
+	           					 <h:inputHidden id="successPage" value=":success" /> 	
 	           					<h:outputLabel value="#{lookupManager.getBundle('airmiles.register.success.label')}" escape="false" styleClass="control-label" />
 	           				</div>	           				
 	           				</b:gridColumn>
@@ -65,7 +66,8 @@
 	           		<b:gridRow id="errorbar" fluid="true" > <!-- != null and facesContext.maximumSeverity!=null -->
 	           			<b:gridColumn span="2"></b:gridColumn>
 	           			<b:gridColumn span="10">
-	           				<div class="alert alert-error">		
+	           				<div class="alert alert-error">	
+	           					<h:inputHidden id="errorPage" value=":error" />    
 	           					<rich:messages id="form_errors" title="#{lookupManager.getBundle('airmiles.errors.tilte')}" ajaxRendered="true" globalOnly="false" escape="false"/>
 	           				</div>	           				
 	           				</b:gridColumn>
@@ -73,7 +75,7 @@
 	           		<b:gridRow id="errorbar2" fluid="true" rendered="#{lookupManager.hasMessages() and facesContext.maximumSeverity.ordinal ge 3}"> <!-- != null and facesContext.maximumSeverity!=null -->
 	           			<b:gridColumn span="2"></b:gridColumn>
 	           			<b:gridColumn span="10">
-	           				<div class="alert alert-error">		
+	           				<div class="alert alert-error">	
 	           					<rich:messages id="form_errors2" title="#{lookupManager.getBundle('airmiles.errors.tilte')}" ajaxRendered="true" globalOnly="true" escape="false"/>
 	           				</div>	           				
 	           				</b:gridColumn>
