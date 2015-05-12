@@ -67,15 +67,18 @@ function stripCharacters(string) {
 }
 
 jQuery(document).ready(function(){
+
   utag_data = new Object();
   var status='';
   var lang_iso = $('#lang').val();
   if(lang_iso == ''){
 	  lang_iso='en';
   }
-  status = stripCharacters($('#errorPage').val());
-  if(status == '' || typeof status === "undefined"){
-	  status = stripCharacters($('#successPage').val());
+
+  if(document.getElementById('airmiles:errorPage') != null){
+	  status = stripCharacters(document.getElementById('airmiles:errorPage').value);
+  }else if(document.getElementById('airmiles:successPage') != null){
+	  status = stripCharacters(document.getElementById('airmiles:successPage').value);
   }
   if (typeof status === "undefined") {
   	  status='';

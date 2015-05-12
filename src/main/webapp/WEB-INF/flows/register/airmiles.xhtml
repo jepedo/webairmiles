@@ -23,7 +23,7 @@
 	           			<b:gridColumn span="2"></b:gridColumn>
 	           			<b:gridColumn span="10">
 	           				<div class="control-group">		
-	           					 <h:inputHidden id="successPage" value=":success" /> 	
+	           					 <h:inputHidden id="successPage" value=":Success" /> 	
 	           					<h:outputLabel value="#{lookupManager.getBundle('airmiles.register.success.label')}" escape="false" styleClass="control-label" />
 	           				</div>	           				
 	           				</b:gridColumn>
@@ -76,6 +76,7 @@
 	           			<b:gridColumn span="2"></b:gridColumn>
 	           			<b:gridColumn span="10">
 	           				<div class="alert alert-error">	
+								<h:inputHidden id="errorPage" value=":Error"   /> 
 	           					<rich:messages id="form_errors2" title="#{lookupManager.getBundle('airmiles.errors.tilte')}" ajaxRendered="true" globalOnly="true" escape="false"/>
 	           				</div>	           				
 	           				</b:gridColumn>
