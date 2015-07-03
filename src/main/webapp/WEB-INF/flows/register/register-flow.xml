@@ -10,9 +10,14 @@
 	<var name="flowScope.resp" class="ca.rsagroup.model.ValidResponses"/>
 	<on-start>
 		<set name = "flowScope.lang" value="requestParameters.lang" />	
+	    <set name = "flowScope.policyNumber" value="requestParameters.policyNumber"/> 
+	    <set name = "flowScope.policyEffectiveDate" value="requestParameters.policyEffectiveDate" />
+	    <set name = "flowScope.wbOrigin" value="requestParameters.WBOrigin" />
 		<evaluate expression="airmilesController.getDomain()" result="flowScope.domain" result-type="java.lang.String"/>
 		<evaluate expression="airmilesRequest.setEmailConsent(true)" />
 		<evaluate expression="airmilesRequest.setLanguage(flowScope.lang)" />
+		<evaluate expression="airmilesRequest.setPolicy(flowScope.policyNumber)"/>
+		<evaluate expression="airmilesRequest.setPolicyDate(flowScope.policyEffectiveDate)" />
 		<evaluate expression="persistenceContext.clear()" />
 	</on-start>
 
