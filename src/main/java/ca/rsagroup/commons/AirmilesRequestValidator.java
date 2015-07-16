@@ -61,7 +61,7 @@ public class AirmilesRequestValidator {
 						.source(null).defaultText(lookupManager.getBundle("airmiles.err.E3")).build());
 //		         MessageUtil.addGlobalMessage(context.getMessageContext(),lookupManager.getBundle("airmiles.err.E3"));
 	        } 
-	        if(airmiles==null || airmiles.getEmail()==null || !airmiles.getEmail().matches(EMAIL_PATTERN)) {
+	        if(airmiles!=null && airmiles.getEmail()!= null && !(airmiles.getEmail().isEmpty()) && !airmiles.getEmail().matches(EMAIL_PATTERN)) {
 		         messages.addMessage(new MessageBuilder().error()
 						.source(null).defaultText(lookupManager.getBundle("airmiles.email.label") +" : "+lookupManager.getBundle("airmiles.err.E5")).build());
 //		         MessageUtil.addGlobalMessage(context.getMessageContext(),lookupManager.getBundle("airmiles.email.label") +" : "+lookupManager.getBundle("airmiles.err.E5"));

@@ -113,7 +113,7 @@
 			                	
 			                	<div class="controls">
 			                		<h:inputText id="email" value="#{airmilesRequest.email}"  validatorMessage="#{lookupManager.getBundle('airmiles.email.label')} : #{lookupManager.getBundle('airmiles.err.E11')}"  styleClass="input-xlarge">
-				                		 <c:if test="#{!flowScope.wbOrigin}"> 
+				                		 <c:if test="${airmilesRequest.emailRequired}">
 				                		 <f:validateRequired ></f:validateRequired> 
 				                		</c:if>
 			                		 <rich:validator/>
@@ -159,7 +159,7 @@
 			                	</div>
 			                </div>                
 			                  
-			                <c:if test="#{!flowScope.wbOrigin}">         			                       
+			                <c:if test="${airmilesRequest.emailRequired}">        			                       
 			                <div class="control-group" > 
 			                	<h:outputLabel value="" styleClass="checkbox" for="acceptTerms">
 			                		<h:selectBooleanCheckbox id="acceptTerms" validatorMessage="#{lookupManager.getBundle('airmiles.termsAndConditions.label')} : #{lookupManager.getBundle('airmiles.err.E11')}" value="#{airmilesRequest.acceptTerms}">			                					                						                		
