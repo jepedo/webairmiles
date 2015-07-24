@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-	  <distributable/>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<distributable />
 	<!-- The master configuration file for this Spring web application -->
 	<!-- Context Configuration locations for Spring XML files -->
 	<context-param>
@@ -31,60 +33,40 @@
 		<filter-name>etagFilter</filter-name>
 		<servlet-name>springMVCServlet</servlet-name>
 	</filter-mapping>
-<!-- 	<filter>
-		<filter-name>fileUploadFilter</filter-name>
-		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
-	</filter> 
-	<filter-mapping>
-		<filter-name>fileUploadFilter</filter-name>
-		<servlet-name>springMVCServlet</servlet-name>
-	</filter-mapping>
+	<!-- <filter> <filter-name>fileUploadFilter</filter-name> <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class> 
+		</filter> <filter-mapping> <filter-name>fileUploadFilter</filter-name> <servlet-name>springMVCServlet</servlet-name> 
+		</filter-mapping> <filter> <filter-name>springSecurityFilterChain</filter-name> 
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
+		</filter> <filter-mapping> <filter-name>springSecurityFilterChain</filter-name> 
+		<servlet-name>springMVCServlet</servlet-name> </filter-mapping> -->
+	<!-- <filter> <display-name>RichFaces Filter</display-name> <filter-name>richfaces</filter-name> 
+		<filter-class>org.ajax4jsf.Filter</filter-class> </filter> <filter-mapping> 
+		<filter-name>richfaces</filter-name> <servlet-name>springMVCServlet</servlet-name> 
+		<dispatcher>REQUEST</dispatcher> <dispatcher>FORWARD</dispatcher> <dispatcher>INCLUDE</dispatcher> 
+		</filter-mapping> -->
 
 	<filter>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<filter-name>domainFilter</filter-name>
+		<filter-class>ca.rsagroup.service.DomainFilter</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-name>domainFilter</filter-name>
 		<servlet-name>springMVCServlet</servlet-name>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
 	</filter-mapping>
-	-->	
-<!-- <filter> 
-    <display-name>RichFaces Filter</display-name> 
-    <filter-name>richfaces</filter-name> 
-    <filter-class>org.ajax4jsf.Filter</filter-class> 
-</filter> 
-
-<filter-mapping> 
-    <filter-name>richfaces</filter-name> 
-    <servlet-name>springMVCServlet</servlet-name>
-    <dispatcher>REQUEST</dispatcher>
-    <dispatcher>FORWARD</dispatcher>
-    <dispatcher>INCLUDE</dispatcher>
-</filter-mapping>  -->
-	
-    <filter>
-        <filter-name>domainFilter</filter-name>
-        <filter-class>ca.rsagroup.service.DomainFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>domainFilter</filter-name>
-        <servlet-name>springMVCServlet</servlet-name>
-        <dispatcher>FORWARD</dispatcher>
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>INCLUDE</dispatcher>
-    </filter-mapping>	
-    <filter>
-        <filter-name>exceptionFilter</filter-name>
-        <filter-class>ca.rsagroup.web.filter.ExceptionFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>exceptionFilter</filter-name>
-        <servlet-name>springMVCServlet</servlet-name>
-        <dispatcher>FORWARD</dispatcher>
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>INCLUDE</dispatcher>
-    </filter-mapping>
+	<filter>
+		<filter-name>exceptionFilter</filter-name>
+		<filter-class>ca.rsagroup.web.filter.ExceptionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>exceptionFilter</filter-name>
+		<servlet-name>springMVCServlet</servlet-name>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
 	<filter>
 		<filter-name>fixResourcesExpirationFilter</filter-name>
 		<filter-class>ca.rsagroup.web.filter.FixResourcesExpirationFilter</filter-class>
@@ -118,16 +100,21 @@
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Production</param-value><!-- Could be 'Production' -->
 	</context-param>
+	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>client</param-value>
+	</context-param>
 	<!-- Causes Facelets to refresh templates during development (in seconds) -->
 	<context-param>
 		<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
 		<param-value>1</param-value><!-- -1 means disabled -->
 	</context-param>
-    <!-- Resources cache expiration (in millisec). Enabled only in 'Production' stage -->    
-    <context-param>
-        <param-name>com.sun.faces.defaultResourceMaxAge</param-name>
-        <param-value>864000</param-value>
-    </context-param>    
+	<!-- Resources cache expiration (in millisec). Enabled only in 'Production' 
+		stage -->
+	<context-param>
+		<param-name>com.sun.faces.defaultResourceMaxAge</param-name>
+		<param-value>864000</param-value>
+	</context-param>
 	<context-param>
 		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
 		<param-value>true</param-value>
@@ -135,11 +122,11 @@
 	<servlet>
 		<servlet-name>pdfServlet</servlet-name>
 		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
-	</servlet>	
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>pdfServlet</servlet-name>
 		<url-pattern>/pdf/*</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
 	<!-- Just here so the JSF implementation can initialize, *not* used at runtime -->
 	<servlet>
 		<servlet-name>facesServlet</servlet-name>
