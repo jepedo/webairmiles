@@ -1,0 +1,8 @@
+enableDomains=false
+defaultDomain=default
+
+registerAction=register
+registerAndAddAnotherAction=add
+
+esbUrl=http://localhost:10006/register
+
