@@ -1975,9 +1975,9 @@ INSERT INTO `resource_bundles` (`id`, `bundle`, `language_code`, `value`, `count
 (229, 'Airmiles', 'en', 'localhost,jboss.qa.rsabase.com,rsagroup.ca.prod.rsabase.com,www.rsagroup.ca,jboss.uat.rsabase.com', 'CA', 'www', 'valid.domains'),
 (231, 'Airmiles', 'fr', 'localhost,jboss.qa.rsabase.com,rsagroup.ca.prod.rsabase.com,www.rsagroup.ca', 'CA', 'www', 'valid.domains'),
 (232, 'Airmiles', 'en', 'Don’t worry, we will only use your email address to send you information or documents related to this transaction. We promise!', 'CA', 'www', 'C4.1'),
-(233, 'Airmiles', 'fr', 'Ne vous inquiétez pas, nous utiliserons votre adresse électronique uniquement pour vous envoyer de l’information ou des documents relatifs à cette transaction. Nous vous le promettons!', 'CA', 'www', 'C4.1');
+(233, 'Airmiles', 'fr', 'Ne vous inquiétez pas, nous utiliserons votre adresse électronique uniquement pour vous envoyer de l’information ou des documents relatifs à cette transaction. Nous vous le promettons!', 'CA', 'www', 'C4.1'),
 (234, 'Airmiles', 'en', '<script type="text/javascript">\n    (function(a,b,c,d){\n    a=''//tags.tiqcdn.com/utag/rsacanada/rsagroup/dev/utag.js'';\n    b=document;c=''script'';d=b.createElement(c);d.src=a;d.type=''text/java''+c;d.async=true;\n    a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);\n    })();\n</script>\n', NULL, 'www', 'tealium.txt'),
-(235, 'Airmiles', 'fr', '<script type="text/javascript">\n    (function(a,b,c,d){\n    a=''//tags.tiqcdn.com/utag/rsacanada/rsagroup/dev/utag.js'';\n    b=document;c=''script'';d=b.createElement(c);d.src=a;d.type=''text/java''+c;d.async=true;\n    a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);\n    })();\n</script>\n', NULL, 'www', 'tealium.txt'),
+(235, 'Airmiles', 'fr', '<script type="text/javascript">\n    (function(a,b,c,d){\n    a=''//tags.tiqcdn.com/utag/rsacanada/rsagroup/dev/utag.js'';\n    b=document;c=''script'';d=b.createElement(c);d.src=a;d.type=''text/java''+c;d.async=true;\n    a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);\n    })();\n</script>\n', NULL, 'www', 'tealium.txt');
 
 -- --------------------------------------------------------
 
