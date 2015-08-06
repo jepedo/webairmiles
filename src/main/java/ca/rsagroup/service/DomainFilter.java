@@ -47,8 +47,6 @@ public final class DomainFilter implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
 
-    	((HttpServletRequest) req).getSession();
-    	
     	String redirectionUrl = "/../";
 		try {
 			// chain...
