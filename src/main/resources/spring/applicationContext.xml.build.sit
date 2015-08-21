@@ -24,7 +24,11 @@
 	]]></description>
 
 	<!-- context -->
+<<<<<<< HEAD
 	<context:component-scan base-package="ca.rsagroup,ca.rsagroup.model,ca.rsagroup.service,ca.rsagroup.pdf,ca.rsagroup.commons,ca.rsagroup.web.util">
+=======
+	<context:component-scan base-package="ca.rsagroup,ca.rsagroup.model,ca.rsagroup.service,ca.rsagroup.pdf,ca.rsagroup.commons,ca.rsagroup.web.util,ca.rsagroup.web.filter">
+>>>>>>> origin/feature/WSU-65-Airmiles_Reg._Automation
 		<!-- exclude web beans as they live in the web application context -->
 		<!-- Note: this regexp does not work if you try to escape the '.' -->
 		<context:exclude-filter type="regex" expression="ca.rsagroup.web.*" />
@@ -45,9 +49,15 @@
 		destroy-method="close" 
 		lazy-init="false" 
 		p:driverClassName="com.mysql.jdbc.Driver"
+<<<<<<< HEAD
 		p:url="jdbc:mysql://dev-mysql/airmiles_j2ee?autoReconnect=true"
 		p:username="jboss_airmiles" 
 		p:password="ud9Vn2NHVHpEPT2r"
+=======
+		p:url="jdbc:mysql://@@DATABASE_HOSTNAME@@:3306/@@DATABASE_NAME@@?autoReconnect=true"
+		p:username="@@MYSQL_USERNAME@@"  
+		p:password="@@MYSQL_PASSWORD@@"
+>>>>>>> origin/feature/WSU-65-Airmiles_Reg._Automation
 		p:initialSize="1" 
 		p:maxActive="10" 
 		p:maxIdle="5" 
@@ -93,6 +103,25 @@
 		<description>Enable the bean validation provider, and configure it to use the messageSource when resolving properties</description>
 	</bean>
 
+<<<<<<< HEAD
+=======
+	<!-- lookup tables and DB resource bundle -->
+
+
+	<!--
+	<bean id="dataSourceResourceBundles" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		    <property name="url" value="jdbc:mysql://localhost:3306/j2ee_schema?autoReconnect=true"/>
+		    <property name="username" value="demo"/>
+		    <property name="password" value="demo"/>		    		    
+		</bean>
+     <bean id="messageSource" class="ca.rsagroup.web.util.DatabaseDrivenMessageSource">	    
+    	<property name="bundleName" value="Quote" />
+    	<property name="tableName" value="resource_bundles" />
+    	<property name="cacheSeconds" value="36"/>
+    	<property name="dataSource" ref="dataSourceResourceBundles"/> 
+	</bean> -->
+>>>>>>> origin/feature/WSU-65-Airmiles_Reg._Automation
         <bean id="lookupManager" class="ca.rsagroup.service.LookupManager" scope="singleton">
          <!--  <constructor-arg ref="entityManagerFactory"/>  -->
         </bean>	
