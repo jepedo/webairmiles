@@ -25,8 +25,6 @@ public class ConfigurationManager {
 	@Value("${registerAndAddAnotherAction}")
 	private String registerAndAddAnotherAction;
 	
-	@Value("${IncludeDTMScripts}")
-	private boolean includeDTMScripts;
 	
 	public String getEsbUrl() {
 		return esbUrl;
@@ -68,15 +66,5 @@ public class ConfigurationManager {
 	public void setRegisterAndAddAnotherAction(String registerAndAddAnotherAction) {
 		this.registerAndAddAnotherAction = registerAndAddAnotherAction;
 	}
-
-	public boolean getIncludeDTMScripts() {
-		return includeDTMScripts;
-	}
-
-	public void setIncludeDTMScripts(boolean includeDTMScripts) {
-		this.includeDTMScripts = includeDTMScripts;
-	}
-
-
 	
 }

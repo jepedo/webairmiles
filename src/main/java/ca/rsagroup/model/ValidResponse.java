@@ -10,9 +10,6 @@ public class ValidResponse implements Serializable{
 	private String policy;
 	private String policyDate;
 	private String status;
-	//airmilesNumber and airmilesName are included for passing data to Tealium data layer
-	private String airmilesNumber;
-	private String airmilesName;
 	
 	public ValidResponse(){
 		
@@ -22,13 +19,6 @@ public class ValidResponse implements Serializable{
 		this.policyDate = policyDate;
 		this.policy = policy;
 		this.status = status;
-	}
-	public ValidResponse(String policy, String policyDate, String status, String airmilesNumber, String airmilesName){
-		this.policyDate = policyDate;
-		this.policy = policy;
-		this.status = status;
-		this.airmilesNumber = airmilesNumber;
-		this.airmilesName = airmilesName;
 	}
 
 	
@@ -49,22 +39,6 @@ public class ValidResponse implements Serializable{
 	}
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	public String getAirmilesNumber() {
-		return airmilesNumber;
-	}
-
-	public void setAirmilesNumber(String airmilesNumber) {
-		this.airmilesNumber = airmilesNumber;
-	}
-
-	public String getAirmilesName() {
-		return airmilesName;
-	}
-
-	public void setAirmilesName(String airmilesName) {
-		this.airmilesName = airmilesName;
 	}
 	
 }

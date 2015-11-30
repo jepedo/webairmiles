@@ -88,20 +88,6 @@ jQuery(document).ready(function(){
   utag_data['page_language'] = lang_iso == 'en' ? 'english' : 'french';
   utag_data['page_language_iso'] = lang_iso;
   
-  
-  if(status.indexOf("Success") != -1){
-	  if(document.getElementById('airmiles:repeat:0:air_miles_collector_number') != null){
-		  utag_data["air_miles_collector_number"] = stripCharacters(document.getElementById('airmiles:repeat:0:air_miles_collector_number').value);
-	  }
-	  if(document.getElementById('airmiles:repeat:0:air_miles_collector_name') != null){
-		  utag_data["collector_business_name"] = stripCharacters(document.getElementById('airmiles:repeat:0:air_miles_collector_name').value);
-	  }
-	  if(document.getElementById('airmiles:repeat:0:air_miles_registration_success') != null){
-		  utag_data["air_miles_registration_success"] = stripCharacters(document.getElementById('airmiles:repeat:0:air_miles_registration_success').value);
-	  }
-	 
-	  
-  }
   $('.capture-ui').each(function(){
     var element = $(this);
     var key = element.prop('id');
