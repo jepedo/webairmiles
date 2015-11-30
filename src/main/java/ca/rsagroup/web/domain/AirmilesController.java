@@ -223,7 +223,7 @@ public class AirmilesController  {
 						AirmilesResponse.class);
 
 				if (saveResponse!=null && saveResponse.getStatus().equalsIgnoreCase("OK")) {
-					resp.getResponses().add(new ValidResponse(airmilesRequest.getPolicy(),airmilesRequest.getPolicyDate(),lookupManager.getBundle("airmiles.registeredStatus.txt")));
+					resp.getResponses().add(new ValidResponse(airmilesRequest.getPolicy(),airmilesRequest.getPolicyDate(),lookupManager.getBundle("airmiles.registeredStatus.txt"), airmilesRequest.getAirmilesNumber(), airmilesRequest.getAirmilesName()));
 			    	if(addAnother) {
 			    		airmilesRequest.setPolicy(null);
 			    		airmilesRequest.setPolicyDate(null);

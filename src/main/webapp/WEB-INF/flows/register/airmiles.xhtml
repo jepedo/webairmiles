@@ -52,7 +52,11 @@
 	           							<tr>
 				           					<td><h:outputText value="#{rep.policy}"/></td>
 				           					<td><h:outputText value="#{rep.policyDate}"/></td>
-				           					<td><h:outputText value="#{rep.status}"/></td>
+				           					<td><h:outputText value="#{rep.status}"/> 
+					           					<h:inputHidden id="air_miles_registration_success" value="#{rep.status}" />
+					           					<h:inputHidden id="air_miles_collector_number"  value="#{rep.airmilesNumber}"/>	
+					           					<h:inputHidden id="air_miles_collector_name"  value="#{rep.airmilesName}"/>
+				           					</td>
 			           					</tr>
 					   				</rich:repeat>	
 	           					</tbody>
