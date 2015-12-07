@@ -3,6 +3,6 @@ defaultDomain=default
 
 registerAction=register
 registerAndAddAnotherAction=add
-
+IncludeDTMScripts=false
 esbUrl=http://localhost:10006/register
 
