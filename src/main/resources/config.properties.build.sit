@@ -4,5 +4,8 @@ defaultDomain=default
 registerAction=register
 registerAndAddAnotherAction=add
 IncludeDTMScripts=false
-esbUrl=http://localhost:10006/register
+#esbUrl=http://localhost:10006/register
+
+esbUrl=http://esb-10006.sit.rsabase.com/register
+ 
 
