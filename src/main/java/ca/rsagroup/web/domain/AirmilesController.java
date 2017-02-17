@@ -14,6 +14,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
@@ -43,7 +44,8 @@ import ca.rsagroup.web.util.MessageUtil;
 @Named
 
 public class AirmilesController  {
-	
+	private static final Logger log = Logger.getLogger(AirmilesController.class);
+
 
 	protected LookupManager lookupManager;
 	
@@ -210,18 +212,16 @@ public class AirmilesController  {
 					new StringHttpMessageConverter());
 			try {
 			// the response to a String
-			System.out.println("JSON REQ:"
-					+ mapper.writeValueAsString(airmilesRequest));
 			// try to read response 
-	
-			
-				String response = restTemplate.postForObject(
-						configurationManager.getEsbUrl(),
-						mapper.writeValueAsString(airmilesRequest), String.class);
-				
-				 AirmilesResponse saveResponse = mapper.readValue(response,
-						AirmilesResponse.class);
-
+			log.warn("Calling service :::::");
+			log.warn(":::REQUEST:::" + mapper.writeValueAsString(airmilesRequest));
+			String response = restTemplate.postForObject(
+					configurationManager.getEsbUrl(),
+					mapper.writeValueAsString(airmilesRequest), String.class);
+			log.warn(":::RESPONSE:::" + mapper.writeValueAsString(response));
+			AirmilesResponse saveResponse = mapper.readValue(response,
+					AirmilesResponse.class);
+			log.warn(":::AIRMILES RESPONSE:::" + mapper.writeValueAsString(response));
 				if (saveResponse!=null && saveResponse.getStatus().equalsIgnoreCase("OK")) {
 					resp.getResponses().add(new ValidResponse(airmilesRequest.getPolicy(),airmilesRequest.getPolicyDate(),lookupManager.getBundle("airmiles.registeredStatus.txt"), airmilesRequest.getAirmilesNumber(), airmilesRequest.getAirmilesName()));
 			    	if(addAnother) {
