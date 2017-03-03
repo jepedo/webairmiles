@@ -213,7 +213,6 @@ public class AirmilesController  {
 			try {
 			// the response to a String
 			// try to read response 
-			log.warn("Calling service :::::");
 			log.warn(":::REQUEST:::" + mapper.writeValueAsString(airmilesRequest));
 			String response = restTemplate.postForObject(
 					configurationManager.getEsbUrl(),
@@ -221,7 +220,6 @@ public class AirmilesController  {
 			log.warn(":::RESPONSE:::" + mapper.writeValueAsString(response));
 			AirmilesResponse saveResponse = mapper.readValue(response,
 					AirmilesResponse.class);
-			log.warn(":::AIRMILES RESPONSE:::" + mapper.writeValueAsString(response));
 				if (saveResponse!=null && saveResponse.getStatus().equalsIgnoreCase("OK")) {
 					resp.getResponses().add(new ValidResponse(airmilesRequest.getPolicy(),airmilesRequest.getPolicyDate(),lookupManager.getBundle("airmiles.registeredStatus.txt"), airmilesRequest.getAirmilesNumber(), airmilesRequest.getAirmilesName()));
 			    	if(addAnother) {
