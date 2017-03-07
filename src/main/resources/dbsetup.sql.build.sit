@@ -1941,7 +1941,7 @@ INSERT INTO `resource_bundles` (`id`, `bundle`, `language_code`, `value`, `count
 (173, 'Airmiles', 'fr', 'Cette offre n''est pas offerte actuellement dans votre province. Veuillez vous référer aux conditions générales.', 'CA', 'www', 'airmiles.err.E9'),
 (175, 'Airmiles', 'fr', ' est obligatoire pour traiter votre inscription.', 'CA', 'www', 'airmiles.err.E11'),
 (177, 'Airmiles', 'fr', 'Nous sommes désolés, mais votre type de police n''est pas admissible à la présente offre. Veuillez vous référer aux conditions générales.', 'CA', 'www', 'airmiles.err.E13'),
-(179, 'Airmiles', 'fr', 'http://www.rsagroup.ca/fr/clientele/inscription-au-programme-air-milesmd/conditions-generales', 'CA', 'www', 'airmiles.termsAndConditions.url'),
+(179, 'Airmiles', 'fr', 'https://www.rsagroup.ca/fr/clientele/inscription-au-programme-air-milesmd/conditions-generales', 'CA', 'www', 'airmiles.termsAndConditions.url'),
 (181, 'Airmiles', 'fr', 'J''ai lu et j''accepte ', 'CA', 'www', 'airmiles.termsAndConditions.before.label'),
 (183, 'Airmiles', 'fr', 'J''aimerais recevoir par courriel des nouvelles et des mises à jour de la part de mon courtier d''assurance et de la RSA.', 'CA', 'www', 'airmiles.emailConsent.label'),
 (185, 'Airmiles', 'fr', '<strong>Numéro de la police</strong>', 'CA', 'www', 'airmiles.register.policy.column'),
