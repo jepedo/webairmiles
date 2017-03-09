@@ -1876,6 +1876,7 @@ CREATE TABLE IF NOT EXISTS `resource_bundles` (
 --
 
 INSERT INTO `resource_bundles` (`id`, `bundle`, `language_code`, `value`, `country_code`, `variant`, `string_id`) VALUES
+(3, 'Airmiles', 'en', 'RSA ', 'CA', 'www', 'airmiles.page.title.txt'),
 (4, 'Airmiles', 'en', 'Register Your Policy to earn<br />AIR MILES® reward miles *', 'CA', 'www', 'airmiles.title.txt'),
 (5, 'Airmiles', 'en', 'Earn more AIR MILES reward miles when you register all your RSA policies - home, car, and small to medium business!<br /><br />Earn again when you pay with your AIR MILES credit card! Talk to your broker.<br /><br />', 'CA', 'www', 'airmiles.intro.txt'),
 (6, 'Airmiles', 'en', 'AIR MILES Collector Number', 'CA', 'www', 'airmiles.collectorNumber.label'),
@@ -1915,6 +1916,7 @@ INSERT INTO `resource_bundles` (`id`, `bundle`, `language_code`, `value`, `count
 (120, 'Airmiles', 'en', 'Please correct the following errors:', 'CA', 'www', 'airmiles.errors.tilte'),
 (121, 'Airmiles', 'en', '<div class="row-fluid">\r\n<div span="1"></div>\r\n<div span="11">\r\n<div class="phone-call-out">\r\n<div class="phone pull-left"></div>\r\n<p>If you require assistance for RSA or WA, please call <strong>1-888-877-1710</strong><br />(Mon-Fri, 8am to 7pm EST)</p>\r\n</div>\r\n</div>\r\n</div>\r\n<div class="row-fluid">\r\n<div span="1"></div>\r\n<div span="11">\r\n<div class="phone-call-out">\r\n<div class="phone pull-left"></div>\r\n<p>If you require assistance for CNS, please call <strong>1-877-538-7558</strong><br />(Mon-Fri, 8:15am to 4:30pm PST)</p>     </div>\r\n</div>\r\n</div>\r\n<div class="row-fluid">\r\n<div span="12">\r\n<p class="trademark">* Not available in Manitoba or Saskatchewan. Please see Terms & Conditions. Collectors can earn 1 AIR MILES reward mile for every $20 in premium (including taxes). On small-business and pleasure-craft policies, Collectors can earn 1 AIR MILES reward mile for every $20 in premium (including taxes), up to a maximum of 15 reward miles per month. All AIR MILES offers are subject to the Terms and Conditions of RSA, and may be changed or withdrawn without notice. &#174;&#8482;Trademarks of AIR MILES International Trading B.V. Used under license by LoyaltyOne, Inc. and Roins Financial Services Ltd. </p>\r\n</div>\r\n</div>', 'CA', 'www', 'airmiles.contentfooter.txt'),
 (123, 'Airmiles', 'fr', 'Inscrivez votre police en vue d''obtenir des milles de récompense AIR MILES<sup>md</sup> *', 'CA', 'www', 'airmiles.title.txt'),
+(124, 'Airmiles', 'fr', 'RSA ', 'CA', 'www', 'airmiles.page.title.txt'),
 (125, 'Airmiles', 'fr', 'Gagnez davantage de milles de récompense lorsque vous inscrivez toutes vos polices de la RSA : habitation, automobile et PME!<br /><br />Gagnez-en encore plus lorsque vous payez avec une carte de crédit AIR MILES! Parlez-en à votre courtier.<br /><br />', 'CA', 'www', 'airmiles.intro.txt'),
 (127, 'Airmiles', 'fr', 'Numéro d''adhérent AIR MILES', 'CA', 'www', 'airmiles.collectorNumber.label'),
 (129, 'Airmiles', 'fr', 'Nom de l''adhérent ou nom de l''entreprise', 'CA', 'www', 'airmiles.collectorName.label'),
