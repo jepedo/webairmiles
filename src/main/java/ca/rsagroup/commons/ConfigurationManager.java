@@ -13,6 +13,12 @@ public class ConfigurationManager {
 	@Value("${esbUrl}")
 	private String esbUrl;
 	
+	@Value("${basicAuthUser}")
+	private String basicAuthUser;
+	
+	@Value("${basicAuthPwd}")
+	private String basicAuthPwd;
+		
 	@Value("${enableDomains}")
 	private boolean enableDomains;
 	
@@ -77,6 +83,20 @@ public class ConfigurationManager {
 		this.includeDTMScripts = includeDTMScripts;
 	}
 
+	public String getBasicAuthUser() {
+		return basicAuthUser;
+	}
 
+	public void setBasicAuthUser(String basicAuthUser) {
+		this.basicAuthUser = basicAuthUser;
+	}
+
+	public String getBasicAuthPwd() {
+		return basicAuthPwd;
+	}
+
+	public void setBasicAuthPwd(String basicAuthPwd) {
+		this.basicAuthPwd = basicAuthPwd;
+	}
 	
 }

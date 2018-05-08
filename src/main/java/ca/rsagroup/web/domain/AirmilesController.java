@@ -19,6 +19,11 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
@@ -36,6 +41,10 @@ import ca.rsagroup.model.ValidResponses;
 import ca.rsagroup.service.LookupManager;
 import ca.rsagroup.web.util.DatabaseDrivenMessageSource;
 import ca.rsagroup.web.util.MessageUtil;
+
+import org.apache.commons.codec.binary.Base64;
+
+import java.nio.charset.Charset;
 
 /**
  * Thin controller layer allowing you to do business validation and other conditional
@@ -206,20 +215,28 @@ public class AirmilesController  {
 			RestTemplate restTemplate = new RestTemplate();
 			
 			// Add the Jackson and String message converters
-			restTemplate.getMessageConverters().add(
-					new MappingJacksonHttpMessageConverter());
-			restTemplate.getMessageConverters().add(
-					new StringHttpMessageConverter());
+			restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+			restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
 			try {
 			// the response to a String
 			// try to read response 
 			log.warn(":::REQUEST:::" + mapper.writeValueAsString(airmilesRequest));
-			String response = restTemplate.postForObject(
-					configurationManager.getEsbUrl(),
-					mapper.writeValueAsString(airmilesRequest), String.class);
+			
+			HttpHeaders headers = new HttpHeaders();
+			String securityToken = configurationManager.getBasicAuthUser() + ":" + configurationManager.getBasicAuthPwd();
+			byte[] encodedToken = Base64.encodeBase64(securityToken.getBytes(Charset.forName("US-ASCII")));
+			headers.add("Authorization", "Basic " + new String(encodedToken));
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			// create the HTTP Request object
+			HttpEntity<AirmilesRequest> request = new HttpEntity<AirmilesRequest>(airmilesRequest,headers);
+			
+			// invoke the web service						
+			ResponseEntity<AirmilesResponse> response = restTemplate.exchange(configurationManager.getEsbUrl(), HttpMethod.POST, request,AirmilesResponse.class);
+			AirmilesResponse saveResponse = response.getBody();
+			
+			//String response = restTemplate.postForObject(configurationManager.getEsbUrl(),mapper.writeValueAsString(airmilesRequest), String.class);
 			log.warn(":::RESPONSE:::" + mapper.writeValueAsString(response));
-			AirmilesResponse saveResponse = mapper.readValue(response,
-					AirmilesResponse.class);
+			//AirmilesResponse saveResponse = mapper.readValue(response,AirmilesResponse.class);
 				if (saveResponse!=null && saveResponse.getStatus().equalsIgnoreCase("OK")) {
 					resp.getResponses().add(new ValidResponse(airmilesRequest.getPolicy(),airmilesRequest.getPolicyDate(),lookupManager.getBundle("airmiles.registeredStatus.txt"), airmilesRequest.getAirmilesNumber(), airmilesRequest.getAirmilesName()));
 			    	if(addAnother) {
