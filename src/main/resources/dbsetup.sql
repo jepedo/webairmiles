@@ -19,6 +19,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `airmiles_j2ee`
 --
+DROP DATABASE IF EXISTS `airmiles_j2ee`;
+CREATE DATABASE IF NOT EXISTS `airmiles_j2ee` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `airmiles_j2ee`;
 
 -- --------------------------------------------------------
 

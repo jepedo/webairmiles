@@ -5,6 +5,8 @@ registerAction=register
 registerAndAddAnotherAction=add
 IncludeDTMScripts=false
 #esbUrl=http://localhost:10006/register
+#esbUrl=http://esb-10006.qa.rsabase.com/register
 
-esbUrl=http://esb-10006.qa.rsabase.com/register
- 
+esbUrl=https://esb1-qa.royalsunalliance.ca:10006/qa/1.0/register/service
+basicAuthUser=aTYZJgGevuVsfEcr
+basicAuthPwd=uAE2hWTMs67hsmzu 

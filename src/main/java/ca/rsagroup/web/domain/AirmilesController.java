@@ -270,7 +270,7 @@ public class AirmilesController  {
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();					
+				log.error("ESB Exception: ", e);									
 			}
 			
 	    		

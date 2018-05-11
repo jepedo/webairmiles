@@ -4,8 +4,7 @@ defaultDomain=default
 registerAction=register
 registerAndAddAnotherAction=add
 IncludeDTMScripts=false
-#esbUrl=http://localhost:10006/register
 
-esbUrl=http://esb-10006.sit.rsabase.com/register
- 
-
+esbUrl=https://esb1-sit.royalsunalliance.ca:10006/sit/1.0/register/service
+basicAuthUser=aTYZJgGevuVsfEcr
+basicAuthPwd=uAE2hWTMs67hsmzu
