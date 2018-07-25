@@ -4,7 +4,10 @@ defaultDomain=default
 registerAction=register
 registerAndAddAnotherAction=add
 IncludeDTMScripts=true
-esbUrl=http://airmiles.rsaservices.ca/register
+#esbUrl=http://airmiles.rsaservices.ca/register
+#basicAuthUser=aTYZJgGevuVsfEcr
+#basicAuthPwd=uAE2hWTMs67hsmzu
 
-basicAuthUser=aTYZJgGevuVsfEcr
-basicAuthPwd=uAE2hWTMs67hsmzu
+esbUrl=https://esb1-prd.royalsunalliance.ca:10006/prod/1.0/register/service
+basicAuthUser=pLNTktLoIvMsQNcr
+basicAuthPwd=nKM2vFKNt32pasnm
