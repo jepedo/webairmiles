@@ -61,7 +61,7 @@
 		<application.host>localhost</application.host>
 		<application.port>8080</application.port>
 		<application.contextpath>/travel</application.contextpath>
-		<log4j.level>DEBUG</log4j.level>
+		<log4j.level>INFO</log4j.level>
 		<!-- hibernate, see by src/main/resource/hibernate.properties -->
 		<hibernate.show.sql>false</hibernate.show.sql>
 		<hibernate.format.sql>false</hibernate.format.sql>
@@ -71,45 +71,25 @@
 		<hibernate.ehcache.configuration.file>ehcache.xml</hibernate.ehcache.configuration.file>
 		<hibernate.use.second.level.cache>true</hibernate.use.second.level.cache>
 		<hibernate.use.query.cache>true</hibernate.use.query.cache>
+		<!-- Artifactory -->
+		<repository.url>http://artifactory.royalsunalliance.ca/artifactory</repository.url>
 	</properties>
-	<pluginRepositories>
-	  <pluginRepository>
-		    <id>synergian-repo</id>
-		    <url>https://raw.github.com/synergian/wagon-git/releases</url>
-		</pluginRepository>	
-		</pluginRepositories>
-
-<repositories>
-        		<repository>
-			<id>ucqdev01</id>
-			<name>ucqdev01-releases</name>
-			<url>http://10.3.0.59:8888/artifactory/applications</url>
-		</repository>
-                
-
-      <repository>
-			<id>mvnrepository</id>
-			<url>http://mvnrepository.com</url>
-			<layout>default</layout>
-		</repository> 
+	
+	<repositories>
 		<repository>
-			<id>jboss</id>
-			<url>http://repository.jboss.org/nexus/content/groups/public-jboss</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
+			<id>rsa-repo</id>
+			<name>rsa-virtual-maven</name>
+			<url>${repository.url}/rsa-virtual-maven</url>
 		</repository>
-  <!--repository>
-	    <id>RSA</id>
-		  <releases>
-            <enabled>true</enabled>
-            <updatePolicy>never</updatePolicy>
-            <checksumPolicy>warn</checksumPolicy>
-          </releases> 	    
-	    <name>RSA Repo</name>
-	        <url>git:releases://https://bitbucket.org/rsacanada/maven.git</url>
-	  </repository-->  		
-  </repositories>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>rsa-repo</id>
+			<name>rsa-virtual-maven</name>
+			<url>${repository.url}/rsa-virtual-maven</url>
+		</pluginRepository>
+	</pluginRepositories>
   
 	<profiles>
 
@@ -127,7 +107,12 @@
             <groupId>ca.rsagroup.airmiles</groupId>
             <artifactId>airmiles</artifactId>
             <version>1.1</version>                  
-        </dependency>          
+        </dependency>  
+        <dependency>
+			<groupId>ca.rsagroup</groupId>
+			<artifactId>websecurity</artifactId>
+			<version>1.1.1</version>
+		</dependency>        
 		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 		<!-- Dependencies needed by the generated project -->
 		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -251,15 +236,6 @@
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-<!--
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>		&lt;!&ndash; ~~~~~ &ndash;&gt;
--->
-		<!-- UTILS -->
-		<!-- ~~~~~ -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
@@ -414,21 +390,6 @@
 			<artifactId>commons-digester</artifactId>
 			<version>1.7</version>
 		</dependency>
-<!--                 <dependency>
-                        <groupId>javax.faces</groupId>
-                        <artifactId>jsf-api</artifactId>
-                        <version>1.2_13</version>
-                </dependency>
-                <dependency>
-                        <groupId>javax.faces</groupId>
-                        <artifactId>jsf-impl</artifactId>
-                        <version>1.2_13</version>
-                </dependency>
-                <dependency>
-                        <groupId>com.sun.facelets</groupId>
-                        <artifactId>jsf-facelets</artifactId>
-                        <version>1.1.15.B1</version>
-                </dependency> -->
 		
 		<!-- ~~~ -->
 		<!-- WEB -->
@@ -474,59 +435,12 @@
 			<artifactId>itextpdf</artifactId>
 			<version>5.4.4</version>
 		</dependency>
-		<!-- ~~~ -->
-		<!-- Spring-RF -->
-		<!-- ~~~ -->			
-<!-- 	    <dependency>
-			<groupId>com.sun.facelets</groupId>
-			<artifactId>jsf-facelets</artifactId>
-			<version>1.1.14</version>
-		</dependency>
+				
 		<dependency>
-			<groupId>opensymphony</groupId>
-			<artifactId>oscache</artifactId>
-			<version>2.4.1</version>
-		</dependency>   
-		
-		<dependency>
-			<groupId>net.java.dev.ajax4jsf</groupId>
-			<artifactId>ajax4jsf</artifactId>
-			<version>1.0.6</version>
-		</dependency> -->
-
-		<!-- ~~~~ -->
-		<!-- TEST -->
-		<!-- ~~~~ -->
-		<!-- <dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.10</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>1.9.0</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.easytesting</groupId>
-			<artifactId>fest-assert</artifactId>
-			<version>1.4</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${spring.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>2.29.1</version>
-			<scope>test</scope>
-		</dependency> -->
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.3</version>
+		</dependency>	
 	</dependencies>
 
 
@@ -545,23 +459,7 @@
 				<filtering>true</filtering>
 			</resource>
 		</resources>
-		 <!--  <extensions>
-		    <extension>
-		      <groupId>ar.com.synergian</groupId>
-		          <artifactId>wagon-git</artifactId>
-		          <version>0.2.0</version>
-		    </extension>
-		  </extensions>		 -->	
-		<!-- <testResources>
-			<testResource>
-				<directory>${maven-celerio-plugin.outputDir}/src/test/resources</directory>
-				<filtering>true</filtering>
-			</testResource>
-			<testResource>
-				<directory>src/test/resources</directory>
-				<filtering>true</filtering>
-			</testResource>
-		</testResources> -->
+		 
 		<plugins>
             <plugin>
                 <groupId>org.jboss.as.plugins</groupId>
@@ -627,53 +525,7 @@
 					<target>${jdk.version}</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<!-- http://wiki.eclipse.org/Jetty/Feature/Jetty_Maven_Plugin -->
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>7.6.7.v20120910</version>
-				<configuration>
-					<stopKey>foo</stopKey>
-					<stopPort>9999</stopPort>
-					<webAppConfig>
-						<contextPath>${application.contextpath}</contextPath>
-						<baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
-							<resourcesAsCSV>src/main/webapp/,${maven-celerio-plugin.outputDir}/src/main/webapp/</resourcesAsCSV>
-						</baseResource>
-					</webAppConfig>
-					<connectors>
-						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-							<port>${application.port}</port>
-						</connector>
-					</connectors>
-					<requestLog implementation="org.eclipse.jetty.server.NCSARequestLog">
-						<filename>${project.build.directory}/jetty-yyyy_mm_dd-request.log</filename>
-						<retainDays>3</retainDays>
-						<append>true</append>
-						<extended>false</extended>
-						<logTimeZone>GMT</logTimeZone>
-					</requestLog>
-				</configuration>
-				<executions>
-					<execution>
-						<id>start-jetty</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<daemon>true</daemon>
-						</configuration>
-					</execution>
-					<execution>
-						<id>stop-jetty</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+			
 			<plugin>
 				<!-- http://maven.apache.org/plugins/maven-failsafe-plugin/ -->
 				<groupId>org.apache.maven.plugins</groupId>

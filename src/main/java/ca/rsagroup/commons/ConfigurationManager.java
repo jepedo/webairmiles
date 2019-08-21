@@ -34,6 +34,9 @@ public class ConfigurationManager {
 	@Value("${IncludeDTMScripts}")
 	private boolean includeDTMScripts;
 	
+	@Value("${esb.tlsversion}")
+	private String tlsVersion;
+	
 	public String getEsbUrl() {
 		return esbUrl;
 	}
@@ -98,5 +101,14 @@ public class ConfigurationManager {
 	public void setBasicAuthPwd(String basicAuthPwd) {
 		this.basicAuthPwd = basicAuthPwd;
 	}
+
+	public String getTlsVersion() {
+		return tlsVersion;
+	}
+
+	public void setTlsVersion(String tlsVersion) {
+		this.tlsVersion = tlsVersion;
+	}
+	
 	
 }

@@ -1,22 +1,21 @@
 package ca.rsagroup.web.domain;
 
+import java.nio.charset.Charset;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpEntity;
@@ -29,7 +28,6 @@ import org.springframework.http.converter.json.MappingJacksonHttpMessageConverte
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.support.RequestContextUtils;
-import org.springframework.webflow.context.servlet.ServletExternalContext;
 import org.springframework.webflow.execution.RequestContext;
 
 import ca.rsagroup.airmiles.AirmilesRequest;
@@ -39,12 +37,8 @@ import ca.rsagroup.commons.ConfigurationManager;
 import ca.rsagroup.model.ValidResponse;
 import ca.rsagroup.model.ValidResponses;
 import ca.rsagroup.service.LookupManager;
-import ca.rsagroup.web.util.DatabaseDrivenMessageSource;
 import ca.rsagroup.web.util.MessageUtil;
-
-import org.apache.commons.codec.binary.Base64;
-
-import java.nio.charset.Charset;
+import ca.rsagroup.websecurity.restful.SpringRestTemplate;
 
 /**
  * Thin controller layer allowing you to do business validation and other conditional
@@ -192,90 +186,99 @@ public class AirmilesController  {
         return req.getRequestURI()+"?fi="+fiId+"&lang="+language;
     }
     
-    public ValidResponses processRequest(AirmilesRequest airmilesRequest, boolean addAnother, ValidResponses resp, RequestContext context) {    
-    	if(resp==null)
-    		resp = new ValidResponses();
-    	
-//    	resp.getResponses().add(new ValidResponse(airmilesRequest.getPolicy(),airmilesRequest.getPolicyDate(),lookupManager.getBundle("airmiles.registeredStatus.txt")));
-    	
-    	
-    	if(airmilesRequest==null)
-			 return resp;
-    	if(addAnother)
-    		airmilesRequest.setActionSelected(configurationManager.getRegisterAndAddAnotherAction());
-    	else
-    		airmilesRequest.setActionSelected(configurationManager.getRegisterAction());
-    	
-    	
-		 HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-         LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(req);
-         Locale myLocale = localeResolver.resolveLocale(req);
-	        
-		 ObjectMapper mapper = new ObjectMapper();			
-			RestTemplate restTemplate = new RestTemplate();
-			
+	public ValidResponses processRequest(AirmilesRequest airmilesRequest, boolean addAnother, ValidResponses resp,
+			RequestContext context) {
+		if (resp == null)
+			resp = new ValidResponses();
+
+		// resp.getResponses().add(new
+		// ValidResponse(airmilesRequest.getPolicy(),airmilesRequest.getPolicyDate(),lookupManager.getBundle("airmiles.registeredStatus.txt")));
+
+		if (airmilesRequest == null)
+			return resp;
+		if (addAnother)
+			airmilesRequest.setActionSelected(configurationManager.getRegisterAndAddAnotherAction());
+		else
+			airmilesRequest.setActionSelected(configurationManager.getRegisterAction());
+
+		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
+		LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(req);
+		Locale myLocale = localeResolver.resolveLocale(req);
+
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			RestTemplate restTemplate = SpringRestTemplate.createRestTemplate(configurationManager.getTlsVersion());
+
 			// Add the Jackson and String message converters
 			restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
 			restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
-			try {
+
 			// the response to a String
-			// try to read response 
+			// try to read response
 			log.warn(":::REQUEST:::" + mapper.writeValueAsString(airmilesRequest));
-			
+
 			HttpHeaders headers = new HttpHeaders();
-			String securityToken = configurationManager.getBasicAuthUser() + ":" + configurationManager.getBasicAuthPwd();
+			String securityToken = configurationManager.getBasicAuthUser() + ":"
+					+ configurationManager.getBasicAuthPwd();
 			byte[] encodedToken = Base64.encodeBase64(securityToken.getBytes(Charset.forName("US-ASCII")));
 			headers.add("Authorization", "Basic " + new String(encodedToken));
 			headers.setContentType(MediaType.APPLICATION_JSON);
 			// create the HTTP Request object
-			HttpEntity<AirmilesRequest> request = new HttpEntity<AirmilesRequest>(airmilesRequest,headers);
-			
-			// invoke the web service						
-			ResponseEntity<AirmilesResponse> response = restTemplate.exchange(configurationManager.getEsbUrl(), HttpMethod.POST, request,AirmilesResponse.class);
+			HttpEntity<AirmilesRequest> request = new HttpEntity<AirmilesRequest>(airmilesRequest, headers);
+
+			// invoke the web service
+
+			ResponseEntity<AirmilesResponse> response = restTemplate.exchange(configurationManager.getEsbUrl(),
+					HttpMethod.POST, request, AirmilesResponse.class);
 			AirmilesResponse saveResponse = response.getBody();
-			
-			//String response = restTemplate.postForObject(configurationManager.getEsbUrl(),mapper.writeValueAsString(airmilesRequest), String.class);
+
+			// String response =
+			// restTemplate.postForObject(configurationManager.getEsbUrl(),mapper.writeValueAsString(airmilesRequest),
+			// String.class);
 			log.warn(":::RESPONSE:::" + mapper.writeValueAsString(response));
-			//AirmilesResponse saveResponse = mapper.readValue(response,AirmilesResponse.class);
-				if (saveResponse!=null && saveResponse.getStatus().equalsIgnoreCase("OK")) {
-					resp.getResponses().add(new ValidResponse(airmilesRequest.getPolicy(),airmilesRequest.getPolicyDate(),lookupManager.getBundle("airmiles.registeredStatus.txt"), airmilesRequest.getAirmilesNumber(), airmilesRequest.getAirmilesName()));
-			    	if(addAnother) {
-			    		airmilesRequest.setPolicy(null);
-			    		airmilesRequest.setPolicyDate(null);
-			    	}
-			    	else {
-			    		airmilesRequest.setAirmilesName(null);
-			    		airmilesRequest.setAirmilesNumber(null);
-			    		airmilesRequest.setPhone(null);
-			    		airmilesRequest.setEmail(null);
-			    		airmilesRequest.setPolicy(null);
-			    		airmilesRequest.setPolicyDate(null);
-			    		airmilesRequest.setAcceptTerms(false);
-			    	}				
+			// AirmilesResponse saveResponse =
+			// mapper.readValue(response,AirmilesResponse.class);
+			if (saveResponse != null && saveResponse.getStatus().equalsIgnoreCase("OK")) {
+				resp.getResponses()
+						.add(new ValidResponse(airmilesRequest.getPolicy(), airmilesRequest.getPolicyDate(),
+								lookupManager.getBundle("airmiles.registeredStatus.txt"),
+								airmilesRequest.getAirmilesNumber(), airmilesRequest.getAirmilesName()));
+				if (addAnother) {
+					airmilesRequest.setPolicy(null);
+					airmilesRequest.setPolicyDate(null);
+				} else {
+					airmilesRequest.setAirmilesName(null);
+					airmilesRequest.setAirmilesNumber(null);
+					airmilesRequest.setPhone(null);
+					airmilesRequest.setEmail(null);
+					airmilesRequest.setPolicy(null);
+					airmilesRequest.setPolicyDate(null);
+					airmilesRequest.setAcceptTerms(false);
 				}
-				else if( saveResponse!=null && saveResponse.getErrors()!=null && saveResponse.getErrors().size()>0){
-					MessageContext messages = context.getMessageContext();
-					for (ErrorMessage error : saveResponse.getErrors()) {
-						if(error.getCode()!=null && error.getCode().equalsIgnoreCase("RSA"))
-							MessageUtil.addGlobalMessage(context.getMessageContext(),error.getMessage());							 
-						else
-							MessageUtil.addGlobalMessage(context.getMessageContext(),lookupManager.getBundle(error.getCode()));	
-					}
+			} else if (saveResponse != null && saveResponse.getErrors() != null
+					&& saveResponse.getErrors().size() > 0) {
+				MessageContext messages = context.getMessageContext();
+				for (ErrorMessage error : saveResponse.getErrors()) {
+					if (error.getCode() != null && error.getCode().equalsIgnoreCase("RSA"))
+						MessageUtil.addGlobalMessage(context.getMessageContext(), error.getMessage());
+					else
+						MessageUtil.addGlobalMessage(context.getMessageContext(),
+								lookupManager.getBundle(error.getCode()));
 				}
-				else {
-					// default error
-					MessageUtil.addGlobalMessage(context.getMessageContext(),lookupManager.getBundle("airmiles.esbError.txt"));										
-				}
-				
-				
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				log.error("ESB Exception: ", e);									
+			} else {
+				// default error
+				MessageUtil.addGlobalMessage(context.getMessageContext(),
+						lookupManager.getBundle("airmiles.esbError.txt"));
 			}
-			
-	    		
-			return resp;
-   }
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("ESB Exception: ", e);
+		}
+
+		return resp;
+	}
   
     public int getCurrentYear(int delta) {
     	int result = 0;

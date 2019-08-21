@@ -11,3 +11,6 @@ IncludeDTMScripts=true
 esbUrl=https://esb1-prd.royalsunalliance.ca:10006/prod/1.0/register/service
 basicAuthUser=pLNTktLoIvMsQNcr
 basicAuthPwd=nKM2vFKNt32pasnm
+
+#TLS Version
+esb.tlsversion=TLSv1.2

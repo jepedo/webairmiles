@@ -28,10 +28,6 @@
 		<level value="@log4j.level@" />
 	</logger>
 
-	<logger name="ca.rsagroup.dao">
-		<level value="warn" />
-	</logger> 
-
 	<!-- TRANSACTION -->
 	<logger name="org.springframework.transaction">
 		<level value="warn" />
@@ -76,7 +72,7 @@
 	</logger>
 
 	<root>
-		<priority value="warn" />
+		<priority value="info" />
 		<appender-ref ref="Console" />
 		<appender-ref ref="File" />
 	</root>
