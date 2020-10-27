@@ -72,7 +72,7 @@
 		<hibernate.use.second.level.cache>true</hibernate.use.second.level.cache>
 		<hibernate.use.query.cache>true</hibernate.use.query.cache>
 		<!-- Artifactory -->
-		<repository.url>http://artifactory.royalsunalliance.ca/artifactory</repository.url>
+		<repository.url>http://artifactory.tools.royalsunalliance.ca/artifactory</repository.url>
 	</properties>
 	
 	<repositories>

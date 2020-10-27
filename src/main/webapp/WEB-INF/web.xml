@@ -33,17 +33,7 @@
 		<filter-name>etagFilter</filter-name>
 		<servlet-name>springMVCServlet</servlet-name>
 	</filter-mapping>
-	<!-- <filter> <filter-name>fileUploadFilter</filter-name> <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class> 
-		</filter> <filter-mapping> <filter-name>fileUploadFilter</filter-name> <servlet-name>springMVCServlet</servlet-name> 
-		</filter-mapping> <filter> <filter-name>springSecurityFilterChain</filter-name> 
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
-		</filter> <filter-mapping> <filter-name>springSecurityFilterChain</filter-name> 
-		<servlet-name>springMVCServlet</servlet-name> </filter-mapping> -->
-	<!-- <filter> <display-name>RichFaces Filter</display-name> <filter-name>richfaces</filter-name> 
-		<filter-class>org.ajax4jsf.Filter</filter-class> </filter> <filter-mapping> 
-		<filter-name>richfaces</filter-name> <servlet-name>springMVCServlet</servlet-name> 
-		<dispatcher>REQUEST</dispatcher> <dispatcher>FORWARD</dispatcher> <dispatcher>INCLUDE</dispatcher> 
-		</filter-mapping> -->
+	
 	<!-- Removed - PZ
 	<filter>
 		<filter-name>domainFilter</filter-name>
