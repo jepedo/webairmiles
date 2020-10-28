@@ -26,7 +26,7 @@ public class LocaleUtil {
 
     public String addLocale(HttpServletRequest request, String languageToChange) {
         @SuppressWarnings("unchecked")
-        Map<String, String> params = (Map<String, String>) request.getParameterMap();
+        Map<String, String[]> params = request.getParameterMap();
 
         StringBuilder url = new StringBuilder(512);
         url.append(request.getRequestURL().toString()).append('?');

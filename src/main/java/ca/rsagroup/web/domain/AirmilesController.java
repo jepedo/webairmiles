@@ -24,7 +24,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.support.RequestContextUtils;
@@ -41,151 +41,150 @@ import ca.rsagroup.web.util.MessageUtil;
 import ca.rsagroup.websecurity.restful.SpringRestTemplate;
 
 /**
- * Thin controller layer allowing you to do business validation and other conditional
- * checks that are easier to implement in Java than in webflow's xml syntax.
+ * Thin controller layer allowing you to do business validation and other
+ * conditional checks that are easier to implement in Java than in webflow's xml
+ * syntax.
  */
 @Named
 
-public class AirmilesController  {
+public class AirmilesController {
 	private static final Logger log = Logger.getLogger(AirmilesController.class);
 
-
 	protected LookupManager lookupManager;
-	
+
 	@Inject
 	public void setLookupManager(LookupManager lookupManager) {
 		this.lookupManager = lookupManager;
 	}
-	
+
 	@Inject
 	private ConfigurationManager configurationManager;
-	
+
 	public void setConfigurationManager(ConfigurationManager configurationManager) {
 		this.configurationManager = configurationManager;
 	}
-	
-   
-    public String formatDate(java.sql.Timestamp date) {
-    	if(date==null)
-    		return  "";
-    	
-    	try {
-			DateFormat df = new SimpleDateFormat("YYYY-MM-dd HH:mm") ;
+
+	public String formatDate(java.sql.Timestamp date) {
+		if (date == null)
+			return "";
+
+		try {
+			DateFormat df = new SimpleDateFormat("YYYY-MM-dd HH:mm");
 			return df.format(date);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "";
 		}
-    }
-    
-    public String formatDate(java.util.Date date) {
-    	if(date==null)
-    		return  "";
-    	
-    	try {
-			DateFormat df = new SimpleDateFormat("YYYY-MM-dd HH:mm") ;
+	}
+
+	public String formatDate(java.util.Date date) {
+		if (date == null)
+			return "";
+
+		try {
+			DateFormat df = new SimpleDateFormat("YYYY-MM-dd HH:mm");
 			return df.format(date);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "";
 		}
-    }
-    
-    
-    public String formatDateShort(java.sql.Timestamp date) {
-    	if(date==null)
-    		return  "";
-    	
-    	try {
-			DateFormat df = new SimpleDateFormat("YYYY-MM-dd") ;
+	}
+
+	public String formatDateShort(java.sql.Timestamp date) {
+		if (date == null)
+			return "";
+
+		try {
+			DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
 			return df.format(date);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "";
 		}
-    }
-    
-    public String formatDateShort(java.util.Date date) {
-    	if(date==null)
-    		return  "";
-    	
-    	try {
-			DateFormat df = new SimpleDateFormat("YYYY-MM-dd") ;
+	}
+
+	public String formatDateShort(java.util.Date date) {
+		if (date == null)
+			return "";
+
+		try {
+			DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
 			return df.format(date);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "";
 		}
-    }
-    
-    public String formatBoolean(Boolean b){
-    	if(b==null)
-    		return "";
-    	else if(b)
-    		return "Yes";
-    	else
-    		return "No";
-    }
-   
-    
-    private static int determineDifferenceInDays(Date date1, Date date2) {
-        Calendar calendar1 = Calendar.getInstance();
-        calendar1.setTime(date1);
-        Calendar calendar2 = Calendar.getInstance();
-        calendar2.setTime(date2);
-        long diffInMillis = calendar2.getTimeInMillis() - calendar1.getTimeInMillis();
-        return (int) (diffInMillis / (24* 1000 * 60 * 60));
-    }
-        
-    
-    public void setLanguage(String language, Integer domainId) {
-    	String variant = domainId!=null?domainId.toString():null;
-    	try {
-			LocaleContextHolder.setLocale(new Locale(language,"CA",variant), true);
+	}
+
+	public String formatBoolean(Boolean b) {
+		if (b == null)
+			return "";
+		else if (b)
+			return "Yes";
+		else
+			return "No";
+	}
+
+	private static int determineDifferenceInDays(Date date1, Date date2) {
+		Calendar calendar1 = Calendar.getInstance();
+		calendar1.setTime(date1);
+		Calendar calendar2 = Calendar.getInstance();
+		calendar2.setTime(date2);
+		long diffInMillis = calendar2.getTimeInMillis() - calendar1.getTimeInMillis();
+		return (int) (diffInMillis / (24 * 1000 * 60 * 60));
+	}
+
+	public void setLanguage(String language, Integer domainId) {
+		String variant = domainId != null ? domainId.toString() : null;
+		try {
+			LocaleContextHolder.setLocale(new Locale(language, "CA", variant), true);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			LocaleContextHolder.setLocale(Locale.ENGLISH);
 //			e.printStackTrace();
-		} 
-    	HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        HttpServletResponse res = (HttpServletResponse)  FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		}
+		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
+		HttpServletResponse res = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext()
+				.getResponse();
 
-        try {
+		try {
 			LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(req);
-			localeResolver.setLocale(req, res, new Locale(language,"CA",variant));
+			localeResolver.setLocale(req, res, new Locale(language, "CA", variant));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 //			e.printStackTrace();
 		}
-       
+
 //    	FacesContext.getCurrentInstance().getExternalContext()CurrentInstance().getViewRoot().setLocale( new Locale(language,"CA",variant));
-    }
-    
-    public String setLanguageReverse(String language, Integer domainId, Integer fiId) {
-    	String variant = domainId!=null?domainId.toString():null;
+	}
 
+	public String setLanguageReverse(String language, Integer domainId, Integer fiId) {
+		String variant = domainId != null ? domainId.toString() : null;
 
-    	HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        HttpServletResponse res = (HttpServletResponse)  FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
+		HttpServletResponse res = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext()
+				.getResponse();
 
-        try {
+		try {
 			LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(req);
-			localeResolver.setLocale(req, res, new Locale(language,"CA",variant));
+			localeResolver.setLocale(req, res, new Locale(language, "CA", variant));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 //			e.printStackTrace();
 		}
-    	if(language!=null && language.equalsIgnoreCase("en"))
-    		language = "fr";
-    	else
-    		language = "en";
-        return req.getRequestURI()+"?fi="+fiId+"&lang="+language;
-    }
-    
+		if (language != null && language.equalsIgnoreCase("en"))
+			language = "fr";
+		else
+			language = "en";
+		return req.getRequestURI() + "?fi=" + fiId + "&lang=" + language;
+	}
+
 	public ValidResponses processRequest(AirmilesRequest airmilesRequest, boolean addAnother, ValidResponses resp,
 			RequestContext context) {
 		if (resp == null)
@@ -211,7 +210,7 @@ public class AirmilesController  {
 			RestTemplate restTemplate = SpringRestTemplate.createRestTemplate(configurationManager.getTlsVersion());
 
 			// Add the Jackson and String message converters
-			restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+			restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 			restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
 
 			// the response to a String
@@ -279,58 +278,59 @@ public class AirmilesController  {
 
 		return resp;
 	}
-  
-    public int getCurrentYear(int delta) {
-    	int result = 0;
 
-    	Calendar c = Calendar.getInstance();
-    	result = c.get(Calendar.YEAR);
-    	result = result- delta;
-    	return result;
-    }
-    
-    public String getHomeLink(String lang) {
-    	if(lang!=null && lang.equalsIgnoreCase("fr"))
-    		return "/../fr";
-    	return "/../";
-    }
-    
-    public boolean enableGA() {
-    	
-    	return true;
-    }
-    
-    public String formatLanguage(String preferedlang, String lang){
-		 HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-         LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(req);
-         Locale myLocale = localeResolver.resolveLocale(req);
-         lang = myLocale.getLanguage();
-    	System.out.println("LANG " + lang + preferedlang);
-    	if(lang.equalsIgnoreCase("fr")) {
-    		if(preferedlang.equalsIgnoreCase("French"))
-    			return "Francais";
-    		return "Anglais";
-    	}
-    	return preferedlang;
-    }  
-    
-    public String getDomain() {
-    	if(!configurationManager.isEnableDomains())
-    		return configurationManager.getDefaultDomain();
-    	
-    	HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-    	
-    	String result = "";    	
-    	String reqUrl = request.getRequestURL().toString();	
-			try {
-				result = reqUrl.substring(reqUrl.indexOf("//") + 2,
-						reqUrl.indexOf("."));
-			} catch (Exception e) {
-				result = configurationManager.getDefaultDomain();
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}    	
-    	return result;   	
-    }
-    
+	public int getCurrentYear(int delta) {
+		int result = 0;
+
+		Calendar c = Calendar.getInstance();
+		result = c.get(Calendar.YEAR);
+		result = result - delta;
+		return result;
+	}
+
+	public String getHomeLink(String lang) {
+		if (lang != null && lang.equalsIgnoreCase("fr"))
+			return "/../fr";
+		return "/../";
+	}
+
+	public boolean enableGA() {
+
+		return true;
+	}
+
+	public String formatLanguage(String preferedlang, String lang) {
+		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
+		LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(req);
+		Locale myLocale = localeResolver.resolveLocale(req);
+		lang = myLocale.getLanguage();
+		System.out.println("LANG " + lang + preferedlang);
+		if (lang.equalsIgnoreCase("fr")) {
+			if (preferedlang.equalsIgnoreCase("French"))
+				return "Francais";
+			return "Anglais";
+		}
+		return preferedlang;
+	}
+
+	public String getDomain() {
+		if (!configurationManager.isEnableDomains())
+			return configurationManager.getDefaultDomain();
+
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
+
+		String result = "";
+		String reqUrl = request.getRequestURL().toString();
+		try {
+			result = reqUrl.substring(reqUrl.indexOf("//") + 2, reqUrl.indexOf("."));
+		} catch (Exception e) {
+			result = configurationManager.getDefaultDomain();
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }
