@@ -13,28 +13,28 @@
 	    		<h:form id="airmiles">
            			<h1><h:outputText value="#{lookupManager.getBundle('airmiles.title.txt')}" escape="false" /></h1>
            			
-           			<div class="row">
-	           			<div class="col-2">
+           			<div class="row-fluid">
+	           			<div class="span2">
 	           				<h:graphicImage value="#{resource['images/logo-air-miles.jpg']}"    alt="Air Miles"  rendered="#{lang=='en'}"/>
 	           				<h:graphicImage value="#{resource['images/logo-air-miles-fr.jpg']}" alt="Air Miles"  rendered="#{lang=='fr'}"/>
 						</div>
-	           			<div class="col-10">
-	           				<h:outputText value="#{lookupManager.getBundle('airmiles.intro.txt')}" escape="false" /> 
-	           			</div>
-	           			<h:panelGroup id="errorbar" rendered="#{lookupManager.hasMessages()}">							
+	           			<div class="span10">
+	           				<h:outputText value="#{lookupManager.getBundle('airmiles.intro.txt')}" escape="false" />
+	           				<h:panelGroup id="errorbar" rendered="#{lookupManager.hasMessages()}">							
 						  <div class="alert alert-error">
 							<h:messages id="form_errors"
 										title=""									
 										globalOnly="false" 
 										escape="false" />
 						  </div>
-					    </h:panelGroup>	
+					    </h:panelGroup> 
+	           			</div>	           				
 	           		</div>
 	           		
 	           		<h:panelGroup rendered="#{not empty resp.getResponses()}">
-	           			<div class="row" id="successbar" > 
-		           			<div class="col-2"></div>
-		           			<div class="col-10">
+	           			<div class="row-fluid" id="successbar" > 
+		           			<div class="span2"></div>
+		           			<div class="span10">
 		           				<div class="control-group">		
 		           					<h:inputHidden id="successPage" value=":Success" /> 	
 		           					<h:outputLabel value="#{lookupManager.getBundle('airmiles.register.success.label')}" escape="false" styleClass="control-label" />
@@ -44,9 +44,9 @@
 	           		</h:panelGroup>
 	           		
 	           		<h:panelGroup rendered="#{not empty resp.getResponses()}">
-	           			<div class="row">
-	                		<div class="col-2"></div>
-			           		<div class="col-10">	
+	           			<div class="row-fluid">
+	                		<div class="span2"></div>
+			           		<div class="span10">	
 		           				<table class="table registered-policies">
 		           					<thead>
 		           						<tr>
@@ -90,9 +90,9 @@
 	           			</div>	
 	           		</h:panelGroup>
 	           		
-	                <div class="row">
-	                	<div class="col-2"></div>
-	                    <div class="col-10">                
+	                <div class="row-fluid">
+	                	<div class="span2"></div>
+	                    <div class="span10">                
 		                	<div class="control-group" > 
 		                		<h:outputLabel value="#{lookupManager.getBundle('airmiles.collectorNumber.label')}" escape="false" styleClass="control-label" for="collectorNumber" />
 		                		<div class="controls">
