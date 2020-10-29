@@ -85,7 +85,7 @@
 					<h:panelGroup id="errorbar" rendered="#{lookupManager.hasMessages()}">							
 					  <div class="alert alert-error">
 						<h:messages id="form_errors"
-									title=""
+									title=""									
 									globalOnly="false" 
 									escape="false" />
 					  </div>
@@ -97,7 +97,11 @@
 		                	<div class="control-group" > 
 		                		<h:outputLabel value="#{lookupManager.getBundle('airmiles.collectorNumber.label')}" escape="false" styleClass="control-label" for="collectorNumber" />
 		                		<div class="controls">
-		                			<h:inputText id="collectorNumber" validatorMessage="#{lookupManager.getBundle('airmiles.collectorNumber.label')} : #{lookupManager.getBundle('airmiles.err.E11')}"  value="#{airmilesRequest.airmilesNumber}" styleClass="input-xlarge" >
+		                			<h:inputText 
+		                				id="collectorNumber" 
+		                				validatorMessage="#{lookupManager.getBundle('airmiles.collectorNumber.label')} : #{lookupManager.getBundle('airmiles.err.E11')}"  
+		                				value="#{airmilesRequest.airmilesNumber}" 
+		                				styleClass="input-xlarge" >
 			                			<f:validateRequired ></f:validateRequired> 			                		
 			                		</h:inputText>		
 		                		 	<h:message for="collectorNumber"/>
@@ -107,7 +111,11 @@
 			                <div class="control-group" > 
 			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.collectorName.label')}" styleClass="control-label" for="collectorName"/>
 			                	<div class="controls">
-			                		<h:inputText id="collectorName" validatorMessage="#{lookupManager.getBundle('airmiles.collectorName.label')} : #{lookupManager.getBundle('airmiles.err.E11')}" value="#{airmilesRequest.airmilesName}"  styleClass="input-xlarge" >
+			                		<h:inputText 
+			                			id="collectorName" 
+			                			validatorMessage="#{lookupManager.getBundle('airmiles.collectorName.label')} : #{lookupManager.getBundle('airmiles.err.E11')}" 
+			                			value="#{airmilesRequest.airmilesName}"  
+			                			styleClass="input-xlarge" >
 			                			<f:validateRequired ></f:validateRequired> 			                		
 			                		</h:inputText>		
 		                		 	<h:message for="collectorName"/>			                		
@@ -115,10 +123,13 @@
 			                </div>
 		
 			                <div class="control-group" > 
-			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.email.label')}" styleClass="control-label" for="email"/>
-			                	
+			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.email.label')}" styleClass="control-label" for="email"/>			                	
 			                	<div class="controls">
-			                		<h:inputText id="email" value="#{airmilesRequest.email}"  validatorMessage="#{lookupManager.getBundle('airmiles.email.label')} : #{lookupManager.getBundle('airmiles.err.E11')}"  styleClass="input-xlarge">
+			                		<h:inputText 
+			                			id="email" 
+			                			value="#{airmilesRequest.email}"  
+			                			validatorMessage="#{lookupManager.getBundle('airmiles.email.label')} : #{lookupManager.getBundle('airmiles.err.E11')}"  
+			                			styleClass="input-xlarge">
 				                		 <c:if test="${airmilesRequest.emailRequired}">
 				                		 	<f:validateRequired ></f:validateRequired> 
 				                		</c:if>			                		 
@@ -131,7 +142,11 @@
 			                <div class="control-group" > 
 			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.phone.label')}"  styleClass="control-label" for="phone"/>
 			                	<div class="controls">
-			                		<h:inputText id="phone" value="#{airmilesRequest.phone}" validatorMessage="#{lookupManager.getBundle('airmiles.err.E11')}" styleClass="input-xlarge" >
+			                		<h:inputText 
+			                			id="phone" 
+			                			value="#{airmilesRequest.phone}" 
+			                			validatorMessage="#{lookupManager.getBundle('airmiles.err.E11')}" 
+			                			styleClass="input-xlarge" >
 			                		</h:inputText>			                		
 			                	</div>
 			                </div> 
@@ -139,7 +154,11 @@
 			                <div class="control-group" > 
 			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.policyNumber.label')}" styleClass="control-label" for="policy"/>
 			                	<div class="controls">
-			                		<h:inputText id="policy" value="#{airmilesRequest.policy}" validatorMessage="#{lookupManager.getBundle('airmiles.policyNumber.label')} : #{lookupManager.getBundle('airmiles.err.E11')}" styleClass="input-xlarge" >
+			                		<h:inputText 
+			                			id="policy" 
+			                			value="#{airmilesRequest.policy}" 
+			                			validatorMessage="#{lookupManager.getBundle('airmiles.policyNumber.label')} : #{lookupManager.getBundle('airmiles.err.E11')}" 
+			                			styleClass="input-xlarge" >
 			                			<f:validateRequired ></f:validateRequired>			                		
 			                		</h:inputText>		
 		                		 	<h:message for="policy"/>			                		
@@ -164,11 +183,15 @@
 				                  			                      			                       
 				                <div class="control-group" > 
 				                	<h:outputLabel value="" styleClass="checkbox" for="acceptTerms">
-				                		<h:selectBooleanCheckbox id="acceptTerms" validatorMessage="#{lookupManager.getBundle('airmiles.termsAndConditions.label')} : #{lookupManager.getBundle('airmiles.err.E11')}" value="#{airmilesRequest.acceptTerms}">			                					                						                		
+				                		<h:selectBooleanCheckbox 
+				                			id="acceptTerms" 
+				                			validatorMessage="#{lookupManager.getBundle('airmiles.termsAndConditions.label')} : #{lookupManager.getBundle('airmiles.err.E11')}" 
+				                			value="#{airmilesRequest.acceptTerms}">			                					                						                		
 					                		<f:validateRequired ></f:validateRequired>					                		
 				                		</h:selectBooleanCheckbox>
 				                		 <h:message for="acceptTerms"/>	
-				                		<h:outputText value="#{lookupManager.getBundle('airmiles.termsAndConditions.before.label')}" escape="false" /> <a target="_blank" href="#{lookupManager.getBundle('airmiles.termsAndConditions.url')}">#{lookupManager.getBundle('airmiles.termsAndConditions.label')}</a>
+				                		<h:outputText value="#{lookupManager.getBundle('airmiles.termsAndConditions.before.label')}" escape="false" /> 
+			                			<a target="_blank" href="#{lookupManager.getBundle('airmiles.termsAndConditions.url')}">#{lookupManager.getBundle('airmiles.termsAndConditions.label')}</a>
 				                	</h:outputLabel>
 				                </div>
 			                </c:if>
@@ -183,7 +206,7 @@
 			                			oncomplete="attachErrors()" 
 			                			onclick="captureFormValues();" 
 			                			styleClass="btn-primary btn-xlarge btn-input-width capitalize"
-			                			value="#{lookupManager.getBundle('airmiles.registerBtn.label')}">
+			                			value="#{lookupManager.getBundle('airmiles.registerBtn.label')}">			                			
 			                		</p:commandButton>				                		
 			                		<br /><br />
 			                	</div>
@@ -221,10 +244,9 @@
 	        <b:commandButton value="#{lookupManager.getBundle('airmiles.popup.closeBtn.label')}" styleClass="btn-info btn-small btn-input-width" onclick="#{rich:component('popup')}.hide(); return false;"></b:commandButton>
 	    </rich:popupPanel> -->
     	
-    
-		   <h:outputScript name="bootstrap-datepicker.js" library="extensions/bootstrap-datepicker/js" />
-		   <h:outputScript name="bootstrap-datepicker.fr.js" library="extensions/bootstrap-datepicker/js/locales" />
-			<script type="text/javascript">	
+    		<script src="#{request.contextPath}/resources/extensions/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+		<script src="#{request.contextPath}/resources/extensions/bootstrap-datepicker/js/locales/bootstrap-datepicker.fr.js"></script>
+		<script type="text/javascript">	
 			$('.date-picker').datepicker({
 				language: $('#lang').val()
 			})

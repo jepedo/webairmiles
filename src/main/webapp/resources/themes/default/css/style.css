@@ -7607,7 +7607,7 @@ div.password-suggestions ul {
 #mobile-menu {
   display: none;
   visibility: hidden;
-  background: url(themes/default/images/mobile-nav.png) no-repeat scroll 0 0 transparent;
+  background: url(../images/mobile-nav.png) no-repeat scroll 0 0 transparent;
   display: inline-block;
   float: right;
   height: 30px;
@@ -7616,7 +7616,7 @@ div.password-suggestions ul {
 }
 @media (max-width: 767px) {
   #mobile-menu {
-    background: url(themes/default/images/mobile-nav.png) no-repeat scroll 0 0 transparent;
+    background: url(../images/mobile-nav.png) no-repeat scroll 0 0 transparent;
     cursor: pointer;
     display: inline-block;
     float: right;
@@ -7890,7 +7890,7 @@ input[type="color"],
 }
 .phone-call-out .phone {
   margin-right: 20px;
-  background: url(themes/default/images/icon-phone.png) no-repeat;
+  background: url(../images/icon-phone.png) no-repeat;
   width: 38px;
   height: 29px;
 }
@@ -8221,12 +8221,12 @@ ul.nav-content-footer a:visited {
   padding-left: 10px;
 }
 .footer #block-menu-menu-social-links .twitter {
-  background-image: url(themes/default/images/twitter.png);
+  background-image: url(../images/twitter.png);
   background-repeat: no-repeat;
   padding-left: 40px;
 }
 .footer #block-menu-menu-social-links .linkedin {
-  background-image: url(themes/default/images/linkedin.png);
+  background-image: url(../images/linkedin.png);
   background-repeat: no-repeat;
   padding-left: 35px;
 }
