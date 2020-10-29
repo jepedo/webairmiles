@@ -189,13 +189,13 @@
 				                </div>
 			                </c:if>
 		                			                
-			                <div class="control-group" > 
+			                <div class="control-group" > 		                
 			                	<div class="controls">
 			                		<p:commandButton 
 			                			id="Next"  
 			                			action="next" 
-			                			process="@form"
-										ajax="false"
+										process="@form"
+										ajax="true"	
 			                			oncomplete="attachErrors()" 
 			                			onclick="captureFormValues();" 
 			                			styleClass="btn-primary btn-xlarge btn-input-width capitalize"
@@ -210,8 +210,8 @@
 			                		<p:commandButton 
 			                			id="Again" 
 			                			action="nextAgain"
-			                			process="@form"
-										ajax="false"
+										process="@form"
+										ajax="true"
 			                			oncomplete="attachErrors()" 
 			                			onclick="captureFormValues();"
 			                			styleClass="btn-info btn-large btn-input-width" 
@@ -276,15 +276,13 @@
 						$(this).parents('div.control-group').addClass('error');
 					}
 				});
-				alert("about to show errorbar");
-				$("#errorbar").show();
-				alert("after showing errorbar");  
+				$("[id$='errorbar']").show();				  
 				// scroll smoothly to the error message
-				$("#errorbar").each(function(index)
-				{
-				   if($(this).attr('offset'))
-				   {
-				   	$("html, body").animate({ scrollTop: $("#errorbar").offset().top }, 500);
+				$("[id$='errorbar']").each(function(index)
+				{					
+				   if($(this).offset)
+				   {					    
+				   	$("html, body").animate({ scrollTop: $(this).offset().top }, 500);
 				   }  	
 				})
 			}
