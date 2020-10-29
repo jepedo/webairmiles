@@ -102,8 +102,7 @@
 		                				value="#{airmilesRequest.airmilesNumber}" 
 		                				styleClass="input-xlarge" >
 			                			<f:validateRequired ></f:validateRequired> 			                		
-			                		</h:inputText>		
-		                		 	<h:message for="collectorNumber"/>
+			                		</h:inputText>
 		                		</div>
 		                	</div>
 		                
@@ -116,8 +115,7 @@
 			                			value="#{airmilesRequest.airmilesName}"  
 			                			styleClass="input-xlarge" >
 			                			<f:validateRequired ></f:validateRequired> 			                		
-			                		</h:inputText>		
-		                		 	<h:message for="collectorName"/>			                		
+			                		</h:inputText>              		
 			                	</div>
 			                </div>
 		
@@ -133,7 +131,6 @@
 				                		 	<f:validateRequired ></f:validateRequired> 
 				                		</c:if>			                		 
 			                		</h:inputText>
-			                		<h:message for="email"/>
 			                		<h:outputLabel value="#{lookupManager.getBundle('C4.1')}" escape="false"/>              		
 			                	</div>
 			                </div>
@@ -159,8 +156,7 @@
 			                			validatorMessage="#{lookupManager.getBundle('airmiles.policyNumber.label')} : #{lookupManager.getBundle('airmiles.err.E11')}" 
 			                			styleClass="input-xlarge" >
 			                			<f:validateRequired ></f:validateRequired>			                		
-			                		</h:inputText>		
-		                		 	<h:message for="policy"/>			                		
+			                		</h:inputText>              		
 			                	</div>
 			                </div> 
 			                
@@ -174,8 +170,7 @@
 											value="#{airmilesRequest.policyDate}"
 											styleClass="datepicker-hidden">
 											<f:validateRequired></f:validateRequired>													
-										</h:inputText>										
-										<h:message for="date-policy-value"/>			                					                		
+										</h:inputText>              					                		
 				                		<div id="date-policy" class="date-picker"></div>			                		
 				                	</div>
 				                </div>                
@@ -188,7 +183,6 @@
 				                			value="#{airmilesRequest.acceptTerms}">			                					                						                		
 					                		<f:validateRequired ></f:validateRequired>					                		
 				                		</h:selectBooleanCheckbox>
-				                		 <h:message for="acceptTerms"/>	
 				                		<h:outputText value="#{lookupManager.getBundle('airmiles.termsAndConditions.before.label')}" escape="false" /> 
 			                			<a target="_blank" href="#{lookupManager.getBundle('airmiles.termsAndConditions.url')}">#{lookupManager.getBundle('airmiles.termsAndConditions.label')}</a>
 				                	</h:outputLabel>
