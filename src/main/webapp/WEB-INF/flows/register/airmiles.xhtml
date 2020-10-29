@@ -21,6 +21,14 @@
 	           			<div class="col-10">
 	           				<h:outputText value="#{lookupManager.getBundle('airmiles.intro.txt')}" escape="false" /> 
 	           			</div>
+	           			<h:panelGroup id="errorbar" rendered="#{lookupManager.hasMessages()}">							
+						  <div class="alert alert-error">
+							<h:messages id="form_errors"
+										title=""									
+										globalOnly="false" 
+										escape="false" />
+						  </div>
+					    </h:panelGroup>	
 	           		</div>
 	           		
 	           		<h:panelGroup rendered="#{not empty resp.getResponses()}">
@@ -81,15 +89,6 @@
 	           				</div>
 	           			</div>	
 	           		</h:panelGroup>
-	           			           		
-					<h:panelGroup id="errorbar" rendered="#{lookupManager.hasMessages()}">							
-					  <div class="alert alert-error">
-						<h:messages id="form_errors"
-									title=""									
-									globalOnly="false" 
-									escape="false" />
-					  </div>
-				    </h:panelGroup>	
 	           		
 	                <div class="row">
 	                	<div class="col-2"></div>
