@@ -23,9 +23,9 @@
 	           				<h:panelGroup id="errorbar1" rendered="#{lookupManager.hasMessages()}">							
 						  <div class="alert alert-error">
 							<h:messages id="form_errors"
-										title=""									
+										title="#{lookupManager.getBundle('airmiles.errors.tilte')}"									
 										globalOnly="false" 
-										escape="false" />
+										escape="false" />									
 						  </div>
 					    </h:panelGroup> 
 	           			</div>	           				
@@ -101,8 +101,10 @@
 		                				validatorMessage="#{lookupManager.getBundle('airmiles.collectorNumber.label')} : #{lookupManager.getBundle('airmiles.err.E11')}"  
 		                				value="#{airmilesRequest.airmilesNumber}" 
 		                				styleClass="input-xlarge" >
-			                			<f:validateRequired ></f:validateRequired>		                					                		
+			                			<f:validateRequired ></f:validateRequired>
+			                			<p:ajax update="msgCollectorNumber" event="change" />			                						                				                					                		
 			                		</h:inputText>			                		
+			                		<div><h:message for="collectorNumber" id="msgCollectorNumber" styleClass="rf-msg-det"/></div>
 		                		</div>
 		                	</div>
 		                
@@ -115,7 +117,9 @@
 			                			value="#{airmilesRequest.airmilesName}"  
 			                			styleClass="input-xlarge" >
 			                			<f:validateRequired ></f:validateRequired> 			                		
-			                		</h:inputText>			                		             		
+			                			<p:ajax update="msgCollectorName" event="change" />			                						                				                					                		
+			                		</h:inputText>			                		
+			                		<div><h:message for="collectorName" id="msgCollectorName" styleClass="rf-msg-det"/></div>		                		             		
 			                	</div>
 			                </div>
 		
@@ -130,8 +134,10 @@
 				                		 <c:if test="${airmilesRequest.emailRequired}">
 				                		 	<f:validateRequired ></f:validateRequired> 
 				                		</c:if>			                		 
-			                		</h:inputText>
-			                		<h:outputLabel value="#{lookupManager.getBundle('C4.1')}" escape="false"/>              		
+			                			<p:ajax update="msgEmail" event="change" />			                						                				                					                		
+			                		</h:inputText>			                		
+			                		<div><h:message for="email" id="msgEmail" styleClass="rf-msg-det"/></div>	
+			                		<div><h:outputLabel value="#{lookupManager.getBundle('C4.1')}" escape="false"/></div>              		
 			                	</div>
 			                </div>
 			                
@@ -156,7 +162,9 @@
 			                			validatorMessage="#{lookupManager.getBundle('airmiles.policyNumber.label')} : #{lookupManager.getBundle('airmiles.err.E11')}" 
 			                			styleClass="input-xlarge" >
 			                			<f:validateRequired ></f:validateRequired>			                		
-			                		</h:inputText>              		
+			                			<p:ajax update="msgPolicy" event="change" />			                						                				                					                		
+			                		</h:inputText>			                		
+			                		<div><h:message for="policy" id="msgPolicy" styleClass="rf-msg-det"/></div>	              		
 			                	</div>
 			                </div> 
 			                
@@ -170,7 +178,9 @@
 											value="#{airmilesRequest.policyDate}"
 											styleClass="datepicker-hidden">
 											<f:validateRequired></f:validateRequired>													
-										</h:inputText>              					                		
+				                			<p:ajax update="msgDatePolicyValue" event="change" />			                						                				                					                		
+				                		</h:inputText>			                		
+				                		<div><h:message for="date-policy-value" id="msgDatePolicyValue" styleClass="rf-msg-det"/></div>	              					                		
 				                		<div id="date-policy" class="date-picker"></div>			                		
 				                	</div>
 				                </div>                
@@ -181,12 +191,14 @@
 				                			id="acceptTerms" 
 				                			validatorMessage="#{lookupManager.getBundle('airmiles.termsAndConditions.label')} : #{lookupManager.getBundle('airmiles.err.E11')}" 
 				                			value="#{airmilesRequest.acceptTerms}">			                					                						                		
-					                		<f:validateRequired ></f:validateRequired>					                		
-				                		</h:selectBooleanCheckbox>
+					                		<f:validateRequired ></f:validateRequired>	
+					                		<p:ajax update="msgAcceptTerms" event="change" />				                		
+				                		</h:selectBooleanCheckbox>				                		
 				                		<h:outputText value="#{lookupManager.getBundle('airmiles.termsAndConditions.before.label')}" escape="false" /> 
-			                			<a target="_blank" href="#{lookupManager.getBundle('airmiles.termsAndConditions.url')}">#{lookupManager.getBundle('airmiles.termsAndConditions.label')}</a>
-				                	</h:outputLabel>
+			                			<a target="_blank" href="#{lookupManager.getBundle('airmiles.termsAndConditions.url')}">#{lookupManager.getBundle('airmiles.termsAndConditions.label')}</a>			                			
+				                	</h:outputLabel>				                	
 				                </div>
+				                <div><h:message for="acceptTerms" id="msgAcceptTerms" styleClass="rf-msg-det"/></div>
 			                </c:if>
 		                			                
 			                <div class="control-group" > 		                
@@ -258,8 +270,7 @@
 					$('.date-picker td.active').removeClass('active');
 				}
 			});
-			jQuery(document).ready(function(){
-				console.log('b4 error1');
+			jQuery(document).ready(function(){				
 				$("[id$='errorbar1']").each(function(index)
 						{					
 						   if($(this).offset)
@@ -269,7 +280,7 @@
 				})
 			});
 		
-			/*function attachErrors() {
+			function attachErrors() {
 				console.log('attacherror entry');
 				// remove all error classes on control groups first
 				$('.control-group').each(function(index){
@@ -294,7 +305,7 @@
 				   	$("html, body").animate({ scrollTop: $(this).offset().top }, 500);
 				   }  	
 				})
-			}*/
+			}
 		</script>
 	</ui:define>	 
 </ui:composition>
