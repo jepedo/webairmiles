@@ -19,8 +19,8 @@
 	           				<h:graphicImage value="#{resource['images/logo-air-miles-fr.jpg']}" alt="Air Miles"  rendered="#{lang=='fr'}"/>
 						</div>
 	           			<div class="span10">
-	           				<h:outputText value="#{lookupManager.getBundle('airmiles.intro.txt')}" escape="false" />
-	           				<h:panelGroup id="errorbar" rendered="#{lookupManager.hasMessages()}">							
+	           				<h:outputText value="#{lookupManager.getBundle('airmiles.intro.txt')}" escape="false" />	           				
+	           				<h:panelGroup id="errorbar1" rendered="#{lookupManager.hasMessages()}">							
 						  <div class="alert alert-error">
 							<h:messages id="form_errors"
 										title=""									
@@ -93,7 +93,7 @@
 	                <div class="row-fluid">
 	                	<div class="span2"></div>
 	                    <div class="span10">                
-		                	<div class="control-group" > 
+		                	<div class="#{not empty facesContext.getMessageList(''.concat('airmiles:collectorNumber'))?'control-group error':'control-group'}" > 
 		                		<h:outputLabel value="#{lookupManager.getBundle('airmiles.collectorNumber.label')}" escape="false" styleClass="control-label" for="collectorNumber" />
 		                		<div class="controls">
 		                			<h:inputText 
@@ -101,12 +101,12 @@
 		                				validatorMessage="#{lookupManager.getBundle('airmiles.collectorNumber.label')} : #{lookupManager.getBundle('airmiles.err.E11')}"  
 		                				value="#{airmilesRequest.airmilesNumber}" 
 		                				styleClass="input-xlarge" >
-			                			<f:validateRequired ></f:validateRequired> 			                		
-			                		</h:inputText>
+			                			<f:validateRequired ></f:validateRequired>		                					                		
+			                		</h:inputText>			                		
 		                		</div>
 		                	</div>
 		                
-			                <div class="control-group" > 
+			                <div class="#{not empty facesContext.getMessageList(''.concat('airmiles:collectorName'))?'control-group error':'control-group'}" > 
 			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.collectorName.label')}" styleClass="control-label" for="collectorName"/>
 			                	<div class="controls">
 			                		<h:inputText 
@@ -115,11 +115,11 @@
 			                			value="#{airmilesRequest.airmilesName}"  
 			                			styleClass="input-xlarge" >
 			                			<f:validateRequired ></f:validateRequired> 			                		
-			                		</h:inputText>              		
+			                		</h:inputText>			                		             		
 			                	</div>
 			                </div>
 		
-			                <div class="control-group" > 
+			                <div class="#{not empty facesContext.getMessageList(''.concat('airmiles:email'))?'control-group error':'control-group'}" > 
 			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.email.label')}" styleClass="control-label" for="email"/>			                	
 			                	<div class="controls">
 			                		<h:inputText 
@@ -147,7 +147,7 @@
 			                	</div>
 			                </div> 
 			
-			                <div class="control-group" > 
+			                <div class="#{not empty facesContext.getMessageList(''.concat('airmiles:policy'))?'control-group error':'control-group'}" >
 			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.policyNumber.label')}" styleClass="control-label" for="policy"/>
 			                	<div class="controls">
 			                		<h:inputText 
@@ -161,7 +161,7 @@
 			                </div> 
 			                
 			                <c:if test="${airmilesRequest.emailRequired}">			                                             
-				                <div class="control-group">
+				                <div class="#{not empty facesContext.getMessageList(''.concat('airmiles:date-policy-value'))?'control-group error':'control-group'}" >
 				                	<h:outputLabel id="policy-date" value="#{lookupManager.getBundle('airmiles.policyDate.label')}" styleClass="control-label" for="date-policy-value" />
 				                	<div class="controls">						
 										<h:inputText 
@@ -175,7 +175,7 @@
 				                	</div>
 				                </div>                
 				                  			                      			                       
-				                <div class="control-group" > 
+				                <div class="#{not empty facesContext.getMessageList(''.concat('airmiles:acceptTerms'))?'control-group error':'control-group'}" > 
 				                	<h:outputLabel value="" styleClass="checkbox" for="acceptTerms">
 				                		<h:selectBooleanCheckbox 
 				                			id="acceptTerms" 
@@ -193,10 +193,9 @@
 			                	<div class="controls">
 			                		<p:commandButton 
 			                			id="Next"  
-			                			action="next" 
-										process="@form"
-										ajax="true"	
-			                			oncomplete="attachErrors()" 
+			                			action="next"
+			                			process="@form"	                			
+			                			ajax="false"               			
 			                			onclick="captureFormValues();" 
 			                			styleClass="btn-primary btn-xlarge btn-input-width capitalize"
 			                			value="#{lookupManager.getBundle('airmiles.registerBtn.label')}">			                			
@@ -211,8 +210,7 @@
 			                			id="Again" 
 			                			action="nextAgain"
 										process="@form"
-										ajax="true"
-			                			oncomplete="attachErrors()" 
+										ajax="false"
 			                			onclick="captureFormValues();"
 			                			styleClass="btn-info btn-large btn-input-width" 
 			                			value="#{lookupManager.getBundle('airmiles.registerAndAddBtn.label')}">
@@ -239,7 +237,7 @@
     	
     		<script src="#{request.contextPath}/resources/extensions/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 		<script src="#{request.contextPath}/resources/extensions/bootstrap-datepicker/js/locales/bootstrap-datepicker.fr.js"></script>
-		<script type="text/javascript">	
+		<script type="text/javascript">				
 			$('.date-picker').datepicker({
 				language: $('#lang').val()
 			})
@@ -260,14 +258,25 @@
 					$('.date-picker td.active').removeClass('active');
 				}
 			});
+			jQuery(document).ready(function(){
+				console.log('b4 error1');
+				$("[id$='errorbar1']").each(function(index)
+						{					
+						   if($(this).offset)
+						   {					    
+						   	$("html, body").animate({ scrollTop: $(this).offset().top }, 0);
+						   }  	
+				})
+			});
 		
-			function attachErrors() {
+			/*function attachErrors() {
+				console.log('attacherror entry');
 				// remove all error classes on control groups first
 				$('.control-group').each(function(index){
 					$(this).removeClass('error');	
 				}); 
 				
-				$('.rf-msg ').each(function(index) {
+				$('.rf-msg').each(function(index) {
 					if($(this).prev('input').attr('type') == 'checkbox'){
 						$(this).parents('div.control-group').addClass('error');	
 					}
@@ -285,7 +294,7 @@
 				   	$("html, body").animate({ scrollTop: $(this).offset().top }, 500);
 				   }  	
 				})
-			}
+			}*/
 		</script>
 	</ui:define>	 
 </ui:composition>
