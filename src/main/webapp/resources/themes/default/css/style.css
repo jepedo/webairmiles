@@ -3181,6 +3181,11 @@ input[type="submit"].btn.btn-mini {
   border-color: #eed3d7;
   color: #b94a48;
 }
+.alert-error >li{
+	font-family: Arial, Verdana, sans-serif ;
+	font-size: 11px;
+	width: auto;    
+}
 .alert-info {
   background-color: #d9edf7;
   border-color: #bce8f1;
@@ -8951,4 +8956,9 @@ ul.icons li .icon-large:before {
 }
 .icon-user-md:before {
   content: "\f200";
+}
+.rf-msg-det {
+    color: #b94a48;
+	font-family: Arial, Verdana, sans-serif ;
+	font-size: 11px;
 }

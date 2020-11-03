@@ -259,8 +259,11 @@ public class AirmilesController {
 					&& saveResponse.getErrors().size() > 0) {
 				MessageContext messages = context.getMessageContext();
 				for (ErrorMessage error : saveResponse.getErrors()) {
+                    String errorMsg = error.getMessage();
+                    if(errorMsg!=null)
+                    	errorMsg = errorMsg.replaceAll("\\t", "");
 					if (error.getCode() != null && error.getCode().equalsIgnoreCase("RSA"))
-						MessageUtil.addGlobalMessage(context.getMessageContext(), error.getMessage());
+						MessageUtil.addGlobalMessage(context.getMessageContext(), errorMsg);
 					else
 						MessageUtil.addGlobalMessage(context.getMessageContext(),
 								lookupManager.getBundle(error.getCode()));

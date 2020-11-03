@@ -19,15 +19,7 @@
 	           				<h:graphicImage value="#{resource['images/logo-air-miles-fr.jpg']}" alt="Air Miles"  rendered="#{lang=='fr'}"/>
 						</div>
 	           			<div class="span10">
-	           				<h:outputText value="#{lookupManager.getBundle('airmiles.intro.txt')}" escape="false" />	           				
-	           				<h:panelGroup id="errorbar1" rendered="#{lookupManager.hasMessages()}">							
-						  <div class="alert alert-error">
-							<h:messages id="form_errors"
-										title="#{lookupManager.getBundle('airmiles.errors.tilte')}"									
-										globalOnly="false" 
-										escape="false" />									
-						  </div>
-					    </h:panelGroup> 
+	           				<h:outputText value="#{lookupManager.getBundle('airmiles.intro.txt')}" escape="false" />         				
 	           			</div>	           				
 	           		</div>
 	           		
@@ -89,6 +81,29 @@
 	           				</div>
 	           			</div>	
 	           		</h:panelGroup>
+	           		
+	           		<div class="row-fluid">
+	           			<div class="span2"></div>
+	           			<div class="span10">
+		           			<h:panelGroup id="errorbar1" rendered="#{lookupManager.hasMessages() and facesContext.maximumSeverity.ordinal lt 3}">							
+							  <div class="alert alert-error">
+								<h:messages id="form_errors"
+											title="#{lookupManager.getBundle('airmiles.errors.tilte')}"									
+											globalOnly="false" 
+											escape="false" />									
+							  </div>
+						    </h:panelGroup> 
+		           			<h:panelGroup id="errorbar2" rendered="#{lookupManager.hasMessages() and facesContext.maximumSeverity.ordinal ge 3}">							
+							  <div class="alert alert-error">
+							  	<h:inputHidden id="errorPage" value=":Error"   /> 
+								<h:messages id="form_errors2"
+											title="#{lookupManager.getBundle('airmiles.errors.tilte')}"									
+											globalOnly="true" 
+											escape="false" layout="table"/>									
+							  </div>
+						    </h:panelGroup> 	
+						</div>				    
+	           		</div>
 	           		
 	                <div class="row-fluid">
 	                	<div class="span2"></div>
@@ -235,6 +250,17 @@
 	         	</h:form>
 	        </section>
 	    </div>
+	    
+	    <p:dialog id="popup" modal="true" resizable="true">
+	    	<f:facet name="header">
+	            <h:outputText value="#{lookupManager.getBundle('airmiles.popup.title.txt')}" escape = "false"/>
+	        </f:facet>
+	        <f:facet name="controls">
+	            <h:outputLink value="#" onclick="#{p:component('popup')}.hide(); return false;">X</h:outputLink>
+	        </f:facet>
+	        <h:outputText value="#{lookupManager.getBundle('airmiles.popup.body.txt')}" escape = "false"/>
+	        <p:commandButton value="#{lookupManager.getBundle('airmiles.popup.closeBtn.label')}" styleClass="btn-info btn-small btn-input-width" onclick="#{p:component('popup')}.hide(); return false;"></p:commandButton>
+	    </p:dialog>
 
 	    <!-- <rich:popupPanel id="popup" modal="true" resizeable="true" onmaskclick="#{rich:component('popup')}.hide()">
 	        <f:facet name="header">
