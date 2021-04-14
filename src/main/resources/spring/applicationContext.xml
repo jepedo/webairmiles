@@ -47,7 +47,7 @@
 		p:driverClassName="com.mysql.jdbc.Driver"
 		p:url="jdbc:mysql://localhost/webairmiles?autoReconnect=true"
 		p:username="root" 
-		p:password=""
+		p:password="root"
 		p:initialSize="1" 
 		p:maxActive="10" 
 		p:maxIdle="5" 
