@@ -1,8 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:app="http://springfuse.jaxio.com/app"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"		
 	xmlns:p="http://primefaces.org/ui">
 
 	<div class="row">
@@ -18,78 +16,73 @@
 
 	<div class="row">
 		<div class="claim-progress">
-			<p:progressBar value="20" displayOnly="true"
-				rendered="#{flowScope.flowLevel2 eq 1}" />
-			<p:progressBar value="40" displayOnly="true"
-				rendered="#{flowScope.flowLevel2 eq 2}" />
-			<p:progressBar value="60" displayOnly="true"
-				rendered="#{flowScope.flowLevel2 eq 3}" />
-			<p:progressBar value="80" displayOnly="true"
-				rendered="#{flowScope.flowLevel2 eq 4}" />
-			<p:progressBar value="100" displayOnly="true"
-				rendered="#{flowScope.flowLevel2 eq 5}" />
+			<p:progressBar value="20"  displayOnly="true" rendered="#{flowLevel2 eq 1}" />
+			<p:progressBar value="40"  displayOnly="true" rendered="#{flowLevel2 eq 2}" />
+			<p:progressBar value="60"  displayOnly="true" rendered="#{flowLevel2 eq 3}" />
+			<p:progressBar value="80"  displayOnly="true" rendered="#{flowLevel2 eq 4}" />
+			<p:progressBar value="100" displayOnly="true" rendered="#{flowLevel2 eq 5}" />
 
 			<ul>
-				<li class="active"><span class="item-number-complete">1</span>
-					<span class="item-label-complete">. <h:outputText
-							escape="false"
-							value="#{messageSource['progressBarCar.cardholderInfo.label']}" />
-				</span></li>
-				<li class="complete"><p:outputPanel
-						rendered="#{flowScope.flowLevel2 lt  2}">
+				<li class="active">
+					<span class="item-number-complete">1</span>
+					<span class="item-label-complete">. 
+						<h:outputText escape="false" value="#{messageSource['progressBarCar.cardholderInfo.label']}" />
+					</span>
+				</li>
+				<li class="complete">
+					<p:outputPanel rendered="#{flowLevel2 lt  2}">
 						<span class="item-number-incomplete">2</span>
-						<span class="item-label-incomplete">. <h:outputText
-								escape="false"
-								value="#{messageSource['progressBarCar.lossInfo.label']}" />
+						<span class="item-label-incomplete">. 
+							<h:outputText escape="false" value="#{messageSource['progressBarCar.lossInfo.label']}" />
 						</span>
-					</p:outputPanel> <p:outputPanel rendered="#{flowScope.flowLevel2 gt  1}">
+					</p:outputPanel> 
+					<p:outputPanel rendered="#{flowLevel2 gt  1}">
 						<span class="item-number-complete">2.</span>
-						<span class="item-label-complete"><h:outputText
-								escape="false"
-								value="#{messageSource['progressBarCar.lossInfo.label']}" /> </span>
-					</p:outputPanel></li>
-				<li class="complete"><p:outputPanel
-						rendered="#{flowScope.flowLevel2 lt  3}">
+						<span class="item-label-complete">
+							<h:outputText escape="false" value="#{messageSource['progressBarCar.lossInfo.label']}" /> 
+						</span>
+					</p:outputPanel>
+				</li>
+				<li class="complete"><p:outputPanel	rendered="#{flowLevel2 lt  3}">
 						<span class="item-number-incomplete">3</span>
-						<span class="item-label-incomplete">. <h:outputText
-								escape="false"
-								value="#{messageSource['progressBarCar.rentalAgencyInfo.label']}" />
+						<span class="item-label-incomplete">. 
+							<h:outputText escape="false" value="#{messageSource['progressBarCar.rentalAgencyInfo.label']}" />
 						</span>
-					</p:outputPanel> <p:outputPanel rendered="#{flowScope.flowLevel2 gt 2}">
+					</p:outputPanel> 
+					<p:outputPanel rendered="#{flowLevel2 gt 2}">
 						<span class="item-number-complete">3.</span>
-						<span class="item-label-complete"><h:outputText
-								escape="false"
-								value="#{messageSource['progressBarCar.rentalAgencyInfo.label']}" />
+						<span class="item-label-complete">
+							<h:outputText escape="false" value="#{messageSource['progressBarCar.rentalAgencyInfo.label']}" />
 						</span>
-					</p:outputPanel></li>
-				<li class="complete"><p:outputPanel
-						rendered="#{flowScope.flowLevel2 lt  4}">
+					</p:outputPanel>
+				</li>
+				<li class="complete">
+					<p:outputPanel rendered="#{flowLevel2 lt  4}">
 						<span class="item-number-incomplete">4</span>
-						<span class="item-label-incomplete">. <h:outputText
-								escape="false"
-								value="#{messageSource['progressBarCar.thirdPartyInfo.label']}" />
+						<span class="item-label-incomplete">. 
+							<h:outputText escape="false" value="#{messageSource['progressBarCar.thirdPartyInfo.label']}" />
 						</span>
-					</p:outputPanel> <p:outputPanel rendered="#{flowScope.flowLevel2 gt 3}">
+					</p:outputPanel> <p:outputPanel rendered="#{flowLevel2 gt 3}">
 						<span class="item-number-complete">4.</span>
-						<span class="item-label-complete"><h:outputText
-								escape="false"
-								value="#{messageSource['progressBarCar.thirdPartyInfo.label']}" />
+						<span class="item-label-complete">
+							<h:outputText escape="false" value="#{messageSource['progressBarCar.thirdPartyInfo.label']}" />
 						</span>
-					</p:outputPanel></li>
-				<li class="last"><p:outputPanel
-						rendered="#{flowScope.flowLevel2 lt  5}">
+					</p:outputPanel>
+				</li>
+				<li class="last">
+					<p:outputPanel rendered="#{flowLevel2 lt  5}">
 						<span class="item-number-incomplete">5</span>
-						<span class="item-label-incomplete">. <h:outputText
-								escape="false"
-								value="#{messageSource['progressBarCar.claimSummary.label']}" />
+						<span class="item-label-incomplete">. 
+							<h:outputText escape="false" value="#{messageSource['progressBarCar.claimSummary.label']}" />
 						</span>
-					</p:outputPanel> <p:outputPanel rendered="#{flowScope.flowLevel2 gt  4}">
+					</p:outputPanel> 
+					<p:outputPanel rendered="#{flowLevel2 gt  4}">
 						<span class="item-number-complete">5.</span>
-						<span class="item-label-complete"><h:outputText
-								escape="false"
-								value="#{messageSource['progressBarCar.claimSummary.label']}" />
+						<span class="item-label-complete">
+							<h:outputText escape="false" value="#{messageSource['progressBarCar.claimSummary.label']}" />
 						</span>
-					</p:outputPanel></li>
+					</p:outputPanel>
+				</li>
 			</ul>
 		</div>
 	</div>

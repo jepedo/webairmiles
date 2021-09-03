@@ -1,221 +1,281 @@
-<ui:composition template="/WEB-INF/layouts/mainairmiles.xhtml" xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:rich="http://richfaces.org/rich"
-                xmlns:c="http://java.sun.com/jsp/jstl/core"
-                xmlns:a4j="http://richfaces.org/a4j" xmlns:b="http://richfaces.org/sandbox/bootstrap">
+<ui:composition template="/WEB-INF/layouts/mainairmiles.xhtml" 
+				xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"                
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui">                 
     <ui:param name="subTitle" value="#{lookupManager.getBundle('airmiles.page.title.txt')}" />
 	<ui:define name="content">
-		<b:gridRow fluid="true">
+		<div class="row">
 			<section class="span9 content-area">  
-			<h:inputHidden id="lang" value="#{flowScope.lang}" />    		
+				<h:inputHidden id="lang" value="#{lang}" />    		
 	    		<h:form id="airmiles">
-           			<h1 ><h:outputText value="#{lookupManager.getBundle('airmiles.title.txt')}" escape="false" /></h1>
+           			<h1><h:outputText value="#{lookupManager.getBundle('airmiles.title.txt')}" escape="false" /></h1>
            			
-           			<b:gridRow fluid="true">
-	           			<b:gridColumn span="2">
-	           				<h:graphicImage value="#{resource['images/logo-air-miles.jpg']}" alt="Air Miles"  rendered="#{flowScope.lang=='en'}"/>
-	           				<h:graphicImage value="#{resource['images/logo-air-miles-fr.jpg']}" alt="Air Miles"  rendered="#{flowScope.lang=='fr'}"/>
-						</b:gridColumn>
-	           			<b:gridColumn span="10"><h:outputText value="#{lookupManager.getBundle('airmiles.intro.txt')}" escape="false" /> 
-	           			</b:gridColumn>
-	           		</b:gridRow>
+           			<div class="row-fluid">
+	           			<div class="span2">
+	           				<h:graphicImage value="#{resource['images/logo-air-miles.jpg']}"    alt="Air Miles"  rendered="#{lang=='en'}"/>
+	           				<h:graphicImage value="#{resource['images/logo-air-miles-fr.jpg']}" alt="Air Miles"  rendered="#{lang=='fr'}"/>
+						</div>
+	           			<div class="span10">
+	           				<h:outputText value="#{lookupManager.getBundle('airmiles.intro.txt')}" escape="false" />         				
+	           			</div>	           				
+	           		</div>
 	           		
-	           		<b:gridRow id="successbar" fluid="true" rendered="#{not empty flowScope.resp.getResponses()}"> 
-	           			<b:gridColumn span="2"></b:gridColumn>
-	           			<b:gridColumn span="10">
-	           				<div class="control-group">		
-	           					 <h:inputHidden id="successPage" value=":Success" /> 	
-	           					<h:outputLabel value="#{lookupManager.getBundle('airmiles.register.success.label')}" escape="false" styleClass="control-label" />
-	           				</div>	           				
-	           				</b:gridColumn>
-	           		</b:gridRow>
-	           			           		
-	                <b:gridRow fluid="true" rendered="#{not empty flowScope.resp.getResponses()}">
-	                		<b:gridColumn span="2"></b:gridColumn>
-			           		<b:gridColumn span="10">	
-	           				<table class="table registered-policies">
-	           					<thead>
-	           						<tr>
-	           							<th>
-	           								<h:outputText value="#{lookupManager.getBundle('airmiles.register.policy.column')}" escape="false" />
-	           							</th>
-	           							<th>
-	           								<h:outputText value="#{lookupManager.getBundle('airmiles.register.policyDate.column')}" escape="false" />
-	           							</th>
-	           							<th>
-	           								<h:outputText value="#{lookupManager.getBundle('airmiles.register.status.column')}" escape="false" />
-	           							</th>
-	           						</tr>
-	           					</thead>
-	           					<tbody>
-	           						<rich:repeat value="#{flowScope.resp.responses}" var="rep" rows="20" id="repeat">
-	           							<tr>
-				           					<td><h:outputText value="#{rep.policy}"/></td>
-				           					<td><h:outputText value="#{rep.policyDate}"/></td>
-				           					<td><h:outputText value="#{rep.status}"/> 
-					           					<h:inputHidden id="air_miles_registration_success" value="#{rep.status}" />
-					           					<h:inputHidden id="air_miles_collector_number"  value="#{rep.airmilesNumber}"/>	
-					           					<h:inputHidden id="air_miles_collector_name"  value="#{rep.airmilesName}"/>
-				           					</td>
-			           					</tr>
-					   				</rich:repeat>	
-	           					</tbody>
-	           				</table>
-	           					<b:gridColumn><h:outputText value="" escape="false"/></b:gridColumn>
-	           					<b:gridColumn><h:outputText value="" escape="false"/></b:gridColumn>			
-	           				</b:gridColumn>
-	           				
-
-	           		</b:gridRow>
+	           		<h:panelGroup rendered="#{not empty resp.getResponses()}">
+	           			<div class="row-fluid" id="successbar" > 
+		           			<div class="span2"></div>
+		           			<div class="span10">
+		           				<div class="control-group">		
+		           					<h:inputHidden id="successPage" value=":Success" /> 	
+		           					<h:outputLabel value="#{lookupManager.getBundle('airmiles.register.success.label')}" escape="false" styleClass="control-label" />
+		           				</div>	           				
+		           			</div>
+		           		</div>	
+	           		</h:panelGroup>
 	           		
-	           		<b:gridRow id="errorbar" fluid="true" > <!-- != null and facesContext.maximumSeverity!=null -->
-	           			<b:gridColumn span="2"></b:gridColumn>
-	           			<b:gridColumn span="10">
-	           				<div class="alert alert-error">	
-	           					<rich:messages id="form_errors" title="#{lookupManager.getBundle('airmiles.errors.tilte')}" ajaxRendered="true" globalOnly="false" escape="false"/>
-	           				</div>	           				
-	           				</b:gridColumn>
-	           		</b:gridRow>
-	           		<b:gridRow id="errorbar2" fluid="true" rendered="#{lookupManager.hasMessages() and facesContext.maximumSeverity.ordinal ge 3}"> <!-- != null and facesContext.maximumSeverity!=null -->
-	           			<b:gridColumn span="2"></b:gridColumn>
-	           			<b:gridColumn span="10">
-	           				<div class="alert alert-error">	
-								<h:inputHidden id="errorPage" value=":Error"   /> 
-	           					<rich:messages id="form_errors2" title="#{lookupManager.getBundle('airmiles.errors.tilte')}" ajaxRendered="true" globalOnly="true" escape="false"/>
-	           				</div>	           				
-	           				</b:gridColumn>
-	           		</b:gridRow>	           		
+	           		<h:panelGroup rendered="#{not empty resp.getResponses()}">
+	           			<div class="row-fluid">
+	                		<div class="span2"></div>
+			           		<div class="span10">	
+		           				<table class="table registered-policies">
+		           					<thead>
+		           						<tr>
+		           							<th>
+		           								<h:outputText value="#{lookupManager.getBundle('airmiles.register.policy.column')}" escape="false" />
+		           							</th>
+		           							<th>
+		           								<h:outputText value="#{lookupManager.getBundle('airmiles.register.policyDate.column')}" escape="false" />
+		           							</th>
+		           							<th>
+		           								<h:outputText value="#{lookupManager.getBundle('airmiles.register.status.column')}" escape="false" />
+		           							</th>
+		           						</tr>
+		           					</thead>
+		           					<tbody>
+		           						<ui:repeat value="#{resp.responses}" var="rep" rows="20" id="repeat">
+		           							<tr>
+					           					<td>
+					           						<h:outputText value="#{rep.policy}"/>
+					           					</td>
+					           					<td>
+					           						<h:outputText value="#{rep.policyDate}"/>
+					           					</td>
+					           					<td>
+					           						<h:outputText value="#{rep.status}"/> 
+						           					<h:inputHidden id="air_miles_registration_success" value="#{rep.status}" />
+						           					<h:inputHidden id="air_miles_collector_number"  value="#{rep.airmilesNumber}"/>	
+						           					<h:inputHidden id="air_miles_collector_name"  value="#{rep.airmilesName}"/>
+					           					</td>
+				           					</tr>
+						   				</ui:repeat>	
+		           					</tbody>
+		           				</table>
+	           					<div>
+	           						<h:outputText value="" escape="false"/>
+	           					</div>
+	           					<div>
+	           						<h:outputText value="" escape="false"/>
+	           					</div>			
+	           				</div>
+	           			</div>	
+	           		</h:panelGroup>
 	           		
-	                <b:gridRow fluid="true">
-	                	<b:gridColumn span="2"></b:gridColumn>
-	                    <b:gridColumn span="10">                
-		                	<div class="control-group" > 
+	           		<div class="row-fluid">
+	           			<div class="span2"></div>
+	           			<div class="span10">
+		           			<h:panelGroup id="errorbar1" rendered="#{lookupManager.hasMessages() and facesContext.maximumSeverity.ordinal lt 3}">							
+							  <div class="alert alert-error">
+								<h:messages id="form_errors"
+											title="#{lookupManager.getBundle('airmiles.errors.tilte')}"									
+											globalOnly="false" 
+											escape="false" />									
+							  </div>
+						    </h:panelGroup> 
+		           			<h:panelGroup id="errorbar2" rendered="#{lookupManager.hasMessages() and facesContext.maximumSeverity.ordinal ge 3}">							
+							  <div class="alert alert-error">
+							  	<h:inputHidden id="errorPage" value=":Error"   /> 
+								<h:messages id="form_errors2"
+											title="#{lookupManager.getBundle('airmiles.errors.tilte')}"									
+											globalOnly="true" 
+											escape="false" layout="table"/>									
+							  </div>
+						    </h:panelGroup> 	
+						</div>				    
+	           		</div>
+	           		
+	                <div class="row-fluid">
+	                	<div class="span2"></div>
+	                    <div class="span10">                
+		                	<div class="#{not empty facesContext.getMessageList(''.concat('airmiles:collectorNumber'))?'control-group error':'control-group'}" > 
 		                		<h:outputLabel value="#{lookupManager.getBundle('airmiles.collectorNumber.label')}" escape="false" styleClass="control-label" for="collectorNumber" />
 		                		<div class="controls">
-		                			<h:inputText id="collectorNumber" validatorMessage="#{lookupManager.getBundle('airmiles.collectorNumber.label')} : #{lookupManager.getBundle('airmiles.err.E11')}"  value="#{airmilesRequest.airmilesNumber}" styleClass="input-xlarge" >
-			                		<f:validateRequired ></f:validateRequired> 
-			                		<rich:validator/>
-			                		</h:inputText>		
-		                		 <rich:message for="collectorNumber" ajaxRendered="true" />
+		                			<h:inputText 
+		                				id="collectorNumber" 
+		                				validatorMessage="#{lookupManager.getBundle('airmiles.collectorNumber.label')} : #{lookupManager.getBundle('airmiles.err.E11')}"  
+		                				value="#{airmilesRequest.airmilesNumber}" 
+		                				styleClass="input-xlarge" >
+			                			<f:validateRequired ></f:validateRequired>
+			                			<p:ajax update="msgCollectorNumber" event="change" />			                						                				                					                		
+			                		</h:inputText>			                		
+			                		<div><h:message for="collectorNumber" id="msgCollectorNumber" styleClass="rf-msg-det"/></div>
 		                		</div>
 		                	</div>
 		                
-			                <div class="control-group" > 
+			                <div class="#{not empty facesContext.getMessageList(''.concat('airmiles:collectorName'))?'control-group error':'control-group'}" > 
 			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.collectorName.label')}" styleClass="control-label" for="collectorName"/>
 			                	<div class="controls">
-			                		<h:inputText id="collectorName" validatorMessage="#{lookupManager.getBundle('airmiles.collectorName.label')} : #{lookupManager.getBundle('airmiles.err.E11')}" value="#{airmilesRequest.airmilesName}"  styleClass="input-xlarge" >
-			                		<f:validateRequired ></f:validateRequired> 
-			                		<rich:validator/>
-			                		</h:inputText>		
-		                		 <rich:message for="collectorName" ajaxRendered="true" />
-			                		
+			                		<h:inputText 
+			                			id="collectorName" 
+			                			validatorMessage="#{lookupManager.getBundle('airmiles.collectorName.label')} : #{lookupManager.getBundle('airmiles.err.E11')}" 
+			                			value="#{airmilesRequest.airmilesName}"  
+			                			styleClass="input-xlarge" >
+			                			<f:validateRequired ></f:validateRequired> 			                		
+			                			<p:ajax update="msgCollectorName" event="change" />			                						                				                					                		
+			                		</h:inputText>			                		
+			                		<div><h:message for="collectorName" id="msgCollectorName" styleClass="rf-msg-det"/></div>		                		             		
 			                	</div>
 			                </div>
 		
-			                <div class="control-group" > 
-			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.email.label')}" styleClass="control-label" for="email"/>
-			                	
+			                <div class="#{not empty facesContext.getMessageList(''.concat('airmiles:email'))?'control-group error':'control-group'}" > 
+			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.email.label')}" styleClass="control-label" for="email"/>			                	
 			                	<div class="controls">
-			                		<h:inputText id="email" value="#{airmilesRequest.email}"  validatorMessage="#{lookupManager.getBundle('airmiles.email.label')} : #{lookupManager.getBundle('airmiles.err.E11')}"  styleClass="input-xlarge">
+			                		<h:inputText 
+			                			id="email" 
+			                			value="#{airmilesRequest.email}"  
+			                			validatorMessage="#{lookupManager.getBundle('airmiles.email.label')} : #{lookupManager.getBundle('airmiles.err.E11')}"  
+			                			styleClass="input-xlarge">
 				                		 <c:if test="${airmilesRequest.emailRequired}">
-				                		 <f:validateRequired ></f:validateRequired> 
-				                		</c:if>
-			                		 <rich:validator/>
-			                		</h:inputText>
-			                	<rich:message for="email" ajaxRendered="true" />
-			                	<h:outputLabel value="#{lookupManager.getBundle('C4.1')}"
-															escape="false"/>              		
+				                		 	<f:validateRequired ></f:validateRequired> 
+				                		</c:if>			                		 
+			                			<p:ajax update="msgEmail" event="change" />			                						                				                					                		
+			                		</h:inputText>			                		
+			                		<div><h:message for="email" id="msgEmail" styleClass="rf-msg-det"/></div>	
+			                		<div><h:outputLabel value="#{lookupManager.getBundle('C4.1')}" escape="false"/></div>              		
 			                	</div>
 			                </div>
 			                
 			                <div class="control-group" > 
 			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.phone.label')}"  styleClass="control-label" for="phone"/>
 			                	<div class="controls">
-			                		<h:inputText id="phone" value="#{airmilesRequest.phone}" validatorMessage="#{lookupManager.getBundle('airmiles.err.E11')}" styleClass="input-xlarge" >
-			                		</h:inputText>		
-		                		
+			                		<h:inputText 
+			                			id="phone" 
+			                			value="#{airmilesRequest.phone}" 
+			                			validatorMessage="#{lookupManager.getBundle('airmiles.err.E11')}" 
+			                			styleClass="input-xlarge" >
+			                		</h:inputText>			                		
 			                	</div>
 			                </div> 
 			
-			                <div class="control-group" > 
+			                <div class="#{not empty facesContext.getMessageList(''.concat('airmiles:policy'))?'control-group error':'control-group'}" >
 			                	<h:outputLabel value="#{lookupManager.getBundle('airmiles.policyNumber.label')}" styleClass="control-label" for="policy"/>
 			                	<div class="controls">
-			                		<h:inputText id="policy" value="#{airmilesRequest.policy}" validatorMessage="#{lookupManager.getBundle('airmiles.policyNumber.label')} : #{lookupManager.getBundle('airmiles.err.E11')}" styleClass="input-xlarge" >
-			                		<f:validateRequired ></f:validateRequired> 
-			                		<rich:validator/>
-			                		</h:inputText>		
-		                		 <rich:message for="policy" ajaxRendered="true" />			                		
+			                		<h:inputText 
+			                			id="policy" 
+			                			value="#{airmilesRequest.policy}" 
+			                			validatorMessage="#{lookupManager.getBundle('airmiles.policyNumber.label')} : #{lookupManager.getBundle('airmiles.err.E11')}" 
+			                			styleClass="input-xlarge" >
+			                			<f:validateRequired ></f:validateRequired>			                		
+			                			<p:ajax update="msgPolicy" event="change" />			                						                				                					                		
+			                		</h:inputText>			                		
+			                		<div><h:message for="policy" id="msgPolicy" styleClass="rf-msg-det"/></div>	              		
 			                	</div>
 			                </div> 
 			                
 			                <c:if test="${airmilesRequest.emailRequired}">			                                             
-			                <div class="control-group">
-			                	<h:outputLabel id="policy-date" value="#{lookupManager.getBundle('airmiles.policyDate.label')}" styleClass="control-label" for="date-policy-value" />
-			                	<div class="controls">						
-											<h:inputText id="date-policy-value"
-												validatorMessage="#{lookupManager.getBundle('airmiles.policyDate.label')} : #{lookupManager.getBundle('airmiles.err.E11')}"
-												value="#{airmilesRequest.policyDate}"
-												styleClass="datepicker-hidden">
-												<f:validateRequired></f:validateRequired>
-												<rich:validator />
-											</h:inputText>										
-									<rich:message for="date-policy-value" ajaxRendered="true" />			                					                		
-			                		<div id="date-policy" class="date-picker"></div>			                		
-			                	</div>
-			                </div>                
-			                  			                      			                       
-			                <div class="control-group" > 
-			                	<h:outputLabel value="" styleClass="checkbox" for="acceptTerms">
-			                		<h:selectBooleanCheckbox id="acceptTerms" validatorMessage="#{lookupManager.getBundle('airmiles.termsAndConditions.label')} : #{lookupManager.getBundle('airmiles.err.E11')}" value="#{airmilesRequest.acceptTerms}">			                					                						                		
-				                		<f:validateRequired ></f:validateRequired> 
-				                		<rich:validator/>
-			                		</h:selectBooleanCheckbox>
-			                		 <rich:message for="acceptTerms" ajaxRendered="true" />	
-			                		<h:outputText value="#{lookupManager.getBundle('airmiles.termsAndConditions.before.label')}" escape="false" /> <a target="_blank" href="#{lookupManager.getBundle('airmiles.termsAndConditions.url')}">#{lookupManager.getBundle('airmiles.termsAndConditions.label')}</a>
-			                	</h:outputLabel>
-			                </div>
+				                <div class="#{not empty facesContext.getMessageList(''.concat('airmiles:date-policy-value'))?'control-group error':'control-group'}" >
+				                	<h:outputLabel id="policy-date" value="#{lookupManager.getBundle('airmiles.policyDate.label')}" styleClass="control-label" for="date-policy-value" />
+				                	<div class="controls">						
+										<h:inputText 
+											id="date-policy-value"
+											validatorMessage="#{lookupManager.getBundle('airmiles.policyDate.label')} : #{lookupManager.getBundle('airmiles.err.E11')}"
+											value="#{airmilesRequest.policyDate}"
+											styleClass="datepicker-hidden">
+											<f:validateRequired></f:validateRequired>													
+				                			<p:ajax update="msgDatePolicyValue" event="change" />			                						                				                					                		
+				                		</h:inputText>			                		
+				                		<div><h:message for="date-policy-value" id="msgDatePolicyValue" styleClass="rf-msg-det"/></div>	              					                		
+				                		<div id="date-policy" class="date-picker"></div>			                		
+				                	</div>
+				                </div>                
+				                  			                      			                       
+				                <div class="#{not empty facesContext.getMessageList(''.concat('airmiles:acceptTerms'))?'control-group error':'control-group'}" > 
+				                	<h:outputLabel value="" styleClass="checkbox" for="acceptTerms">
+				                		<h:selectBooleanCheckbox 
+				                			id="acceptTerms" 
+				                			validatorMessage="#{lookupManager.getBundle('airmiles.termsAndConditions.label')} : #{lookupManager.getBundle('airmiles.err.E11')}" 
+				                			value="#{airmilesRequest.acceptTerms}">			                					                						                		
+					                		<f:validateRequired ></f:validateRequired>	
+					                		<p:ajax update="msgAcceptTerms" event="change" />				                		
+				                		</h:selectBooleanCheckbox>				                		
+				                		<h:outputText value="#{lookupManager.getBundle('airmiles.termsAndConditions.before.label')}" escape="false" /> 
+			                			<a target="_blank" href="#{lookupManager.getBundle('airmiles.termsAndConditions.url')}">#{lookupManager.getBundle('airmiles.termsAndConditions.label')}</a>			                			
+				                	</h:outputLabel>				                	
+				                </div>
+				                <div><h:message for="acceptTerms" id="msgAcceptTerms" styleClass="rf-msg-det"/></div>
 			                </c:if>
-<!-- 			                <div class="control-group" >  -->
-<!-- 			                	<h:outputLabel escape="false" styleClass="checkbox"> -->
-<!-- 			                		<h:selectBooleanCheckbox id="emailConsent"  value="#{airmilesRequest.emailConsent}" /> -->
-<!-- 			                		<h:outputText value="#{lookupManager.getBundle('airmiles.emailConsent.label')}" escape="false" />												                		 -->
-<!-- 			                	</h:outputLabel> -->
-<!-- 			                </div> -->
-			                			                
-			                <div class="control-group" > 
+		                			                
+			                <div class="control-group" > 		                
 			                	<div class="controls">
-			                		<b:commandButton id="Next"  action="next" oncomplete="attachErrors()"  styleClass="btn-primary btn-xlarge btn-input-width capitalize"><h:outputText value="#{lookupManager.getBundle('airmiles.registerBtn.label')}" escape="false"/></b:commandButton>
+			                		<p:commandButton 
+			                			id="Next"  
+			                			action="next"
+			                			process="@form"	                			
+			                			ajax="false"               			
+			                			onclick="captureFormValues();" 
+			                			styleClass="btn-primary btn-xlarge btn-input-width capitalize"
+			                			value="#{lookupManager.getBundle('airmiles.registerBtn.label')}">			                			
+			                		</p:commandButton>				                		
 			                		<br /><br />
 			                	</div>
 			                </div>
 			                
 			                <div class="control-group" > 
 			                	<div class="controls">
-			                		<b:commandButton id="Again" action="nextAgain" oncomplete="attachErrors()" styleClass="btn-info btn-large btn-input-width"><h:outputText value="#{lookupManager.getBundle('airmiles.registerAndAddBtn.label')}" escape="false"/></b:commandButton>
+			                		<p:commandButton 
+			                			id="Again" 
+			                			action="nextAgain"
+										process="@form"
+										ajax="false"
+			                			onclick="captureFormValues();"
+			                			styleClass="btn-info btn-large btn-input-width" 
+			                			value="#{lookupManager.getBundle('airmiles.registerAndAddBtn.label')}">
+			                		</p:commandButton>
 			                	</div>
 			                </div>
-		                </b:gridColumn>   
-		        	</b:gridRow>
+		                </div>   
+		        	</div>
 		        	<h:outputText value="#{lookupManager.getBundle('airmiles.contentfooter.txt')}" escape="false" />           
 	         	</h:form>
 	        </section>
-	    </b:gridRow>
+	    </div>
+	    
+	    <p:dialog id="popup" modal="true" resizable="true">
+	    	<f:facet name="header">
+	            <h:outputText value="#{lookupManager.getBundle('airmiles.popup.title.txt')}" escape = "false"/>
+	        </f:facet>
+	        <f:facet name="controls">
+	            <h:outputLink value="#" onclick="#{p:component('popup')}.hide(); return false;">X</h:outputLink>
+	        </f:facet>
+	        <h:outputText value="#{lookupManager.getBundle('airmiles.popup.body.txt')}" escape = "false"/>
+	        <p:commandButton value="#{lookupManager.getBundle('airmiles.popup.closeBtn.label')}" styleClass="btn-info btn-small btn-input-width" onclick="#{p:component('popup')}.hide(); return false;"></p:commandButton>
+	    </p:dialog>
 
-    <rich:popupPanel id="popup" modal="true" resizeable="true" onmaskclick="#{rich:component('popup')}.hide()">
-        <f:facet name="header">
-            <h:outputText value="#{lookupManager.getBundle('airmiles.popup.title.txt')}" escape = "false"/>
-        </f:facet>
-        <f:facet name="controls">
-            <h:outputLink value="#" onclick="#{rich:component('popup')}.hide(); return false;">X</h:outputLink>
-        </f:facet>
-         <h:outputText value="#{lookupManager.getBundle('airmiles.popup.body.txt')}" escape = "false"/>
-        <b:commandButton value="#{lookupManager.getBundle('airmiles.popup.closeBtn.label')}" styleClass="btn-info btn-small btn-input-width" onclick="#{rich:component('popup')}.hide(); return false;"></b:commandButton>
-    </rich:popupPanel>
+	    <!-- <rich:popupPanel id="popup" modal="true" resizeable="true" onmaskclick="#{rich:component('popup')}.hide()">
+	        <f:facet name="header">
+	            <h:outputText value="#{lookupManager.getBundle('airmiles.popup.title.txt')}" escape = "false"/>
+	        </f:facet>
+	        <f:facet name="controls">
+	            <h:outputLink value="#" onclick="#{rich:component('popup')}.hide(); return false;">X</h:outputLink>
+	        </f:facet>
+	         <h:outputText value="#{lookupManager.getBundle('airmiles.popup.body.txt')}" escape = "false"/>
+	        <b:commandButton value="#{lookupManager.getBundle('airmiles.popup.closeBtn.label')}" styleClass="btn-info btn-small btn-input-width" onclick="#{rich:component('popup')}.hide(); return false;"></b:commandButton>
+	    </rich:popupPanel> -->
     	
-    
-		   <h:outputScript name="bootstrap-datepicker.js" library="extensions/bootstrap-datepicker/js" />
-		   <h:outputScript name="bootstrap-datepicker.fr.js" library="extensions/bootstrap-datepicker/js/locales" />
-			<script type="text/javascript">	
+    		<script src="#{request.contextPath}/resources/extensions/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+		<script src="#{request.contextPath}/resources/extensions/bootstrap-datepicker/js/locales/bootstrap-datepicker.fr.js"></script>
+		<script type="text/javascript">				
 			$('.date-picker').datepicker({
 				language: $('#lang').val()
 			})
@@ -236,14 +296,24 @@
 					$('.date-picker td.active').removeClass('active');
 				}
 			});
+			jQuery(document).ready(function(){				
+				$("[id$='errorbar1']").each(function(index)
+						{					
+						   if($(this).offset)
+						   {					    
+						   	$("html, body").animate({ scrollTop: $(this).offset().top }, 0);
+						   }  	
+				})
+			});
 		
 			function attachErrors() {
+				console.log('attacherror entry');
 				// remove all error classes on control groups first
 				$('.control-group').each(function(index){
 					$(this).removeClass('error');	
 				}); 
 				
-				$('.rf-msg ').each(function(index) {
+				$('.rf-msg').each(function(index) {
 					if($(this).prev('input').attr('type') == 'checkbox'){
 						$(this).parents('div.control-group').addClass('error');	
 					}
@@ -252,11 +322,15 @@
 						$(this).parents('div.control-group').addClass('error');
 					}
 				});
-
-				$('[id^="airmiles:errorbar"]').show();
-
+				$("[id$='errorbar']").show();				  
 				// scroll smoothly to the error message
-				$("html, body").animate({ scrollTop: $('[id^="airmiles:errorbar"]').offset().top }, 500);
+				$("[id$='errorbar']").each(function(index)
+				{					
+				   if($(this).offset)
+				   {					    
+				   	$("html, body").animate({ scrollTop: $(this).offset().top }, 500);
+				   }  	
+				})
 			}
 		</script>
 	</ui:define>	 

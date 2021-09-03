@@ -1,49 +1,45 @@
 <!DOCTYPE html>
 <html lang="en-US"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:b="http://richfaces.org/sandbox/bootstrap">
-<h:head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>#{subTitle} #{lookupManager.getBundle('airmiles.pagetitle.txt')}</title>
-    <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico" />
-	<!-- Include GTM/Omniture for this app only for some specific environment. includeDTMScripts should be true in config.properties to load this script ... -->
-	<c:if test="#{configurationManager.includeDTMScripts}">
-		<script  src="//s3.amazonaws.com/searchdiscovery-satellite-production/6369c798eb575b7d3a5e6e94ca97145c3c7ea5be/satelliteLib-2eda4feb5aa12cd92b6d96061a6f6d806335c334-staging.js" ></script>
-	</c:if>
-	<h:outputText value="&lt;!--[if lt IE 9]&gt;&lt;script src=&quot;//html5shiv.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;&lt;![endif]--&gt;" escape="false" />
-</h:head>
-
-<h:body>
-	<h:outputText value="#{lookupManager.getBundle('tealium.txt')}"
-		escape="false" />
-
-	<h:outputText value="#{lookupManager.getBundle('airmiles.gtm.txt')}" escape="false"/>
-	<h:outputStylesheet library="themes/#{flowScope.domain}/css" name="style.css" />
-	<h:outputText value="&lt;!--[if lt IE 8]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;${request.contextPath}/resources/themes/${flowScope.domain}/css/ie-7.css&quot; /&gt;&lt;![endif]--&gt;" escape="false" />
-    <h:outputText value="&lt;!--[if IE 8]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;${request.contextPath}/resources/themes/${flowScope.domain}/css/ie-8.css&quot; /&gt;&lt;![endif]--&gt;" escape="false" />
-    <h:outputScript library="js" name="environment.js" />
-	<h:outputScript library="js" name="data-layer.js" />
-    <h:outputScript library="js" name="respond.min.js" />
-    <h:outputScript library="themes/#{flowScope.domain}/js" name="default-script.js" />
-
-
-	<div class="main-container container"> 
-		<div id="page-header">    		
-    		<h:outputText value="#{lookupManager.getBundle('airmiles.pageheader.txt')}" escape="false"/>
-    		<!-- <a href="?lang=fr">Français </a> -->
-    	</div>    
-    	<ui:insert name="content">Content</ui:insert>    	    	
-    </div>    
-    <div id="page-footer">    		
-   		<h:outputText value="#{lookupManager.getBundle('airmiles.pagefooter.txt')}" escape="false"/>
-   	</div>
-   	<!-- Include GTM/Omniture for this app only for some specific environment. includeDTMScripts should be true in config.properties to load this script ... -->
-	<c:if test="#{configurationManager.includeDTMScripts}">
-   		<script type="text/javascript">_satellite.pageBottom();</script>
-   	</c:if> 
-</h:body>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"      
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<h:head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	    <title>#{subTitle} #{lookupManager.getBundle('airmiles.pagetitle.txt')}</title>
+	    <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico" />
+	    <link rel="stylesheet" href="#{request.contextPath}/resources/themes/default/css/style.css"/>
+		<!-- Include GTM/Omniture for this app only for some specific environment. includeDTMScripts should be true in config.properties to load this script ... -->
+		<c:if test="#{configurationManager.includeDTMScripts}">
+			<script  src="//s3.amazonaws.com/searchdiscovery-satellite-production/6369c798eb575b7d3a5e6e94ca97145c3c7ea5be/satelliteLib-2eda4feb5aa12cd92b6d96061a6f6d806335c334-staging.js" ></script>
+		</c:if>
+		<h:outputText value="&lt;!--[if lt IE 9]&gt;&lt;script src=&quot;//html5shiv.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;&lt;![endif]--&gt;" escape="false" />
+	</h:head>
+	
+	<h:body>
+		<h:outputText value="#{lookupManager.getBundle('tealium.txt')}" escape="false" />	
+		<h:outputText value="#{lookupManager.getBundle('airmiles.gtm.txt')}" escape="false"/>		
+		<h:outputText value="&lt;!--[if lt IE 8]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;${request.contextPath}/resources/themes/default/css/ie-7.css&quot; /&gt;&lt;![endif]--&gt;" escape="false" />
+	    <h:outputText value="&lt;!--[if IE 8]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;${request.contextPath}/resources/themes/default/css/ie-8.css&quot; /&gt;&lt;![endif]--&gt;" escape="false" />
+	    <h:outputScript library="js" name="environment.js" />
+		<h:outputScript library="js" name="data-layer.js" />
+	    <h:outputScript library="js" name="respond.min.js" />	    
+	    <script src="#{request.contextPath}/resources/themes/default/js/default-script.js"></script>
+	
+	
+		<div class="main-container container"> 
+			<div id="page-header">    		
+	    		<h:outputText value="#{lookupManager.getBundle('airmiles.pageheader.txt')}" escape="false"/>
+	    		<!-- <a href="?lang=fr">Français </a> -->
+	    	</div>    
+	    	<ui:insert name="content">Content</ui:insert>    	    	
+	    </div>    
+	    <div id="page-footer">    		
+	   		<h:outputText value="#{lookupManager.getBundle('airmiles.pagefooter.txt')}" escape="false"/>
+	   	</div>
+	   	<!-- Include GTM/Omniture for this app only for some specific environment. includeDTMScripts should be true in config.properties to load this script ... -->
+		<c:if test="#{configurationManager.includeDTMScripts}">
+	   		<script type="text/javascript">_satellite.pageBottom();</script>
+	   	</c:if> 
+	</h:body>
 </html>
