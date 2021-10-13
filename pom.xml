@@ -11,9 +11,9 @@
 		<maven>2.2.0</maven>
 	</prerequisites>
 	<properties>
-		<jboss-server>@@JBOSSSERVER@@</jboss-server>
-		<jboss-user>@@JBOSSUSER@@</jboss-user>
-		<jboss-password>@@JBOSSPASSWORD@@</jboss-password>
+		<jboss-server>webairmiles</jboss-server>
+		<jboss-user>jboss</jboss-user>
+		<jboss-password>jboss</jboss-password>
 		<jboss.version>jboss-eap-7.2</jboss.version>
 		<jboss.patch>6</jboss.patch>
 		<!-- jdbc driver dependency -->
@@ -27,7 +27,7 @@
 		<!-- jdbc settings -->
 		<jdbc.type>mysql</jdbc.type>
 		<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-		<jdbc.url>jdbc:mysql://localhost/webairmiles</jdbc.url>
+		<jdbc.url>jdbc:mysql://mariadb/webairmiles</jdbc.url>
 		<jdbc.user>demo</jdbc.user>
 		<jdbc.password>demo</jdbc.password>
 		<hibernate.dialect>org.hibernate.dialect.MySQLInnoDBDialect</hibernate.dialect>
