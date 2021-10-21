@@ -72,8 +72,16 @@
 		<!-- Artifactory -->
 		<repository.url>http://artifactory-prod.tools.royalsunalliance.ca/artifactory</repository.url>
 	</properties>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>synergian-repo</id>
+			<url>https://raw.github.com/synergian/wagon-git/releases</url>
+		</pluginRepository>	
+	</pluginRepositories>
 	
 	<repositories>
+		
 		<repository>
 			<id>central</id>
 			<name>Maven Central</name>
@@ -83,6 +91,18 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+		
+		<repository>
+			<id>rsa</id>
+			<name>RSA Bitbucket</name>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>newer</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<url>git:releases://https://bitbucket.org/rsacanada/maven.git</url>
+		</repository>
+
 	</repositories>
 
 	<!-- <pluginRepositories>
